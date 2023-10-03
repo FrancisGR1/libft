@@ -1,31 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 14:58:14 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/03 15:03:56 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/10/03 14:44:05 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/03 14:47:57 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <string.h>
 
-#include "libft.a"
+void	*ft_memcpy(void *dest, const void *src, sze_t n)
+{
 
-int ft_isascii(int c)
-{
-	if (c >= 0 && c <= 127)
-		return (1);
-	else
-		return (0);
 }
-/*
-int main(int c, char **v)
-{
-	int mine = ft_isascii(atoi(v[1]));
-	int std = isascii(atoi(v[1]));
-	
-	printf("%d\n", mine);
-	printf("%d\n", std);
-}
-*/

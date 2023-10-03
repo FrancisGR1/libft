@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 14:58:14 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/03 15:03:56 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/10/03 11:57:18 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/03 15:08:51 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.a"
 
-int ft_isascii(int c)
+int	ft_isalnum(int c)
 {
-	if (c >= 0 && c <= 127)
+	if (isalpha(c) || isdigit(c))
 		return (1);
 	else
 		return (0);
 }
-/*
-int main(int c, char **v)
-{
-	int mine = ft_isascii(atoi(v[1]));
-	int std = isascii(atoi(v[1]));
-	
-	printf("%d\n", mine);
-	printf("%d\n", std);
-}
-*/

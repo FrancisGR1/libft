@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:38:59 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/09/10 12:55:42 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:13:06 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.a"
 
-#include <unistd.h>
-
-int	ft_str_is_printable(char *str)
+int	ft_isprint(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (!(str[i] >= 32 && str[i] <= 126))
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
+	if (c >= 32 && c <= 126)
+		return (16384);
+	else
+		return (0);
 }
 
-/*
-int main()
+int main(int c, char **v)
 {
-	char result1 = ft_str_is_printable(" ") + '0';
-	char result2 = ft_str_is_printable("~") + '0';
+	int mine = ft_isprint(atoi(v[1]));
+	int std = isprint(atoi(v[1]));
+	
+	int mine2 = ft_isprint('\n');
+	int std2 = isprint('\n');
 
-	write(1, &result1, 1);
-	write(1, "\n", 1);
-	write(1, &result2, 1);
-
+	printf("Arg:\n%d\n%d\nLetters:\n%d\n%d\n", mine, std, mine2, std2);
 	return (0);
-}*/
+}

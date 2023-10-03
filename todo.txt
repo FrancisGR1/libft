@@ -1,12 +1,12 @@
- - isalpha
-• isdigit
-• isalnum
-• isascii
-• isprint
-• strlen
-• memset
-• bzero
-• memcpy
+ - isalpha || Testado
+• isdigit || Testado
+• isalnum  || Feito - NAO Testado
+• isascii ||Testado
+• isprint ||Testado
+• strlen || Testado
+• memset || Testado
+• bzero || Testado - Output estranho: ft_bzero: 000NNNNNNN, bzero: 00000000N0
+• memcpy 
 • memmove
 • strlcpy
 • strlcat

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 14:58:14 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/03 15:03:56 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/10/03 12:01:37 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/03 12:16:10 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.a"
 
-int ft_isascii(int c)
+size_t	ft_strlen(const char *s)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	else
-		return (0);
+	size_t	i;
+
+	i = -1;
+	while (*(s + (++i)));
+	return (i);
 }
 /*
-int main(int c, char **v)
+int	main(int c, char **v)
 {
-	int mine = ft_isascii(atoi(v[1]));
-	int std = isascii(atoi(v[1]));
-	
-	printf("%d\n", mine);
-	printf("%d\n", std);
+	int mine = ft_strlen(v[1]);
+	int std = strlen(v[1i]);
+
+	printf("%d\n%d\n", mine, std);	
 }
 */
