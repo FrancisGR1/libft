@@ -9,46 +9,22 @@
 /*   Updated: 2023/09/10 14:33:37 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include "libft.h"
 
-int	is_upper(char c)
+int	ft_isalpha(int c)
 {
-	return (c >= 'A' && c <= 'Z');
-}
-
-int	is_lower(char c)
-{
-	return (c >= 'a' && c <= 'z');
-}
-
-int	is_alpha(char c)
-{
-	return (is_upper(c) || is_lower(c));
-}
-
-int	ft_str_is_alpha(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (!is_alpha(str[i]))
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
+	if ((c >= 65 && c <= 90) 
+		|| (c >= 97 && c <= 122))
+		return (1024);
+	else
+		return (0);
 }
 /*
-int main()
+int main(int c, char **v)
 {
-        char result1 = ft_str_is_alpha("oi") + '0';
-        char result2 = ft_str_is_alpha("OlA---") + '0';
+   int  mine = ft_isalpha(atoi(v[1]));
+   int std = isalpha(atoi(v[1]));
 
-        write(1, &result1, 1);
-        write(1, "\n", 1);
-        write(1, &result2, 1);
+   printf("%d\n%d\n", mine, std);
 }
 */
