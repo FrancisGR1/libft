@@ -6,12 +6,11 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:30:10 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/03 18:05:24 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:01:08 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <strings.h>
-#include <stdio.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -22,7 +21,7 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		*ptr = '\0';
+		*ptr = 0;
 		ptr++;
 		i++;
 	}
@@ -36,30 +35,26 @@ void	ft_bzero(void *s, size_t n)
 /*
 int main(void)
 {
-	int n = 10;
-	int arr[10] = {2,2,2,2,2,2,2,2,2,2};
-	int arr1[10] = {2,2,2,2,2,2,2,2,2,2};
+	int n = 4;
+	char arr[] = "test";
+	char arr1[] = "test";
 	int	i = 0;
 
-	ft_bzero(arr, n);
-	bzero(arr1, n);
-	while (i < 10)
+	ft_bzero(arr, 5);
+	bzero(arr1, 5);
+	printf("MINE:%s", arr);
+	while (i < n)
 	{
-		if (arr[i] == 0)
-			printf("0");
-		else
-			printf("N");
+		printf("%d", arr[i]);
 		i++;
 	}
-	printf("\n");
 	i = 0;
-	while (i < 10)
+	printf("\nSTD:");
+	while (i < n)
 	{
-		if (arr1[i] == 0)
-			printf("0");
-		else
-			printf("N");
+		printf("%d", arr1[i]);
 		i++;
 	}
 	printf("\n");	
-}*/
+}
+*/
