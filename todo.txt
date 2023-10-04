@@ -5,7 +5,7 @@
 • isprint ||Testado
 • strlen || Testado
 • memset || Testado
-• bzero || Testado - Output estranho: ft_bzero: 000NNNNNNN, bzero: 00000000N0
+• bzero || Testado
 • memcpy 
 • memmove
 • strlcpy

@@ -1,37 +1,41 @@
 #include "libft.h"
-#include <string.h>
-#include <ctype.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int	len;
 	int	i;
 	unsigned char	*arr;
-	unsigned char	*ptr;
-	
-	i = 0;
-	arr[n];
-	while(*(src + i) && i < n)
-		arr[i++] = *src;
-	i = 0;
-	ptr = dest;
-	while(i < n)
-		*(ptr + i) = arr[i++];	
+	unsigned char	*a;
+	const unsigned char	*b;
+
+	a = dest;
+	b = src;
+	if (a < b)
+	{
+		while (n--)
+			*a++ = *b++;
+	}
+	else
+	{
+		while (n--)
+			a[n] = b[n];
+	}
 	return (dest);
+	
 }
 
 int main (void)
 {
-	char dest1[10];
-	char dest2[10];
 	char arr[] = "Testestesfd";
 	char arr1[] = "TESTETSETEESDF";
-	//ft_memmove(dest1, arr, 5);
-	memmove(dest2, arr, 5);
+	char arr2[] = "Testestesfd";
+	char arr3[] = "TESTETSETEESDF";
 	
-	printf("FT: %s\n", dest1);
-	printf("STD: %s\n", dest2);
+	ft_memmove(arr3+5, arr2+5, 5);
+	memcpy(arr1+5, arr+5, 5);	
+	printf("arr3: %s\n", arr3);
+	printf("arr1: %s\n", arr1);
 }
 
 /*https://www.youtube.com/watch?v=DGwdAQauEV4&ab_channel=PortfolioCourses*/
-/*https://stackoverflow.com/questions/43088070/meaning-of-overlapping-when-using-memcpy*/
+/*https://stackoverflow.com/questions/43088070/meaning-of-overlapping-when-using-memcpy
+ * https://www.youtube.com/watch?v=TGlePWhNgY0*/
