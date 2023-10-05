@@ -10,36 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-char	*ft_strlowcase(char *str)
+int	ft_tolower(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-		{
-			str[i] = str[i] + 32;
-		}
-		i++;
-	}
-	return (str);
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }
-
-/*
-int	main()
-{
-	char str[] = "HELLO";
-	char str2[] = "HeLLo";
-
-	ft_strlowcase(str);
-	ft_strlowcase(str2);
-
-	write(1, &str, 5);
-	write(1, "\n", 2);
-	write(1, &str2, 5);
-
-	return 0;
-}*/

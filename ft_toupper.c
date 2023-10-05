@@ -10,33 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-int	ft_str_is_uppercase(char *str)
+int	ft_toupper(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (!(str[i] >= 'A' && str[i] <= 'Z'))
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
+	if (c >= 97 && c <= 122)
+		c -= 32;
+	return (c);
 }
 /*
-int main()
+int main(int c, char **v)
 {
-        char result1 = ft_str_is_uppercase("a") + '0';
-        char result2 = ft_str_is_uppercase("A") + '0';
-
-        write(1, &result1, 1);
-        write(1, "\n", 2);
-        write(1, &result2, 1);
-
+	char s = c == 2 ? v[1][0] : 'h';
+	
+	printf("%c\n", ft_toupper(s));
+	printf("%c\n", toupper(s));	
 	return (0);
 }
+*
 */

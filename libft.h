@@ -1,5 +1,5 @@
-#ifndef FT_H
-# define FT_H
+#ifndef LIB_H
+# define LIB_H
 
 #include <ctype.h>
 #include <stdlib.h>
