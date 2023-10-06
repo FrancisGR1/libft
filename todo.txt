@@ -23,5 +23,4 @@
 • strdup || Testado || Norm
 
 - Aplicar francinette
-- Aprender a fazer um makefile
-- Ler capitulo do livro acerca de make - Learn C the Hard Way
+
