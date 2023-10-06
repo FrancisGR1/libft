@@ -6,19 +6,21 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:01:31 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/04 20:42:46 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:02:00 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat (char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	dlen = ft_strlen(dst);
-	size_t	slen = ft_strlen(src);
+	size_t	dlen;
+	size_t	slen;
 	size_t	i;
 	size_t	total;
 
+	dlen = ft_strlen(dst);
+	slen = ft_strlen(src);
 	total = dlen + slen;
 	i = 0;
 	if (size <= dlen)
@@ -29,7 +31,7 @@ size_t	ft_strlcat (char *dst, const char *src, size_t size)
 		i++;
 	}
 	dst[i + dlen] = 0;
-	return (total);		
+	return (total);
 }
 /*
    int main	(int argc, char **argv) 
@@ -50,7 +52,8 @@ size_t	ft_strlcat (char *dst, const char *src, size_t size)
 //WTF WTF
 /* Pq e que isto nao da?
    dst[i + dlen] = src[i++];
-   --> Qual e a diferença entre a linha acima e a de baixo (que funciona no contexto da l.28 ??
+   --> Qual e a diferença entre a linha acima 
+e a de baixo (que funciona no contexto da l.28 ??
    dst[i + dlen] = src[i];
    i++;
  */

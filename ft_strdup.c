@@ -1,26 +1,35 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 19:31:41 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/06 19:33:00 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "libft.h"
 
 //Testing for failed malloc
 /*
-
 void *mock_malloc(size_t size) {
     (void)size;
     return NULL; 
 }
-
 #define malloc(size) mock_malloc(size)
 */
 char	*ft_strdup(const char *s)
 {
 	char	*ptr;
-	size_t		size;
+	size_t	size;
 
 	size = ft_strlen(s) + 1;
 	ptr = (char *)malloc(size * sizeof(char));
 	if (!ptr)
 		ptr = 0;
-	else 
+	else
 		ft_memcpy(ptr, s, size);
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:30:10 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/03 20:01:08 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:54:36 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*ptr;
+	char		*ptr;
 	size_t		i;
 
 	ptr = s;
@@ -25,13 +25,7 @@ void	ft_bzero(void *s, size_t n)
 		ptr++;
 		i++;
 	}
-
-
 }
-//output estranho:
-//ft_bzero: 000NNNNNNN
-//bzero: 00000000N0
-
 /*
 int main(void)
 {

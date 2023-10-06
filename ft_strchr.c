@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 19:04:38 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/06 19:04:57 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
@@ -10,7 +22,6 @@ char	*ft_strchr(const char *s, int c)
 		if (*ptr == c)
 			return (ptr);
 		ptr++;
-
 	}
 	return (NULL);
 }

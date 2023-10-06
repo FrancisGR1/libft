@@ -6,10 +6,10 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:38:59 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/03 12:13:06 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:49:21 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.a"
+#include "libft.h"
 
 int	ft_isprint(int c)
 {
@@ -18,7 +18,7 @@ int	ft_isprint(int c)
 	else
 		return (0);
 }
-
+/*
 int main(int c, char **v)
 {
 	int mine = ft_isprint(atoi(v[1]));
@@ -30,3 +30,4 @@ int main(int c, char **v)
 	printf("Arg:\n%d\n%d\nLetters:\n%d\n%d\n", mine, std, mine2, std2);
 	return (0);
 }
+*/

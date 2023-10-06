@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/06 19:05:28 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/06 19:06:15 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
@@ -5,13 +17,13 @@ char	*ft_strrchr(const char *s, int c)
 	char	*ptr;
 	char	*location;
 
-	ptr = (char*) s;
+	ptr = (char *)s;
 	location = 0;
 	while (*ptr)
 	{
 		if (*ptr == c)
 			location = ptr;
-		ptr++;	
+		ptr++;
 	}
 	if (!location)
 		return (0);
