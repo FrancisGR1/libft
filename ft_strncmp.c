@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:06:48 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 19:06:48 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:53:57 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		n--;
 	}
 	if (n)
-		return (*s1 - *s2);
+		return ((unsigned char)*s1 - (unsigned char)*s2);
 	else
 		return (n);
 }
-
 /*
 int main (int c, char **v)
 {
