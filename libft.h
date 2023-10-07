@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:34:55 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 19:38:29 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:32:04 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <strings.h>
 # include <string.h>
+# include <stddef.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -28,5 +29,6 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

@@ -6,9 +6,10 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:08:37 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 19:08:38 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:15:45 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

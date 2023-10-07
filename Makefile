@@ -1,19 +1,32 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/07 19:51:14 by frmiguel          #+#    #+#              #
+#    Updated: 2023/10/07 19:52:59 by frmiguel         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libft.a
+
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-SOURCES = *.c
+SOURCES = $(wildcard *.c)
 OBJECTS = $(patsubst %.c, %.o, $(SOURCES))
-TARGET = libft.a
 
 # Target Build
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJECTS)
+$(NAME): $(OBJECTS)
 	ar rcs $@ $(OBJECTS)
 	ranlib $@
 clean:
 	rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re: fclean all

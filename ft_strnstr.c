@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:38:15 by francis           #+#    #+#             */
-/*   Updated: 2023/10/06 19:21:42 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:33:44 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	ptr_s2 = (char *)s2;
 	s2_len = ft_strlen(s2);
 	i = 0;
-	if (ptr_s2 == "")
+	if (ft_strncmp(&s2[i], "", n) == 0)
 		return (ptr_s1);
 	while (*ptr_s1 && n)
 	{

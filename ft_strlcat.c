@@ -6,7 +6,7 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:01:31 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 19:02:00 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/07 00:41:44 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[i + dlen] = 0;
 	return (total);
 }
-/*
+
    int main	(int argc, char **argv) 
    {
 
@@ -48,8 +48,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
  printf ("after 'strlcat (str, s2, n)', str : %s  (%zu chars)\n", str, n);
  return (0);
  }
- */
-//WTF WTF
+
 /* Pq e que isto nao da?
    dst[i + dlen] = src[i++];
    --> Qual e a diferença entre a linha acima 
