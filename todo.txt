@@ -1,0 +1,34 @@
+ - isalpha || Testado || Norm
+• isdigit || Testado || Norm 
+• isalnum  || Feito - NAO Testado || Norm
+• isascii ||Testado || Norm
+• isprint ||Testado || Norm
+• strlen || Testado || Norm
+• memset || Testado || Norm
+• bzero || Testado || Norm
+• memcpy || Testado || Norm
+• memmove || Testado || Norm
+• strlcpy || Testado || Norm
+• strlcat || Testado || Norm
+• toupper || Testado || Norm
+• tolower || Feito - Nao testado || Norm
+• strchr || Testado || Norm
+• strrchr || Testado || Norm
+• strncmp || Testado || Norm
+• memchr || Feito - Nao testado || Norm
+• memcmp || Feito - Nao testado || Norm
+• strnstr ||Testado || Norm
+• atoi || Feito - Nao testado || Norm
+- calloc || Testado || Norm
+• strdup || Testado || Norm
+
+Francinette:
+KO:
+strlcpy
+strlcat
+strchr
+strrchr
+memchr
+memcmp
+strnstr
+calloc

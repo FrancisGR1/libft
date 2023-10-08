@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:05:28 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 19:06:15 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:05:27 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,24 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*ptr;
-	char	*location;
+	int	i;
 
-	ptr = (char *)s;
-	location = 0;
-	while (*ptr)
+	i = 0;
+	while (s[i])
+		i++;
+	while (i >= 0)
 	{
-		if (*ptr == c)
-			location = ptr;
-		ptr++;
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i--;
 	}
-	if (!location)
-		return (0);
-	else
-		return (location);
+	return (0);
 }
-/*
-int	main(int c, char **v)
-{
-	char *str = c > 1 ? v[1] : "helloolatdbem";
-	char l = c > 2 ? v[2][0] : 'o';  
-	printf("%s --> %p\n", ft_strrchr(str, l), ft_strrchr(str,l));
-	printf("%s --> %p\n", strrchr(str, l), strrchr(str,l)); 
-}
+/*   int	main(int c, char **v)
+   {
+   char *str = c > 1 ? v[1] : "helloolatdbem";
+   char l = c > 2 ? v[2][0] : '\0';  
+   printf("%s --> %p\n", ft_strrchr(str, l), ft_strrchr(str,l));
+   printf("%s --> %p\n", strrchr(str, l), strrchr(str,l)); 
+   }
 */

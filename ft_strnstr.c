@@ -6,45 +6,45 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:38:15 by francis           #+#    #+#             */
-/*   Updated: 2023/10/07 19:33:44 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:26:45 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t n)
 {
-	char			*ptr_s1;
-	char			*ptr_s2;
-	size_t			s2_len;
-	unsigned long	i;
-	unsigned long	j;
+	size_t			i;
+	size_t			j;
 
-	ptr_s1 = (char *)s1;
-	ptr_s2 = (char *)s2;
-	s2_len = ft_strlen(s2);
-	i = 0;
-	if (ft_strncmp(&s2[i], "", n) == 0)
-		return (ptr_s1);
-	while (*ptr_s1 && n)
+	if (!n && ft_strlen(little) != 0)
+		return (0);
+	if (ft_strncmp(little, "", n) == 0
+		|| *little == '\0')
+		return ((char *)big);
+	j = 0;
+	while (*big && j < n)
 	{
-		j = 0;
-		while (ptr_s1[i + j] == ptr_s2[j] && ptr_s2[j++])
-			;
-		if (j == s2_len)
-			return (&ptr_s1[i]);
-		i++;
-		n--;
+		i = 0;
+		while (big[i] && big[i] == little[i] && little[i]
+			&& (j + i) < n)
+		{
+			if (!little[i + 1])
+				return ((char *)big);
+			i++;
+		}
+		big++;
+		j++;
 	}
 	return (0);
 }
-/*
-   int main (int c, char **v)
+/*   int main (int c, char **v)
    {
    char *str1 = c > 1 ? v[1] : "Hello Crazy World";
    char *str2 = c > 2 ? v[2] : "Crazy";
-   size_t n = c > 3 ? atoi(v[3]) : 7;
-
-   printf("%s\n", ft_strnstr(str1, str2, n));
-   }
- */
+   size_t n = c > 3 ? atoi(v[3]) : 20;
+//char *word = strnstr(str1, str1, n);	
+printf("%s\n", ft_strnstr(str1, str1, n));
+//printf("%s\n", word);
+}
+*/

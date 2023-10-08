@@ -6,7 +6,7 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:08:58 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 18:09:59 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/08 10:50:12 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,39 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	len;
 	size_t	n;
 
-	len = 0;
-	while (src[len++])
-		;
+	len = ft_strlen(src);
 	if (size == 0)
 		return (len);
-	if (len < size)
+	n = size - 1;
+	while (*src && n)
 	{
-		while (*src && n--)
-			*dst++ = *src++;
-		dst[len] = '\0';
+		*dst++ = *src++;
+		n--;
 	}
-	else
-	{
-		while (*src && n--)
-			*dst++ = *src++;
-		n = size;
-		dst[size - 1] = '\0';
-	}
-	return (len - 1);
+	*dst = '\0';
+	return (len);
 }
 /*
-int	main(void)
-{
-	char arr[] = "hello";
-	char arr2[] = "goodbye";
-	int length = ft_strlcpy(arr, arr2, 5);
-	int stdlength = strlcpyBSD(arr, arr2, 5);
-	printf("ft_strlcpy: %d\n", length);
-	printf("strlcpy: %d\n", stdlength);
-	printf("strlen: %lu\n", strlen(arr2));
-}
+   int	main(int c, char **v)
+   {
+   char arr[40];
+   char arr2[40];
+   int size;
+   if (c > 1)
+   memcpy(arr, v[1], 40);
+   else
+   strcpy(arr, "Hello");
+   if (c > 2)
+   memcpy(arr2, v[2], 40);
+   else
+   strcpy(arr, "Goodbye");
+   if (c > 3)
+   size = atoi(v[3]);
+   else
+   size = 10;
+   printf("Dst before: %s\nSrc before: %s\n", arr, arr2);
+   int length = ft_strlcpy(arr, arr2, size);
+   printf("ft_strlcpy: %s -> %d\n", arr, length);
+   }
 */
 /*https://github.com/freebsd/freebsd-src/blob/master/sys/libkern/strlcpy.c*/
