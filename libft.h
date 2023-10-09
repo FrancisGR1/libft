@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 22:20:37 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/07 22:24:24 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/08 22:42:37 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strnstr(const char *s1, const char *s2, size_t n);
-
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 #endif
