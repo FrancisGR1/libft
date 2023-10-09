@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 20:31:41 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/09 12:08:12 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:38:23 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start >= ft_strlen(s))
 	{
 		p = malloc(1);
+		if (!p)
+			return (NULL);
 		p[0] = '\0';
 		return (p);
 	}
 	p = malloc(get_len(s, start, len) * sizeof(char) + 1);
 	if (!p)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (s[start] && i < len)
 	{
