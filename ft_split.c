@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:21:23 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/10 19:35:02 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:55:26 by frmiguel         ###   ########.fr       */
 /*                                                                          */
 /* ************************************************************************** */
 #include "libft.h"
@@ -30,16 +30,12 @@ static int	word_count(char const *s, char delimiter)
 	return (count);
 }
 
-static void	free_arr(char **arr, int k)
+static void	*free_arr(char **arr, int k)
 {
 	while (k >= 0)
-	{
-		free(arr[k]);
-		arr[k] = NULL;
-		k--;
-	}
+		free(arr[k--]);
 	free(arr);
-	arr[k] = NULL;
+	return (NULL);
 }
 
 static char	*ft_strndup(const char *s, size_t size)
@@ -71,12 +67,10 @@ static char	**word_alloc(char **p, const char *s, char c)
 			j++;
 		if (j > i)
 		{
-			p[k++] = ft_strndup(s + i, j - i);
-			if (!p[k - 1])
-			{
-				free_arr(p, words);
-				return (p);
-			}
+			p[k] = ft_strndup(s + i, j - i);
+			if (!p[k])
+				return (free_arr(p, k));
+			k++;
 		}
 		i = j + 1;
 	}
@@ -93,10 +87,11 @@ char	**ft_split(char const *s, char c)
 	if (!p || !s)
 		return (NULL);
 	p = word_alloc(p, s, c);
+	if (!p)
+		return (NULL);
 	p[words] = NULL;
 	return (p);
 }
-
 /*
 int main(int c, char **v)
 {
