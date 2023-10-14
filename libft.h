@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 22:20:37 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/13 23:42:31 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:59:27 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
-//t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *));
 
 #endif
