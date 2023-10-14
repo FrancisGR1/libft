@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 23:25:36 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/12 23:31:48 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/14 21:33:48 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_lstclear(t_list **lst, void (*del) (void *))
 	t_list	*ptr;
 	t_list	*tmp;
 
+	if (lst == NULL || del == NULL)
+		return ;
 	ptr = *lst;
 	while (ptr != NULL)
 	{
