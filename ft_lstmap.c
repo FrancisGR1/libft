@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:59:54 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/14 22:40:59 by frmiguel         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:21:34 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@ static t_list	*ft_lstnew_safe(void *content)
 	node -> next = NULL;
 	return (node);
 }
-t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *))
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *))
 {
-        t_list  *head;
-        t_list  *ptr;
+	t_list	*head;
+	t_list	*ptr;
 
 	if (!lst || !f || !del)
 		return (NULL);
-        head = NULL;
-        while (lst != NULL)
-        {
-                ptr = ft_lstnew_safe(f(lst -> content));
+	head = NULL;
+	while (lst != NULL)
+	{
+		ptr = ft_lstnew_safe(f(lst -> content));
 		if (!ptr)
 		{
 			ft_lstclear(&head, del);
