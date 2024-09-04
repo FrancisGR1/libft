@@ -1,5 +1,4 @@
 Organizar com pastas
-Incluir alocador de memória
 Meter tudo a funcionar com makefile
 Cleanup commentend mains
 Verificar gnl

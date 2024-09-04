@@ -27,6 +27,7 @@
 # include <stddef.h>
 # include <limits.h>
 # include <unistd.h>
+# include "arena.h"
 
 #define YES 1
 #define NO 0
