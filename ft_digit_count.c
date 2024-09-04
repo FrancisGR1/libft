@@ -1,18 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_digit_count.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:55:44 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:32:36 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/10/16 21:28:15 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/17 21:48:59 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_putstr_fd(char *s, int fd)
+int	ft_digit_count(long int n, int divisor)
 {
-	return (write(fd, s, ft_strlen(s)));
+	int	digits;
+
+	if (n == 0)
+		return (1);
+	digits = 0;
+	if (n < 0)
+	{
+		digits++;
+		n = -n;
+	}
+	while (n)
+	{
+		digits++;
+		n = n / divisor;
+	}
+	return (digits);
 }
+
+/*
+int main (int c, char **v)
+{
+	char *arr = digit_count(atoi(v[1]), 10);
+	printf("%s\n", arr);
+}
+*/

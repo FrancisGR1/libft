@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:55:44 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:32:36 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/12/31 16:34:21 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/12/31 16:34:22 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_putstr_fd(char *s, int fd)
+void	print_bits(char c, int fd)
 {
-	return (write(fd, s, ft_strlen(s)));
+	int	i;
+
+	i = 7;
+	while (i >= 0)
+	{
+		if (c >> i & 1)
+			write(fd, "1", 1);
+		else
+			write(fd, "0", 1);
+		i--;
+	}
 }

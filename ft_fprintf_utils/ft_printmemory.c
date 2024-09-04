@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printmemory.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:55:44 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:32:36 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/10/17 21:08:25 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/17 21:48:32 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_fprintf.h"
 
-int ft_putstr_fd(char *s, int fd)
+int	ft_printmemory(int fd, unsigned long n)
 {
-	return (write(fd, s, ft_strlen(s)));
+	int	count;
+
+	write(fd, "0x", 2);
+	count = ft_tohexa(fd, 'l', n);
+	return (count + 2);
 }

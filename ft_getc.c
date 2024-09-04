@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_getc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:55:44 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:32:36 by frmiguel         ###   ########.fr       */
+/*   Created: 2024/07/04 13:19:57 by frmiguel          #+#    #+#             */
+/*   Updated: 2024/07/04 13:19:57 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_putstr_fd(char *s, int fd)
+int	ft_getc(int fd)
 {
-	return (write(fd, s, ft_strlen(s)));
+	char	c;
+	ssize_t	bytes_read;
+
+	c = 0;
+	if (fd < 0)
+		return (-1);
+	bytes_read = read(fd, &c, 1);
+	if (bytes_read == -1)
+		return (-1);
+	if (!c || !bytes_read)
+		return (0);
+	return (c);
 }

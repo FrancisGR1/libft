@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:55:44 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:32:36 by frmiguel         ###   ########.fr       */
+/*   Created: 2024/02/08 21:06:08 by frmiguel          #+#    #+#             */
+/*   Updated: 2024/02/08 21:06:09 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int ft_putstr_fd(char *s, int fd)
+long	ft_atoi_long(const char *nptr)
 {
-	return (write(fd, s, ft_strlen(s)));
+	char	*ptr;
+	long	result;
+	int		signal;
+
+	ptr = (char *)nptr;
+	result = 0;
+	signal = 1;
+	while ((*ptr >= 9 && *ptr <= 13)
+		|| *ptr == 32)
+		ptr++;
+	if (*ptr == '-' || *ptr == '+')
+	{
+		if (*ptr == '-')
+			signal *= -1;
+		ptr++;
+	}
+	while (*ptr >= '0' && *ptr <= '9')
+	{
+		result = result * 10 + (*ptr - '0');
+		ptr++;
+	}
+	return (result * signal);
 }

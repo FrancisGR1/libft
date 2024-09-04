@@ -1,49 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbru_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 22:18:02 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:33:51 by frmiguel         ###   ########.fr       */
+/*   Created: 2023/10/16 18:33:07 by frmiguel          #+#    #+#             */
+/*   Updated: 2023/10/17 21:48:13 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_fprintf.h"
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnbru_fd(unsigned int n, int fd)
 {
-	long int	ln;
-	char		buff[11];
 	int			i;
-	int			cnt;
+	int			count;
+	char		buff[22];
 
-	ln = n;
-	if (ln < 0)
-	{
-		write(fd, "-", 1);
-		ln = -ln;
-	}
-	if (ln == 0)
-		write(fd, "0", 1);
 	i = 0;
-	while (ln)
+	if (n == 0)
 	{
-		buff[i] = (ln % 10) + '0';
-		ln /= 10;
+		write(fd, "0", 1);
+		return (1);
+	}
+	count = ft_digit_count(n, 10);
+	while (n)
+	{
+		buff[i] = (n % 10) + '0';
+		n = n / 10;
 		i++;
 	}
-	cnt = i;
-	i--;
-	while (i >= 0)
-		write(fd, &buff[i--], 1);
-	return (cnt);
+	while (--i >= 0)
+		write(fd, &buff[i], 1);
+	return (count);
 }
 /*
 int main(int c, char **v)
 {
-	int n = atoi(v[1]);
-	ft_putnbr_fd(n, 1);
+	char *p = malloc(10 * sizeof(int));
+	ft_putnbru_fd(12345678, 1);
+	printf("%s\n", p);
 }
 */

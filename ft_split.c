@@ -11,7 +11,16 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	word_count(char const *s, char delimiter)
+static int	is_delimiter(char c, char *delimiter)
+{
+	while (*delimiter)
+		if (c == *delimiter++)
+			return (1);
+	return (0);
+
+}
+
+static int	word_count(char const *s, char* delimiter)
 {
 	int	count;
 	int	i;
@@ -20,11 +29,11 @@ static int	word_count(char const *s, char delimiter)
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] == delimiter)
+		while (is_delimiter(s[i], delimiter))
 			i++;
-		if (s[i] && s[i] != delimiter)
+		if (s[i] && !is_delimiter(s[i], delimiter))
 			count++;
-		while (s[i] && s[i] != delimiter)
+		while (s[i] && !is_delimiter(s[i], delimiter))
 			i++;
 	}
 	return (count);
@@ -50,20 +59,20 @@ static char	*ft_strndup(const char *s, size_t size)
 	return (ptr);
 }
 
-static char	**word_alloc(char **p, const char *s, char c)
+static char	**word_alloc(char **p, const char *s, char *delimiter)
 {
 	int	words;
 	int	i;
 	int	j;
 	int	k;
 
-	words = word_count(s, c);
+	words = word_count(s, delimiter);
 	i = 0;
 	k = 0;
 	while (s[i] && k < words)
 	{
 		j = i;
-		while (s[j] && s[j] != c)
+		while (s[j] && is_delimiter(s[j], delimiter))
 			j++;
 		if (j > i)
 		{
@@ -77,16 +86,16 @@ static char	**word_alloc(char **p, const char *s, char c)
 	return (p);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *delimiter)
 {
 	char	**p;
 	int		words;
 
-	words = word_count(s, c);
+	words = word_count(s, delimiter);
 	p = (char **)malloc((1 + words) * sizeof(char *));
 	if (!p || !s)
 		return (NULL);
-	p = word_alloc(p, s, c);
+	p = word_alloc(p, s, delimiter);
 	if (!p)
 		return (NULL);
 	p[words] = NULL;
