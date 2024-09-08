@@ -14,93 +14,60 @@
 static int	is_delimiter(char c, char *delimiter)
 {
 	while (*delimiter)
-		if (c == *delimiter++)
-			return (1);
-	return (0);
-
+	{
+		if (*delimiter == c)
+			return (TRUE);
+		delimiter++;
+	}
+	return (FALSE);
 }
 
-static int	word_count(char const *s, char* delimiter)
+static int	word_count(char const *s, char *delimiter)
 {
-	int	count;
+	int	cnt;
 	int	i;
 
-	count = 0;
+	cnt = 0;
 	i = 0;
 	while (s[i])
 	{
-		while (is_delimiter(s[i], delimiter))
+		while (s[i] && is_delimiter(s[i], delimiter))
 			i++;
 		if (s[i] && !is_delimiter(s[i], delimiter))
-			count++;
+			cnt++;
 		while (s[i] && !is_delimiter(s[i], delimiter))
 			i++;
 	}
-	return (count);
-}
-
-static void	*free_arr(char **arr, int k)
-{
-	while (k >= 0)
-		free(arr[k--]);
-	free(arr);
-	return (NULL);
-}
-
-static char	*ft_strndup(const char *s, size_t size)
-{
-	char	*ptr;
-
-	ptr = (char *)malloc((size + 1) * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	ft_memcpy(ptr, s, size);
-	ptr[size] = '\0';
-	return (ptr);
-}
-
-static char	**word_alloc(char **p, const char *s, char *delimiter)
-{
-	int	words;
-	int	i;
-	int	j;
-	int	k;
-
-	words = word_count(s, delimiter);
-	i = 0;
-	k = 0;
-	while (s[i] && k < words)
-	{
-		j = i;
-		while (s[j] && is_delimiter(s[j], delimiter))
-			j++;
-		if (j > i)
-		{
-			p[k] = ft_strndup(s + i, j - i);
-			if (!p[k])
-				return (free_arr(p, k));
-			k++;
-		}
-		i = j + 1;
-	}
-	return (p);
+	return (cnt);
 }
 
 char	**ft_split(char const *s, char *delimiter)
 {
 	char	**p;
 	int		words;
+	int		i;
+	int		len;
 
 	words = word_count(s, delimiter);
-	p = (char **)malloc((1 + words) * sizeof(char *));
-	if (!p || !s)
-		return (NULL);
-	p = word_alloc(p, s, delimiter);
-	if (!p)
-		return (NULL);
+	p = (char **)malloc((words + 1) * sizeof(char *));
+	i = 0;
+	while (i < words)
+	{
+		len = 0;
+		while (*s && !is_delimiter(*s, delimiter))
+		{
+			len++;
+			s++;
+		}
+		if (len)
+			p[i++] = ft_strndup(s - len, len);
+		while (*s && is_delimiter(*s, delimiter))
+			s++;
+	}
 	p[words] = NULL;
 	return (p);
 }
+
 /*
 int main(int c, char **v)
 {
