@@ -34,12 +34,22 @@
 #define NO 0
 #define FALSE 0
 
+#define DA_INIT_SIZE 10
+
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}t_list;
+}	t_list;
+
+typedef struct s_dynamic_array
+{
+	void *data;
+	size_t cnt;
+	size_t capacity;
+	size_t data_size;
+}	t_da;
 
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
@@ -97,5 +107,9 @@ int	ft_fprintf(int fd, const char *str, ...);
 void	print_bits(char c, int fd);
 char	*get_next_line(int fd);
 int	ft_digit_count(long int n, int divisor);
+void *ft_realloc(void *data, size_t data_size);
 
+t_da *da_init(size_t ds);
+void da_append(t_da *da, const void *insertion);
+void da_free(t_da *da);
 #endif
