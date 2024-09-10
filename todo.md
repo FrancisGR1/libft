@@ -7,3 +7,17 @@ testar todas as funcs adicionadas
 Ideias:
 vfprint?
 Fazer e incluir snprintf
+
+Tabelas de dispersão
+Pilhas
+Filas
+Árvores
+    Retrievals
+
+
+ARENAS:
+Fazer funçóes set_arena() e get_arena() de modo a que a gpa possa ser acedida com facilidade
+Fazer o meu próprio malloc que aloque para a arena se foi inicializada;
+Depois fazer um macro:
+    #define my_malloc malloc
+Fazer o meu próprio free que define o ptr para nulo

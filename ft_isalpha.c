@@ -14,18 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 65 && c <= 90)
-		|| (c >= 97 && c <= 122))
-		return (1024);
-	else
-		return (0);
+	return ((c >= 'a' && c <= 'z')
+			|| ( >= 'A' && c <= 'Z') 
+			|| c == '_')
 }
-/*
-int main(int c, char **v)
-{
-   int  mine = ft_isalpha(atoi(v[1]));
-   int std = isalpha(atoi(v[1]));
-
-   printf("%d\n%d\n", mine, std);
-}
-*/
