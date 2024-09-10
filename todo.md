@@ -21,3 +21,7 @@ Fazer o meu próprio malloc que aloque para a arena se foi inicializada;
 Depois fazer um macro:
     #define my_malloc malloc
 Fazer o meu próprio free que define o ptr para nulo
+
+
+STRINGS:
+strings seguros
