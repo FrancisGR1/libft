@@ -78,6 +78,7 @@ int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int	ft_isspace(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_atoi(const char *nptr);
@@ -108,6 +109,7 @@ void	print_bits(char c, int fd);
 char	*get_next_line(int fd);
 int	ft_digit_count(long int n, int divisor);
 void *ft_realloc(void *data, size_t data_size);
+void freen(void *data);
 
 t_da *da_init(size_t ds);
 void da_append(t_da *da, const void *insertion);
