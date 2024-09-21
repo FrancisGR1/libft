@@ -28,13 +28,17 @@
 # include <limits.h>
 # include <unistd.h>
 # include "arena.h"
+# include "colors.h"
 
 #define YES 1
 #define TRUE 1
 #define NO 0
 #define FALSE 0
+#define OUT STDOUT_FILENO
+#define IN STDIN_FILENO
+#define ERR STDERR_FILENO
 
-#define DA_INIT_SIZE 10
+#define DA_INIT_SIZE 50 
 
 
 typedef struct s_list
@@ -46,10 +50,17 @@ typedef struct s_list
 typedef struct s_dynamic_array
 {
 	void *data;
-	size_t cnt;
+	size_t len;
 	size_t capacity;
 	size_t data_size;
-}	t_da;
+}	t_darr;
+
+typedef struct s_string
+{
+	char *s;
+	char *end;
+	size_t len;
+} t_string;
 
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
@@ -62,15 +73,16 @@ void	ft_putchar_fd(char c, int fd);
 int	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int	ft_putnbr_fd(int n, int fd);
-void	ft_putns(char *s, size_t n);
+void	ft_putns(char *s, int n);
 void	ft_puts(char *s);
 int	ft_getc(int fd);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del) (void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *kst, void (*f) (void *));
+void	ft_lstiter(t_list *lst, void (*f) (void *));
 size_t	ft_strlen(const char *s);
+int	word_count(char const *s, char *delimiter);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_isalnum(int c);
@@ -103,15 +115,25 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *));
 
+//strings
+t_string	new_str(char *s);
+int string_put(t_string s, int fd);
+t_string cstr_to_str_ptr(char *raw_str, size_t size);
+t_string cstr_to_str(char *raw_str);
+int string_find(t_string str, size_t index, size_t n, t_string delimiters);
+t_string *string_split(t_string str, t_string delimiters);
+t_darr *string_findall(t_string str, t_string targets);
+
 int	ft_snprintf(char buff[], int n, const char *fmt, ...);
 int	ft_fprintf(int fd, const char *str, ...);
 void	print_bits(char c, int fd);
 char	*get_next_line(int fd);
 int	ft_digit_count(long int n, int divisor);
 void *ft_realloc(void *data, size_t data_size);
-void freen(void *data);
+void freen(void **data);
 
-t_da *da_init(size_t ds);
-void da_append(t_da *da, const void *insertion);
-void da_free(t_da *da);
+t_darr *darr_init(size_t ds);
+void darr_append(t_darr *da, const void *insertion);
+void darr_free(t_darr *da);
+
 #endif

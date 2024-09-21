@@ -22,7 +22,7 @@ static int	is_delimiter(char c, char *delimiter)
 	return (FALSE);
 }
 
-static int	word_count(char const *s, char *delimiter)
+int	word_count(char const *s, char *delimiter)
 {
 	int	cnt;
 	int	i;

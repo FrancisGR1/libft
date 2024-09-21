@@ -24,6 +24,8 @@ static int	print_fmt(int fd, char fmt, va_list al)
 		ft_putchar_fd(va_arg(al, int), fd);
 	if (fmt == 's')
 		count = ft_putstr_fd(va_arg(al, char *), fd);
+	if (fmt == 'S')
+		count = string_put(va_arg(al, t_string), fd);
 	if (fmt == 'p')
 		count = ft_printmemory(fd, va_arg(al, unsigned long));
 	if (fmt == 'd' || fmt == 'i')

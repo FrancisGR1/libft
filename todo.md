@@ -24,4 +24,7 @@ Fazer o meu próprio free que define o ptr para nulo
 
 
 STRINGS:
-strings seguros
+strings seguros: https://devblogs.microsoft.com/oldnewthing/?p=109742
+
+Dynamic Arrays:
+função que remove elemento (tem de funcionar genericamente)

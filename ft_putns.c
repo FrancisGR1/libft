@@ -12,10 +12,18 @@
 
 #include "libft.h"
 
-void	ft_putns(char *s, size_t n)
+void	ft_putns(char *s, int n)
 {
 	if (!s)
+	{
+		ft_fprintf(STDERR_FILENO, "Error: NULL\n", n);
 		return ;
+	}
+	if (n < 1)
+	{
+		ft_fprintf(STDERR_FILENO, "Error: n size\n", n);
+		return ;
+	}
 	write(STDOUT_FILENO, s, n);
 	write(STDOUT_FILENO, "\n", 1);
 }
