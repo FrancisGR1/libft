@@ -55,6 +55,8 @@ typedef struct s_dynamic_array
 	size_t data_size;
 }	t_darr;
 
+typedef t_list t_queue; //Dynamic sized queue using a linked list internally
+
 typedef struct s_string
 {
 	char *s;
@@ -120,7 +122,7 @@ t_string	new_str(char *s);
 int string_put(t_string s, int fd);
 t_string cstr_to_str_ptr(char *raw_str, size_t size);
 t_string cstr_to_str(char *raw_str);
-int string_find(t_string str, size_t index, size_t n, t_string delimiters);
+int string_find(t_string str, size_t start, size_t n, t_string delimiters);
 t_string *string_split(t_string str, t_string delimiters);
 t_darr *string_findall(t_string str, t_string targets);
 
@@ -131,9 +133,19 @@ char	*get_next_line(int fd);
 int	ft_digit_count(long int n, int divisor);
 void *ft_realloc(void *data, size_t data_size);
 void freen(void **data);
+void freen_arr(void **data);
 
+//dynamic arrays
 t_darr *darr_init(size_t ds);
 void darr_append(t_darr *da, const void *insertion);
 void darr_free(t_darr *da);
 
+//queues
+void q_push(t_queue **q, void *content);
+void *q_pop(t_queue **q);
+bool q_is_empty(t_queue *q);
+void *q_peek(t_queue *q);
+bool q_last_element(t_queue *q);
+int q_size(t_queue *q);
+void q_destroy(t_queue **q, void (*del) (void *));
 #endif

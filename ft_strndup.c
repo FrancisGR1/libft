@@ -16,9 +16,9 @@ char	*ft_strndup(const char *s, size_t n)
 {
 	char	*ptr;
 
-	ptr = (char *)malloc((n + 1) * sizeof(char));
+	ptr = ft_calloc(n + 1, sizeof(char));
 	if (!ptr)
-		ptr = 0;
+		ptr = 0x0;
 	else
 		ft_strlcpy(ptr, s, n + 1);
 	return (ptr);

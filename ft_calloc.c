@@ -15,21 +15,15 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void			*p;
-	size_t			i;
-	unsigned char	*ptr;
+	size_t			bytes;
 
 	if (!size || !nmemb)
-	{
-		p = malloc(0);
-		return (p);
-	}
-	p = malloc(nmemb * size);
+		return (NULL);
+	bytes = nmemb * size;
+	p = malloc(bytes);
 	if (!p)
 		return (NULL);
-	ptr = p;
-	i = 0;
-	while (i < nmemb * size)
-		ptr[i++] = 0;
+	ft_memset(p, 0,  bytes);
 	return (p);
 }
 /*

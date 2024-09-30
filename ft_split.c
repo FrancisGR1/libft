@@ -27,6 +27,8 @@ int	word_count(char const *s, char *delimiter)
 	int	cnt;
 	int	i;
 
+	if (!s || !delimiter)
+		return (0);
 	cnt = 0;
 	i = 0;
 	while (s[i])

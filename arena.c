@@ -6,7 +6,7 @@ t_arena *arena_init(size_t size)
 
 	region = malloc(sizeof(*region));
 	region->memory = malloc(size);
-	memset(region->memory, 0, size);
+	ft_memset(region->memory, 0, size);
 	region->current_size = 0;
 	region->limit = size;
 	region->end = region->memory + region->limit;
@@ -47,7 +47,6 @@ void arena_destroy(t_arena *arena)
 {
 	while (arena != NULL)
 	{
-		printf("%p\n", arena);
 		t_arena *tmp = arena->next;
 		free(arena->memory);
 		free(arena);
@@ -69,21 +68,21 @@ void arena_visualizer(t_arena *region)
 		{
 			if (*start)
 			{
-				printf("|");
+				ft_fprintf(OUT, "|");
 				bytes_used++;
 			}
 			else
 			{
-				printf(".");
+				ft_fprintf(OUT, ".");
 			}
 			start++;
 		}
 		bytes_total += ptr->limit;
 		if (ptr->next)
-			printf("\n\n>--->\n\n");
+			ft_fprintf(OUT, "\n\n>--->\n\n");
 		ptr = ptr->next;
 	}
-	printf("\n%ld out of %ld\n", bytes_used, bytes_total);
+	ft_fprintf(OUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
 }
 
 /*

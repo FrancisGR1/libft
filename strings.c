@@ -52,7 +52,6 @@ t_darr *string_findall(t_string str, t_string targets)
 
 	positions = darr_init(sizeof(int));
 	i = 0;
-	int k = 0;
 	while (i < str.len)
 	{
 		j = 0;
@@ -60,8 +59,6 @@ t_darr *string_findall(t_string str, t_string targets)
 		{
 			if (str.s[i] == targets.s[j])
 			{
-				k++;
-				ft_fprintf(OUT, "cnt: %d\n", k);
 				darr_append(positions, &i);
 			}
 			j++;
@@ -71,7 +68,7 @@ t_darr *string_findall(t_string str, t_string targets)
 	return (positions);
 }
 
-int string_find(t_string str, size_t index, size_t n, t_string delimiters)
+int string_find(t_string str, size_t start, size_t n, t_string delimiters)
 {
 	size_t i;
 
@@ -79,16 +76,16 @@ int string_find(t_string str, size_t index, size_t n, t_string delimiters)
 		return (-1);
 	if (!delimiters.s)
 		return (-1);
-	while (index < str.len && n--)
+	while (start < str.len && n--)
 	{	
 		i = 0;
 		while (i < delimiters.len)
 		{
-			if (str.s[index] == delimiters.s[i])
-				return index;
+			if (str.s[start] == delimiters.s[i])
+				return start;
 			i++;
 		}
-		index++;
+		start++;
 	}
 	return (-1);
 
@@ -113,10 +110,7 @@ t_string *string_split(t_string str, t_string delimiters)
 		while (idx < str.len && string_find(str, idx, 1, delimiters) == -1)
 			idx++;
 		if (idx > start)
-		{
-			ft_putns(str.s +start, idx - start);
 			strs[pos++] = cstr_to_str_ptr(str.s + start, idx - start);
-		}
 		idx++;
 	}
 	strs[pos] = new_str(NULL);
