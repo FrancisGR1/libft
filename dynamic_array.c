@@ -1,10 +1,10 @@
 #include "libft.h"
 
-t_darr *darr_init(size_t ds)
+t_dynamic_array *darr_init(size_t ds)
 {
-	t_darr *da;
+	t_dynamic_array *da;
 
-	da = malloc(sizeof(t_darr));
+	da = malloc(sizeof(t_dynamic_array));
 	da -> data_size = ds;
 	da -> len = 0;
 	da -> capacity = DA_INIT_SIZE;
@@ -12,7 +12,7 @@ t_darr *darr_init(size_t ds)
 	return (da);
 }
 
-void darr_append(t_darr *da, const void *insertion)
+void darr_append(t_dynamic_array *da, const void *insertion)
 {
 	size_t new_capacity;
 	void *new_data;
@@ -28,7 +28,7 @@ void darr_append(t_darr *da, const void *insertion)
 	da->len++;
 }
 
-void darr_free(t_darr *da)
+void darr_free(t_dynamic_array *da)
 {
 	if (!da)
 		return;
@@ -39,7 +39,7 @@ void darr_free(t_darr *da)
 /* Usage example
 int main(void)
 {
-	t_darr *d = darr_init(sizeof(int));
+	t_dynamic_array *d = darr_init(sizeof(int));
 	for (int i = 0; i < 10; i++)
 		darr_append(d, &i);
 	for (int i = 0; i < 10; i++)

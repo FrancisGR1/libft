@@ -81,7 +81,7 @@ void main(void)
 	while (!q_is_empty(q))
 	{
 		if (q_peek(q))
-			printf("has one extra el at least\n");
+			printf("has one extra el\n");
 		if (q_last_element(q))
 			printf("last el:\n");
 		int *res = (int *)q_pop(&q);
