@@ -124,6 +124,8 @@ t_string *string_split(t_string str, char *delimiters)
 
 int string_put(t_string s, int fd)
 {
+	if (!s.s)
+		return write(fd, "(null)", 6);
 	return write(fd, s.s, s.len);
 }
 
@@ -165,5 +167,6 @@ int main(void)
 	}
 	printf("after: %s\n", str);
 	darr_free(res);
+	free(str);
 }
 */

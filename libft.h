@@ -27,6 +27,7 @@
 # include <stddef.h>
 # include <limits.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "arena.h"
 # include "colors.h"
 
@@ -34,9 +35,14 @@
 #define TRUE 1
 #define NO 0
 #define FALSE 0
-#define OUT STDOUT_FILENO
-#define IN STDIN_FILENO
-#define ERR STDERR_FILENO
+
+#define OUTPUT STDOUT_FILENO
+#define INPUT STDIN_FILENO
+#define ERROR STDERR_FILENO
+
+#define STDOUT STDOUT_FILENO
+#define STDIN STDIN_FILENO
+#define STDERR STDERR_FILENO
 
 #define DA_INIT_SIZE 50 
 
@@ -84,6 +90,7 @@ void	ft_lstdelone(t_list *lst, void (*del) (void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f) (void *));
 size_t	ft_strlen(const char *s);
+size_t array_len(void **arr);
 int	word_count(char const *s, char *delimiter);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);

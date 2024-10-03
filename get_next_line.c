@@ -22,7 +22,7 @@ typedef struct s_line_str
 
 static void init(t_line **line)
 {
-	*line = malloc(sizeof *line);
+	*line = malloc(sizeof(t_line));
 	(*line)->old = NULL;
 	(*line)->new = NULL;
 	(*line)->nl = false;
@@ -33,6 +33,8 @@ static char *res(t_line *line)
 {
 	char *result;
 
+	if (!line)
+		return (NULL);
 	result = line->new;
 	free(line);
 	return (result);
@@ -66,3 +68,18 @@ char	*get_next_line(int fd)
 	}
 	return (res(l));
 }
+
+//Usage example
+/*
+int main(void)
+{
+	int fd = open("t8.shakespeare.txt", O_RDONLY);
+	char *line;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+
+}
+*/

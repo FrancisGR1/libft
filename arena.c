@@ -68,21 +68,21 @@ void arena_visualizer(t_arena *region)
 		{
 			if (*start)
 			{
-				ft_fprintf(OUT, "|");
+				ft_fprintf(STDOUT, "|");
 				bytes_used++;
 			}
 			else
 			{
-				ft_fprintf(OUT, ".");
+				ft_fprintf(STDOUT, ".");
 			}
 			start++;
 		}
 		bytes_total += ptr->limit;
 		if (ptr->next)
-			ft_fprintf(OUT, "\n\n>--->\n\n");
+			ft_fprintf(STDOUT, "\n\n>--->\n\n");
 		ptr = ptr->next;
 	}
-	ft_fprintf(OUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
+	ft_fprintf(STDOUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
 }
 
 /*
