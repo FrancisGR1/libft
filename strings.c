@@ -38,7 +38,7 @@ t_string cstr_to_str(char *raw_str)
 	if (!raw_str)
 		return (new_str(NULL));
 	str.len = ft_strlen(raw_str);
-	str.s = malloc(str.len + 1);
+	str.s = (char *) malloc (str.len + 1);
 	str.end = str.s + str.len - 1;
 	ft_strlcpy(str.s, raw_str, str.len + 1); 
 	return (str);
@@ -67,6 +67,11 @@ t_dynamic_array *string_findall(t_string str, char *delimiters)
 			j++;
 		}
 		i++;
+	}
+	if (!ptrs->len)
+	{
+		darr_free(ptrs);
+		ptrs = NULL;
 	}
 	return (ptrs);
 }
@@ -117,6 +122,11 @@ t_string *string_split(t_string str, char *delimiters)
 		if (idx > start)
 			strs[pos++] = cstr_to_str_ptr(str.s + start, idx - start);
 		idx++;
+	}
+	if (!pos)
+	{
+		free(strs);
+		return (NULL);
 	}
 	strs[pos] = new_str(NULL);
 	return (strs);

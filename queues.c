@@ -5,6 +5,8 @@ void q_push(t_queue **q, void *content)
 	t_queue *new;
 
 	new = malloc(sizeof(t_queue));
+	printf("q alloced: %p\n", new);
+
 	if (!new)
 		return ;
 	new->content = content;
@@ -14,14 +16,15 @@ void q_push(t_queue **q, void *content)
 
 void *q_pop(t_queue **q)
 {
-	void *pop;
+	void *data;
 	t_queue *tmp;
 
 	if (!q || !*q)
 		return (NULL);
-	pop = (*q)->content;
+	data = (*q)->content;
 	if ((*q)->next == NULL)
 	{
+		printf("q free: %p\n", *q);
 		free(*q);
 		*q = NULL;
 	}
@@ -29,9 +32,10 @@ void *q_pop(t_queue **q)
 	{
 		tmp = *q;
 		(*q) = (*q)->next;
+		printf("q free: %p\n", tmp);
 		free(tmp);
 	}
-	return (pop);
+	return (data);
 
 }
 

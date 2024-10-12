@@ -44,5 +44,6 @@ int main(void)
 		darr_append(d, &i);
 	for (int i = 0; i < 10; i++)
 		ft_fprintf(OUT, "%d\n", ((int *)d->data)[i]);
+	darr_free(d);
 }
 */

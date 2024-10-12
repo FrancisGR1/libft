@@ -14,16 +14,17 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (*s1 == *s2 && *s1 && n)
+	if (!s1 && !s2)
+		return (0);
+	if (!s1 || !s2)
+		return (-1);
+	while (*s1 && *s1 == *s2 && n)
 	{
 		s1++;
 		s2++;
 		n--;
 	}
-	if (n)
-		return ((unsigned char)*s1 - (unsigned char)*s2);
-	else
-		return (n);
+	return (*s1 - *s2);
 }
 /*
 int main (int c, char **v)
@@ -35,5 +36,13 @@ int main (int c, char **v)
 	printf("%s - %s = %d (n = %d)\n", str1 , str2, result, n);
 	int result1 = strncmp(str1, str2, n);
 	printf("%s - %s = %d (n = %d)\n", str1, str2, result1, n); 
+	printf("Testing for null:\n");
+	printf("ft strncmp:\n");
+	int null_ft_res = ft_strncmp(NULL, str2, n);
+	printf("res: %d\n", null_ft_res);
+	printf("strncmp:\n");
+	char *null_str = NULL;
+	//should crash
+	int null_str_res = strncmp(null_str, str2, n);
 }
 */

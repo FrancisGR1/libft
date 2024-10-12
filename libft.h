@@ -31,6 +31,14 @@
 # include "arena.h"
 # include "colors.h"
 
+//insert leak debuggers
+#if defined DEBUG_REPLACE && DEBUG_REPLACE == 1
+void *debug_malloc(size_t size, const char *file, int line);
+void debug_free(void *ptr, const char *file, int line);
+#define malloc(size) debug_malloc(size, __FILE__, __LINE__)
+#define free(ptr) debug_free(ptr, __FILE__, __LINE__)
+#endif
+
 #define YES 1
 #define TRUE 1
 #define NO 0
@@ -155,4 +163,5 @@ void *q_peek(t_queue *q);
 bool q_last_element(t_queue *q);
 int q_size(t_queue *q);
 void q_destroy(t_queue **q, void (*del) (void *));
+
 #endif

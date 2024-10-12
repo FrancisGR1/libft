@@ -13,8 +13,9 @@ NAME = libft.a
 
 CC = cc
 DEBUG = -g
+DEBUG_REPLACE ?= 0
 CFLAGS = -Wall -Werror -Wextra $(DEBUG)
-
+CFLAGS += -DDEBUG_REPLACE=1
 
 HEADER = libft.h
 
@@ -31,17 +32,16 @@ SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_st
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 	arena.c ft_realloc.c freen.c dynamic_array.c strings.c queues.c \
-
+	debuggers.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
 # Target Build
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) $(HEADER)
 	ar rcs $@ $(OBJECTS)
 	ranlib $@
-
 clean:
 	rm -f $(OBJECTS) $(BONUS_OBJECTS)
 
