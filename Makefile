@@ -12,10 +12,8 @@
 NAME = libft.a
 
 CC = cc
-DEBUG = -g
-DEBUG_REPLACE ?= 0
+DEBUG = -g #-DDEBUG_REPLACE=1
 CFLAGS = -Wall -Werror -Wextra $(DEBUG)
-CFLAGS += -DDEBUG_REPLACE=1
 
 HEADER = libft.h
 

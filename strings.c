@@ -27,7 +27,10 @@ t_string cstr_to_str_ptr(char *raw_str, size_t size)
 		return (new_str(NULL));
 	str.len = size;
 	str.s = raw_str;
-	str.end = str.s + str.len - 1;
+	if (str.len > 0)
+		str.end = str.s + str.len - 1;
+	else
+		str.end = str.s;
 	return (str);
 }
 
@@ -39,8 +42,12 @@ t_string cstr_to_str(char *raw_str)
 		return (new_str(NULL));
 	str.len = ft_strlen(raw_str);
 	str.s = (char *) malloc (str.len + 1);
-	str.end = str.s + str.len - 1;
-	ft_strlcpy(str.s, raw_str, str.len + 1); 
+	if (str.len > 0)
+		str.end = str.s + str.len - 1;
+	else
+		str.end = str.s;
+	if (ft_strlcpy(str.s, raw_str, str.len + 1) == 0)
+		str.s[0] = '\0';
 	return (str);
 }
 
@@ -141,19 +148,19 @@ int string_put(t_string s, int fd)
 
 //Example usage: string_split
 /*
-int main(void)
-{
-	char raw_str[40] = "|HELLO|||world|olol|||a|||";
+   int main(void)
+   {
+   char raw_str[40] = "|HELLO|||world|olol|||a|||";
 
-	t_string *res = string_split(raw_str, "|");
-	// Free all allocated memory
-	ft_fprintf(OUT, "Delimiter: %S\n\nSplitted %s into:\n", "|", raw_str);
-	for (int i = 0; res[i].s; i++) {
-		ft_fprintf(OUT, "\n");
-		string_put(res[i],OUT);
-		ft_fprintf(OUT, "\n");
-	}
-	free(res);
+   t_string *res = string_split(raw_str, "|");
+// Free all allocated memory
+ft_fprintf(OUT, "Delimiter: %S\n\nSplitted %s into:\n", "|", raw_str);
+for (int i = 0; res[i].s; i++) {
+ft_fprintf(OUT, "\n");
+string_put(res[i],OUT);
+ft_fprintf(OUT, "\n");
+}
+free(res);
 }
 */
 
@@ -161,22 +168,22 @@ int main(void)
 //Example usage: string_findall
 int main(void)
 {
-	char *str_orig = "Ola| ola| || !! ola\n";
-	char *str = malloc(100);
-	ft_strlcpy(str, str_orig, 100);
-	t_string tmp = cstr_to_str_ptr(str, ft_strlen(str));
-	t_dynamic_array *res = string_findall(tmp, "|!");
-	printf("analyzing: %s\n", str);
-	for (size_t i = 0; i < res->len; i++)
-	{
-		t_string tmp = ((t_string *)res->data)[i];
-		ft_fprintf(OUT, "%d: %S ", (int) i, tmp);
-		long long int pos = tmp.s - str;
-		fprintf(stdout, "\t(%p %zu %lld)\n\n", &tmp.s, tmp.len, pos);
-		*tmp.s = 'x';
-	}
-	printf("after: %s\n", str);
-	darr_free(res);
-	free(str);
-}
-*/
+char *str_orig = "Ola| ola| || !! ola\n";
+char *str = malloc(100);
+ft_strlcpy(str, str_orig, 100);
+t_string tmp = cstr_to_str_ptr(str, ft_strlen(str));
+t_dynamic_array *res = string_findall(tmp, "|!");
+printf("analyzing: %s\n", str);
+for (size_t i = 0; i < res->len; i++)
+{
+t_string tmp = ((t_string *)res->data)[i];
+ft_fprintf(OUT, "%d: %S ", (int) i, tmp);
+long long int pos = tmp.s - str;
+fprintf(stdout, "\t(%p %zu %lld)\n\n", &tmp.s, tmp.len, pos);
+ *tmp.s = 'x';
+ }
+ printf("after: %s\n", str);
+ darr_free(res);
+ free(str);
+ }
+ */
