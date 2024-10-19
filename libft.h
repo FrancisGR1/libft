@@ -173,4 +173,8 @@ bool q_last_element(t_queue *q);
 int q_size(t_queue *q);
 void q_destroy(t_queue **q, void (*del) (void *));
 
+//math
+int ft_rand(void);
+
+char *rand_string(void);
 #endif

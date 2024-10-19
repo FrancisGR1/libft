@@ -30,7 +30,7 @@ SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_st
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 	arena.c ft_realloc.c freen.c dynamic_array.c strings.c queues.c \
-	debuggers.c \
+	debuggers.c ft_rand.c rand_string.c\
 
 OBJECTS = $(SOURCES:.c=.o)
 
