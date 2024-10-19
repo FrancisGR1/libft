@@ -71,11 +71,18 @@ typedef struct s_dynamic_array
 
 typedef t_list t_queue; //Dynamic sized queue using a linked list internally
 
+typedef enum e_str_type
+{
+	STR_POINTER,
+	STR_ALLOCATED,
+}t_str_type;
+
 typedef struct s_string
 {
 	char *s;
 	char *end;
 	size_t len;
+	t_str_type type;
 } t_string;
 
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -135,11 +142,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *));
 //strings
 t_string	new_str(char *s);
 int string_put(t_string s, int fd);
+void string_free(t_string *str);
 t_string cstr_to_str_ptr(char *raw_str, size_t size);
 t_string cstr_to_str(char *raw_str);
 int string_find(t_string str, size_t start, size_t n, char *delimiters);
 t_string *string_split(t_string str, char *delimiters);
 t_dynamic_array *string_findall(t_string str, char *delimiters);
+char *string_convert_back(t_string str);
 
 int	ft_snprintf(char buff[], int n, const char *fmt, ...);
 int	ft_fprintf(int fd, const char *str, ...);

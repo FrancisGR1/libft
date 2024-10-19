@@ -1,7 +1,6 @@
 Organizar com pastas
 Meter tudo a funcionar com makefile
 Cleanup commentend mains
-Verificar gnl
 testar todas as funcs adicionadas
 
 Ideias:
@@ -10,7 +9,6 @@ Fazer e incluir snprintf
 
 Tabelas de dispersão
 Pilhas
-Filas
 Árvores
     Retrievals
 
@@ -27,4 +25,4 @@ STRINGS:
 strings seguros: https://devblogs.microsoft.com/oldnewthing/?p=109742
 
 Dynamic Arrays:
-função que remove elemento (tem de funcionar genericamente)
+    função que remove elemento (tem de funcionar genericamente)
