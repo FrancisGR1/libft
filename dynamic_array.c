@@ -1,5 +1,6 @@
 #include "libft.h"
 
+//TODO: mudar para aceitar a <<capacidade>> como parâmetro para além do tamanho dos dados
 t_dynamic_array *darr_init(size_t ds)
 {
 	t_dynamic_array *da;

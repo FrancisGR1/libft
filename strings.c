@@ -18,11 +18,11 @@ t_string	new_str(char *s)
 	return (str);
 }
 
-t_string cstr_to_str_ptr(char *raw_str, size_t size)
+t_string cstr_to_str_ptr(char *raw_str, int size)
 {
 	t_string str;
 
-	if (!raw_str || !size)
+	if (!raw_str || size < 0)
 		return (new_str(NULL));
 	str.type = STR_POINTER;
 	str.len = size;
@@ -42,7 +42,7 @@ t_string cstr_to_str(char *raw_str)
 		return (new_str(NULL));
 	str.type = STR_ALLOCATED;
 	str.len = ft_strlen(raw_str);
-	str.s = (char *) malloc (str.len + 1);
+	str.s = (char *) malloc(str.len + 1);
 	if (str.len > 0)
 		str.end = str.s + str.len - 1;
 	else
@@ -50,6 +50,56 @@ t_string cstr_to_str(char *raw_str)
 	if (ft_strlcpy(str.s, raw_str, str.len + 1) == 0)
 		str.s[0] = '\0';
 	return (str);
+}
+
+t_string cstr_to_str_nsize(char *raw_str, int size)
+{
+	t_string str;
+
+	if (!raw_str || size < 0)
+		return (new_str(NULL));
+	str.type = STR_ALLOCATED;
+	str.len = size;
+	str.s = (char *) malloc(str.len + 1);
+	if (str.len > 0)
+		str.end = str.s + str.len - 1;
+	else
+		str.end = str.s;
+	if (ft_strlcpy(str.s, raw_str, str.len + 1) == 0)
+		str.s[0] = '\0';
+	return (str);
+}
+
+t_string str_join(int strs_num, int strs_size, ...)
+{
+	va_list args;
+	t_string res;
+	t_string current;
+
+	va_start(args, strs_size);
+	res.s = malloc(strs_size + 1);
+	res.type = STR_ALLOCATED;
+	res.len = 0;
+	while (strs_num)
+	{
+		current = va_arg(args, t_string);
+		printf("%s\nlen:%ld\n", current.s, current.len);
+		ft_strlcpy(res.s + res.len, current.s, current.len + 1);
+		res.len += current.len;
+		strs_num--;
+	}
+	res.s[res.len] = '\0';
+	va_end(args);
+	return (res);
+}
+
+void str_free_and_replace(t_string *str, char *raw_str)
+{
+	if (!str || !str->s)
+		return ;
+	if (str->type == STR_ALLOCATED)
+		string_free(str);
+	*str = cstr_to_str(raw_str);
 }
 
 t_dynamic_array *string_findall(t_string str, char *delimiters)
@@ -80,6 +130,64 @@ t_dynamic_array *string_findall(t_string str, char *delimiters)
 		ptrs = NULL;
 	}
 	return (ptrs);
+}
+
+int str_iter(t_string str, size_t start, size_t n, int (*iterator)(int c))
+{
+	if (!str.s)
+		return (-1);
+	while (iterator(str.s[start]) && n)
+	{
+		start++;
+		n--;
+	}
+	return (start);
+}
+
+bool str_advance_ptr(t_string *str)
+{
+	if (!str || !str->s || !str->len || str->s == str->end)
+		return (false);
+	str->s++;
+	str->len--;
+	return (true);
+}
+
+bool str_advance_ptr_ntimes(t_string *str, int n)
+{
+	t_string original_str;
+
+	original_str = str_save_state(*str);
+	while (n)
+	{
+		if (!str_advance_ptr(str))
+		{
+			str_restore_state(str, original_str);
+			return (false);
+		}
+		n--;
+	}
+	return (true);
+}
+
+t_string str_save_state(t_string to_save)
+{
+	t_string str;
+
+	str.s = to_save.s;
+	str.end = to_save.end;
+	str.len = to_save.len;
+	return (str);
+}
+
+bool str_restore_state(t_string *to_restore, t_string original)
+{
+	if (!to_restore || !to_restore->s)
+		return (false);
+	to_restore->s = original.s;
+	to_restore->end = original.end;
+	to_restore->len = original.len;
+	return (true);
 }
 
 int string_find(t_string str, size_t start, size_t n, char *delimiters)
@@ -159,7 +267,7 @@ char *string_convert_back(t_string str)
 
 int string_put(t_string s, int fd)
 {
-	if (!s.s)
+	if (!s.s || !s.len)
 		return write(fd, "(null)", 6);
 	return write(fd, s.s, s.len);
 }
