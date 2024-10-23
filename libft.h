@@ -75,6 +75,7 @@ typedef enum e_str_type
 {
 	STR_POINTER,
 	STR_ALLOCATED,
+	STR_NULL,
 }t_str_type;
 
 typedef struct s_string
@@ -141,6 +142,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *));
 
 //strings
 t_string	new_str(char *s);
+bool str_is_null(t_string str);
 int string_put(t_string s, int fd);
 void string_free(t_string *str);
 t_string cstr_to_str_ptr(char *raw_str, int size);
@@ -151,9 +153,13 @@ bool str_advance_ptr_ntimes(t_string *str, int n);
 t_string str_save_state(t_string to_save);
 bool str_restore_state(t_string *to_restore, t_string original);
 t_string str_join(int strs_num, int strs_size, ...);
-void str_free_and_replace(t_string *str, char *raw_str);
+t_string str_cat(t_string s1, t_string s2);
+void str_free_and_replace_raw(t_string *str, char *raw_str);
+void str_free_and_replace_str(t_string *str, t_string *substitute);
 int string_find(t_string str, size_t start, size_t n, char *delimiters);
+int str_cmp(t_string s1, t_string s2, size_t s1_start);
 t_string *string_split(t_string str, char *delimiters);
+t_string *string_divide(t_string str, char *delimiter, int *len);
 t_dynamic_array *string_findall(t_string str, char *delimiters);
 char *string_convert_back(t_string str);
 int str_iter(t_string str, size_t start, size_t n, int (*iterator)(int c));
