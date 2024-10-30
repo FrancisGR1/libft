@@ -73,9 +73,9 @@ typedef t_list t_queue; //Dynamic sized queue using a linked list internally
 
 typedef enum e_str_type
 {
+	STR_NULL,
 	STR_POINTER,
 	STR_ALLOCATED,
-	STR_NULL,
 }t_str_type;
 
 typedef struct s_string
@@ -107,7 +107,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f) (void *));
 size_t	ft_strlen(const char *s);
 size_t array_len(void **arr);
-int	word_count(char const *s, char *delimiter);
+int	word_ncount(char const *s, char *delimiter, int dn);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_isalnum(int c);
@@ -123,6 +123,7 @@ long	ft_atoi_long(const char *nptr);
 int	ft_atoi_base(const char *nptr, const char *base_str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_strcmp(const char *s1, const char *s2);
 int		ft_lstsize(t_list *lst);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
@@ -141,8 +142,9 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *));
 
 //strings
-t_string	new_str(char *s);
+t_string	new_str(char *s, t_str_type type);
 bool str_is_null(t_string str);
+bool str_is_empty(t_string str);
 int string_put(t_string s, int fd);
 void string_free(t_string *str);
 t_string cstr_to_str_ptr(char *raw_str, int size);
@@ -158,8 +160,10 @@ void str_free_and_replace_raw(t_string *str, char *raw_str);
 void str_free_and_replace_str(t_string *str, t_string *substitute);
 int string_find(t_string str, size_t start, size_t n, char *delimiters);
 int str_cmp(t_string s1, t_string s2, size_t s1_start);
+t_string str_dup(t_string to_duplicate);
 t_string *string_split(t_string str, char *delimiters);
-t_string *string_divide(t_string str, char *delimiter, int *len);
+t_string *string_divide(t_string str, t_string dlim, int *len);
+void string_divide_in_two(t_string str, t_string divided_parts_buf[2], t_string dlim, int *num_of_parts);
 t_dynamic_array *string_findall(t_string str, char *delimiters);
 char *string_convert_back(t_string str);
 int str_iter(t_string str, size_t start, size_t n, int (*iterator)(int c));
