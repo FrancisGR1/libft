@@ -22,7 +22,7 @@ static int	is_delimiter(char c, char *delimiter)
 	return (FALSE);
 }
 
-int	word_count(char const *s, char *delimiter)
+int	word_ncount(char const *s, char *delimiter, int len)
 {
 	int	cnt;
 	int	i;
@@ -31,14 +31,20 @@ int	word_count(char const *s, char *delimiter)
 		return (0);
 	cnt = 0;
 	i = 0;
-	while (s[i])
+	while (s[i] && len)
 	{
 		while (s[i] && is_delimiter(s[i], delimiter))
+		{
 			i++;
+			len--;
+		}
 		if (s[i] && !is_delimiter(s[i], delimiter))
 			cnt++;
 		while (s[i] && !is_delimiter(s[i], delimiter))
+		{
 			i++;
+			len--;
+		}
 	}
 	return (cnt);
 }
@@ -50,7 +56,7 @@ char	**ft_split(char const *s, char *delimiter)
 	int		i;
 	int		len;
 
-	words = word_count(s, delimiter);
+	words = word_ncount(s, delimiter, ft_strlen(s));
 	p = (char **)malloc((words + 1) * sizeof(char *));
 	i = 0;
 	while (i < words)
@@ -74,9 +80,9 @@ char	**ft_split(char const *s, char *delimiter)
 int main(int c, char **v)
 {
 	char *str = c > 1 ? v[1] : " Hello There ";
-	char sep = c > 2 ? v[2][0] : ' ';
-	int result = word_count(str, sep);
-	printf("Str:%s\nSep: %c\nNum of Words: %d\nArray:\n", str, sep, result);
+	char *sep = c > 2 ? v[2] : " ";
+	int result = word_ncount(str, sep, 1);
+	printf("Str:%s\nSep: %s\nNum of Words: %d\nArray:\n", str, sep, result);
 	char	**arr = ft_split(str, sep);
 	int i = 0;
 	while (i < result)
@@ -84,6 +90,6 @@ int main(int c, char **v)
 		printf("%s\n", arr[i]);
 		i++;
 	}
-	free_arr(arr, i);
+	freen_arr((void **)arr);
 }
 */

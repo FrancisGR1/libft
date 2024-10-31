@@ -1,6 +1,6 @@
 #include "libft.h"
 
-t_string	new_str(char *s)
+t_string	new_str(char *s, t_str_type type)
 {
 	t_string str;
 
@@ -14,6 +14,7 @@ t_string	new_str(char *s)
 	else
 	{
 		str = cstr_to_str(s);	
+		str.type = type;
 	}
 	return (str);
 }
@@ -28,7 +29,7 @@ t_string cstr_to_str_ptr(char *raw_str, int size)
 	t_string str;
 
 	if (!raw_str || size < 0)
-		return (new_str(NULL));
+		return (new_str(NULL, 0));
 	str.type = STR_POINTER;
 	str.len = size;
 	str.s = raw_str;
@@ -44,7 +45,7 @@ t_string cstr_to_str(char *raw_str)
 	t_string str;
 
 	if (!raw_str)
-		return (new_str(NULL));
+		return (new_str(NULL, 0));
 	str.len = ft_strlen(raw_str);
 	str.s = (char *) malloc(str.len + 1);
 	str.type = STR_ALLOCATED;
@@ -62,7 +63,7 @@ t_string cstr_to_str_nsize(char *raw_str, int size)
 	t_string str;
 
 	if (!raw_str || size < 0)
-		return (new_str(NULL));
+		return (new_str(NULL, 0));
 	str.len = size;
 	str.s = (char *) malloc(str.len + 1);
 	str.type = STR_ALLOCATED;
@@ -102,7 +103,7 @@ t_string str_cat(t_string s1, t_string s2)
 	t_string res;
 
 	if (str_is_null(s1) && str_is_null(s2))
-		return (new_str(NULL));
+		return (new_str(NULL, 0));
 	if (str_is_null(s1)) 
 		return (s2);
 	if (str_is_null(s2)) 
@@ -110,11 +111,11 @@ t_string str_cat(t_string s1, t_string s2)
 	res.len = s1.len + s2.len;
 	res.s = malloc(res.len + 1);
 	if (!res.s)
-		return (new_str(NULL));
+		return (new_str(NULL, 0));
 	res.type = STR_ALLOCATED;
-	if (ft_strlcpy(res.s, s1.s, s1.len) == 0)
+	if (ft_strlcpy(res.s, s1.s, s1.len + 1) == 0)
 		res.s[0] = '\0';
-	if (ft_strlcat(res.s, s2.s, res.len) == 0)
+	if (ft_strlcat(res.s, s2.s, res.len + 1) == 0)
 		res.s[s1.len] = '\0';
 	res.end = res.s + s1.len + s2.len;
 	return (res);
@@ -245,21 +246,38 @@ int string_find(t_string str, size_t start, size_t n, char *delimiters)
 		start++;
 	}
 	return (-1);
+}
 
+t_string string_find_word(t_string str, size_t start, t_string target)
+{
+	t_string res;
+
+	res = new_str(NULL, 0);
+	if (str_is_null(str) || str_is_null(target))
+		return (res);
+	while (start < str.len)
+	{
+		if (str_cmp(str, target, start) == 0)
+		{
+			res = cstr_to_str_ptr(&str.s[start], target.len);
+			break;
+		}
+		start++;
+	}
+	return (res);
 }
 
 //delimiters are chars
-t_string *string_split(t_string str, char *delimiters)
+t_string *string_split(t_string str, char *delimiters, int *len)
 {
 	const t_string delims_ptr = cstr_to_str_ptr(delimiters, ft_strlen(delimiters));
 	t_string *strs;
-	size_t pos;
 	size_t idx;
 	size_t start;
 
-	strs = malloc((word_count(str.s, delimiters) + 1) * sizeof(t_string));
+	strs = malloc((word_ncount(str.s, delims_ptr.s, str.len) + 1) * sizeof(t_string));
 	idx = 0;
-	pos = 0;
+	*len = 0;
 	start = 0;
 	while (idx < str.len)
 	{
@@ -269,15 +287,15 @@ t_string *string_split(t_string str, char *delimiters)
 		while (idx < str.len && string_find(str, idx, 1, delims_ptr.s) == -1)
 			idx++;
 		if (idx > start)
-			strs[pos++] = cstr_to_str_ptr(str.s + start, idx - start);
+			strs[(*len)++] = cstr_to_str_ptr(str.s + start, idx - start);
 		idx++;
 	}
-	if (!pos)
+	if (!*len)
 	{
 		free(strs);
 		return (NULL);
 	}
-	strs[pos] = new_str(NULL);
+	strs[*len] = new_str(NULL, 0);
 	return (strs);
 }
 
@@ -295,24 +313,39 @@ int str_cmp(t_string s1, t_string s2, size_t s1_start)
 	return (s1.s[s1_start] - s2.s[i]);
 }
 
-//delimiter is a word
-t_string *string_divide(t_string str, char *delimiter, int *len)
+t_string str_dup(t_string to_duplicate)
 {
-	const t_string dlim_ptr = cstr_to_str_ptr(delimiter, ft_strlen(delimiter));
+	t_string dup;
+	int copied_chars;
+
+	if (str_is_null(to_duplicate))
+		return (new_str(NULL, 0));
+	dup.len = to_duplicate.len;
+	dup.s = malloc(dup.len + 1);
+	dup.type = STR_ALLOCATED;
+	copied_chars = ft_strlcpy(dup.s, to_duplicate.s, dup.len + 1);
+	if (!copied_chars)
+		dup.s[0] = '\0';
+	dup.end = dup.s + copied_chars;
+	return (dup);
+}
+//delimiter is a word
+t_string *string_divide(t_string str, t_string dlim, int *len)
+{
 	t_string *strs;
 	size_t idx;
 	size_t start;
 
-	strs = malloc((word_count(str.s, delimiter) + 1) * sizeof(t_string));
+	strs = malloc((word_ncount(str.s, dlim.s, dlim.len) + 1) * sizeof(t_string));
 	idx = 0;
 	start = 0;
 	*len = 0;
 	while (idx < str.len)
 	{
-		if (str_cmp(str, dlim_ptr, idx) == 0)
-			idx += dlim_ptr.len;
+		if (str_cmp(str, dlim, idx) == 0)
+			idx += dlim.len;
 		start = idx;
-		while (idx < str.len && str_cmp(str, dlim_ptr, idx) != 0)
+		while (idx < str.len && str_cmp(str, dlim, idx) != 0)
 			idx++;
 		if (idx > start)
 			strs[(*len)++] = cstr_to_str_ptr(str.s + start, idx - start);
@@ -323,26 +356,49 @@ t_string *string_divide(t_string str, char *delimiter, int *len)
 		free(strs);
 		return (NULL);
 	}
-	strs[*len] = new_str(NULL);
+	strs[*len] = new_str(NULL, 0);
 	return (strs);
+}
+
+void string_divide_in_two(t_string str, t_string divided_parts_buf[2], t_string dlim, int *num_of_parts)
+{
+    size_t idx;
+    size_t start;
+    
+    idx = 0;
+    start = 0;
+    *num_of_parts = 0;
+    divided_parts_buf[0] = new_str(NULL, 0);
+    divided_parts_buf[1] = new_str(NULL, 0);
+    if (str_cmp(str, dlim, idx) == 0)
+        idx += dlim.len;
+    start = idx;
+    while (idx < str.len && str_cmp(str, dlim, idx) != 0)
+        idx++;
+    if (idx > start) 
+    {
+        divided_parts_buf[0] = cstr_to_str_ptr(str.s + start, idx - start);
+        *num_of_parts = 1;
+    }
+    if (idx < str.len) 
+    {
+        divided_parts_buf[1] = cstr_to_str_ptr(str.s + idx + dlim.len, str.len - idx - dlim.len);
+        if (divided_parts_buf[1].len > 0)
+            *num_of_parts = 2;
+    }
 }
 
 char *string_convert_back(t_string str)
 {
 	char *s;
+
 	if (str_is_null(str))
 		return (NULL);
-
-	if (str.type == STR_POINTER)
-	{
-		s = malloc(str.len + 1);
-		if (!s)
-			return (NULL);
-		if (ft_strlcpy(s, str.s, str.len + 1) == 0)
-			s[0] = '\0';
-	}
-	else
-		s = str.s;
+	s = malloc(str.len + 1);
+	if (!s)
+		return (NULL);
+	if (ft_strlcpy(s, str.s, str.len + 1) == 0)
+		s[0] = '\0';
 	return (s);
 }
 
@@ -355,11 +411,11 @@ int string_put(t_string s, int fd)
 
 void string_free(t_string *str)
 {
-	if (!str || str_is_null(*str))
+	if (!str || str_is_null(*str) || str->type != STR_ALLOCATED)
 		return ;
 	if (str->s)
 		free(str->s);
-	*str = new_str(NULL);
+	*str = new_str(NULL, 0);
 }
 
 //Example usage: string_split
