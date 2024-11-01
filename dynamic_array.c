@@ -21,7 +21,7 @@ void darr_append(t_dynamic_array *da, const void *insertion)
 	if (da->len >= da->capacity)
 	{
 		new_capacity = da->capacity += DA_INIT_SIZE;
-		new_data = ft_realloc(da->data, new_capacity * da->data_size); 
+		new_data = ft_realloc(da->data, da -> capacity, new_capacity * da->data_size); 
 		da -> data = new_data;
 		da -> capacity = new_capacity;
 	}

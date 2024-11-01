@@ -276,6 +276,33 @@ t_string *string_split(t_string str, char *delimiters, int *len)
 	size_t start;
 
 	strs = malloc((word_ncount(str.s, delims_ptr.s, str.len) + 1) * sizeof(t_string));
+	idx = -1;
+	*len = 0;
+	start = 0;
+	while (++idx < str.len)
+	{
+		while (idx < str.len && string_find(str, idx, 1, delims_ptr.s) != -1)
+			idx++;
+		start = idx;
+		while (idx < str.len && string_find(str, idx, 1, delims_ptr.s) == -1)
+			idx++;
+		if (idx > start)
+			strs[(*len)++] = cstr_to_str_ptr(str.s + start, idx - start);
+	}
+	if (!*len)
+		return (free(strs), NULL);
+	strs[*len] = new_str(NULL, 0);
+	return (strs);
+}
+
+t_string *string_split_dup(t_string str, char *delimiters, int *len)
+{
+	const t_string delims_ptr = cstr_to_str_ptr(delimiters, ft_strlen(delimiters));
+	t_string *strs;
+	size_t idx;
+	size_t start;
+
+	strs = malloc((word_ncount(str.s, delims_ptr.s, str.len) + 1) * sizeof(t_string));
 	idx = 0;
 	*len = 0;
 	start = 0;
@@ -287,7 +314,7 @@ t_string *string_split(t_string str, char *delimiters, int *len)
 		while (idx < str.len && string_find(str, idx, 1, delims_ptr.s) == -1)
 			idx++;
 		if (idx > start)
-			strs[(*len)++] = cstr_to_str_ptr(str.s + start, idx - start);
+			strs[(*len)++] = str_dup(cstr_to_str_ptr(str.s + start, idx - start));
 		idx++;
 	}
 	if (!*len)
@@ -298,7 +325,6 @@ t_string *string_split(t_string str, char *delimiters, int *len)
 	strs[*len] = new_str(NULL, 0);
 	return (strs);
 }
-
 
 int str_cmp(t_string s1, t_string s2, size_t s1_start)
 {
@@ -329,6 +355,7 @@ t_string str_dup(t_string to_duplicate)
 	dup.end = dup.s + copied_chars;
 	return (dup);
 }
+
 //delimiter is a word
 t_string *string_divide(t_string str, t_string dlim, int *len)
 {

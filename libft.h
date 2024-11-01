@@ -164,6 +164,7 @@ t_string string_find_word(t_string str, size_t start, t_string target);
 int str_cmp(t_string s1, t_string s2, size_t s1_start);
 t_string str_dup(t_string to_duplicate);
 t_string *string_split(t_string str, char *delimiters, int *len);
+t_string *string_split_dup(t_string str, char *delimiters, int *len);
 t_string *string_divide(t_string str, t_string dlim, int *len);
 void string_divide_in_two(t_string str, t_string divided_parts_buf[2], t_string dlim, int *num_of_parts);
 t_dynamic_array *string_findall(t_string str, char *delimiters);
@@ -175,7 +176,7 @@ int	ft_fprintf(int fd, const char *str, ...);
 void	print_bits(char c, int fd);
 char	*get_next_line(int fd);
 int	ft_digit_count(long int n, int divisor);
-void *ft_realloc(void *data, size_t data_size);
+void *ft_realloc(void *data, size_t original_size, size_t new_size);
 void freen(void **data);
 void freen_arr(void **data);
 
