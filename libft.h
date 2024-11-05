@@ -148,6 +148,7 @@ bool str_is_null(t_string str);
 bool str_is_empty(t_string str);
 int string_put(t_string s, int fd);
 void string_free(t_string *str);
+void string_arr_free(t_string **strs);
 t_string cstr_to_str_ptr(char *raw_str, int size);
 t_string cstr_to_str(char *raw_str);
 t_string cstr_to_str_nsize(char *raw_str, int size);
@@ -179,6 +180,7 @@ int	ft_digit_count(long int n, int divisor);
 void *ft_realloc(void *data, size_t original_size, size_t new_size);
 void freen(void **data);
 void freen_arr(void **data);
+void freen_arr_with_custom_func(void **data, void (*del) (void *));
 
 //dynamic arrays
 t_dynamic_array *darr_init(size_t ds);

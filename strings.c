@@ -21,7 +21,7 @@ t_string	new_str(char *s, t_str_type type)
 
 bool str_is_null(t_string str)
 {
-	return (!str.s || str.len <= 0 || str.type == STR_NULL);
+	return (!str.s || str.type == STR_NULL);
 }
 
 t_string cstr_to_str_ptr(char *raw_str, int size)
@@ -151,13 +151,12 @@ t_dynamic_array *string_findall(t_string str, char *delimiters)
 	i = 0;
 	while (i < str.len)
 	{
-		j = 0;
-		while (j < delims_ptr.len)
+		j = -1;
+		while (++j < delims_ptr.len)
 		{
 			s = cstr_to_str_ptr(&str.s[i], 1);
 			if (str.s[i] == delims_ptr.s[j])
 				darr_append(ptrs, (const void *)&s);
-			j++;
 		}
 		i++;
 	}
@@ -232,7 +231,7 @@ int string_find(t_string str, size_t start, size_t n, char *delimiters)
 	const t_string delims_ptr = cstr_to_str_ptr(delimiters, ft_strlen(delimiters));
 	size_t i;
 
-	if (str_is_null(str) ||str_is_null(delims_ptr)) 	
+	if (str_is_null(str) || str_is_null(delims_ptr)) 	
 		return (-1);
 	while (start < str.len && n--)
 	{	
@@ -318,10 +317,7 @@ t_string *string_split_dup(t_string str, char *delimiters, int *len)
 		idx++;
 	}
 	if (!*len)
-	{
-		free(strs);
-		return (NULL);
-	}
+		return (free(strs), NULL);
 	strs[*len] = new_str(NULL, 0);
 	return (strs);
 }
@@ -379,10 +375,7 @@ t_string *string_divide(t_string str, t_string dlim, int *len)
 		idx++;
 	}
 	if (!*len)
-	{
-		free(strs);
-		return (NULL);
-	}
+		return (free(strs), NULL);
 	strs[*len] = new_str(NULL, 0);
 	return (strs);
 }
@@ -443,6 +436,22 @@ void string_free(t_string *str)
 	if (str->s)
 		free(str->s);
 	*str = new_str(NULL, 0);
+}
+
+void string_arr_free(t_string **strs)
+{
+	t_string *ptr;
+
+	if (!strs || !*strs)
+		return ;
+	ptr = *strs;
+	while (ptr && !str_is_null(*ptr))
+	{
+		string_free(ptr);
+		ptr++;
+	}
+	free(*strs);
+	*strs = NULL;
 }
 
 //Example usage: string_split

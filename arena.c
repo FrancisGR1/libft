@@ -55,6 +55,7 @@ void arena_destroy(t_arena *arena)
 }
 
  //visualização da memória: bytes ocupados: "|", nulos: "."
+ /*
 void arena_visualizer(t_arena *region) 
 {
 	size_t bytes_used = 0;
@@ -84,7 +85,9 @@ void arena_visualizer(t_arena *region)
 	}
 	ft_fprintf(STDOUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
 }
+*/
 
+//EXAMPLE
 /*
 void print_nums(int *i, int *end)
 {
