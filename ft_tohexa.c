@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 21:10:05 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/20 12:18:23 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:03 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,25 @@ int	ft_tohexa(int fd, char to_format, unsigned long n)
 	return (count);
 }
 /*
-int main(int c, char **v)
+int	main(int c, char **v)
 {
-	unsigned int num = c > 1 ? atoi(v[1]) : 10;
+	unsigned int	num;
+	int				memlen;
+	int				memlen2;
+
+	num = c > 1 ? atoi(v[1]) : 10;
 	//ft_tohexa('u','h', num);
 	//printf("\n%x // printf\n", num);
 	//ft_tohexa('l', 'm', (unsigned long)&num);
 	//printf("\n%p // printf\n",&num);
 	//int count = ft_tohexa('l', 'h', num);
-	//printf("\n%d\n",  count);	
+	//printf("\n%d\n",  count);
 	//int count2 = printf("%x",num);
 	//printf("\n%d // printf\n", count2);
-	
 	//memory test
-	int memlen = printf("%p", (void *)&num);
+	memlen = printf("%p", (void *)&num);
 	printf("\n");
-	int memlen2 = ft_tohexa('l', 'm', (unsigned long) &num);
+	memlen2 = ft_tohexa('l', 'm', (unsigned long) &num);
 	printf("\n %d || %d", memlen, memlen2);
 }
 */

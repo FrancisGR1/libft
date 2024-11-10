@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arena.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/10 21:18:51 by frmiguel          #+#    #+#             */
+/*   Updated: 2024/11/10 21:18:51 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "arena.h"
 
-t_arena *arena_init(size_t size)
+t_arena	*arena_init(size_t size)
 {
-	t_arena *region;
+	t_arena	*region;
 
 	region = malloc(sizeof(*region));
 	region->memory = malloc(size);
@@ -11,60 +23,63 @@ t_arena *arena_init(size_t size)
 	region->limit = size;
 	region->end = region->memory + region->limit;
 	region->next = NULL;
-
 	return (region);
 }
 
 void	*arena_alloc(t_arena **region, size_t nbytes, size_t size)
 {
-	const size_t size_bytes = size * nbytes;
-
-	void *result;
+	const size_t	size_bytes = size * nbytes;
+	void			*result;
+	t_arena			*head;
 
 	if (size_bytes > (*region)->limit - (*region)->current_size)
 	{
-		t_arena *head = *region;
+		head = *region;
 		while ((*region)->next)
 			*region = (*region)->next;
 		(*region)->next = arena_init(size_bytes);
 		(*region)->next->current_size = size_bytes;
-
 		result = (char *)(*region)->next->memory;
 		*region = head;
-
 	}
 	else
 	{
 		result = (char *)(*region)->memory + (*region)->current_size;
 		(*region)->current_size += size_bytes;
-
 	}
-
 	return (result);
 }
 
-void arena_destroy(t_arena *arena)
+void	arena_destroy(t_arena *arena)
 {
+	t_arena	*tmp;
+
 	while (arena != NULL)
 	{
-		t_arena *tmp = arena->next;
+		tmp = arena->next;
 		free(arena->memory);
 		free(arena);
 		arena = tmp;
 	}
 }
 
- //visualização da memória: bytes ocupados: "|", nulos: "."
- /*
-void arena_visualizer(t_arena *region) 
+// visualização da memória: bytes ocupados: "|", nulos: "."
+/*
+void	arena_visualizer(t_arena *region)
 {
-	size_t bytes_used = 0;
-	size_t bytes_total = 0;
-	t_arena *ptr = region;
-	while (ptr)
-	{
-		unsigned char *start = (unsigned char*) ptr->memory;
-		unsigned char *end = (unsigned char*) ptr->end;
+	size_t			bytes_used;
+	size_t			bytes_total;
+	t_arena			*ptr;
+	unsigned char	*start;
+	unsigned char	*end;
+
+   bytes_used = 0;
+   bytes_total = 0;
+   ptr = region;
+   while (ptr)
+   {
+		start = (unsigned char*) ptr->memory;
+		end = (unsigned char*) ptr->end;
 		while (start < end)
 		{
 			if (*start)
@@ -82,14 +97,14 @@ void arena_visualizer(t_arena *region)
 		if (ptr->next)
 			ft_fprintf(STDOUT, "\n\n>--->\n\n");
 		ptr = ptr->next;
-	}
-	ft_fprintf(STDOUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
+   }
+   ft_fprintf(STDOUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
 }
 */
 
-//EXAMPLE
+// EXAMPLE
 /*
-void print_nums(int *i, int *end)
+void	print_nums(int *i, int *end)
 {
 	while (i < end)
 	{
@@ -100,17 +115,19 @@ void print_nums(int *i, int *end)
 
 int main (int argc, char *argv[])
 {
+	t_arena	*region;
+	char	*string;
+	t_arena	*ptr;
+
 	if (argc < 2)
 		return (printf("./main <arg>\n"));
-	t_arena *region = arena_init(SIZE);
-
-	char *string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+	region = arena_init(SIZE);
+	string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
 	strncpy(string, argv[1], strlen(argv[1]));
 	printf("%s\n", string);
 	arena_visualizer(region);
 	printf("\n\n\n");
-
-	t_arena *ptr = region;
+	ptr = region;
 	while (ptr){
 		printf("node\n");
 		ptr = ptr->next;
@@ -119,6 +136,6 @@ int main (int argc, char *argv[])
 	arena_destroy(region);
 }
 */
-//Criar um bloco de memória pré-alocado
-//Incluir uma série de dados
-//Libertar tudo de uma vez
+// Criar um bloco de memória pré-alocado
+// Incluir uma série de dados
+// Libertar tudo de uma vez

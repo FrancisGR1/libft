@@ -6,19 +6,20 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:31:41 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 19:33:00 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:00 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//Testing for failed malloc
+// Testing for failed malloc
 /*
-void *mock_malloc(size_t size) {
-    (void)size;
-    return NULL; 
+void	*mock_malloc(size_t size) {
+	(void)size;
+	return (NULL);
 }
 #define malloc(size) mock_malloc(size)
+
 */
 char	*ft_strdup(const char *s)
 {
@@ -34,7 +35,7 @@ char	*ft_strdup(const char *s)
 	return (ptr);
 }
 /*
-int main() {
+int	main(void) {
 	const char *originalString = "Hello, World!";
 	char *duplicateString = ft_strdup(originalString);
 
@@ -48,6 +49,6 @@ int main() {
 		printf("Memory allocation failed. -> %p\n", duplicateString);
 	}
 
-	return 0;
+	return (0);
 }
 */

@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:39:06 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/09 18:19:23 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:02 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static int	get_len(char const *s, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char		*p;
-	size_t		i;
-	size_t		end;
-	size_t		start;
+	char	*p;
+	size_t	i;
+	size_t	end;
+	size_t	start;
 
 	if (!s1 || !set)
 		return (NULL);
@@ -69,10 +69,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 /*
 int main (int c, char **v)
 {
-char *str = c > 1 ? v[1] : "Hello";
-char *sep = c > 2 ? v[2] : "Hho";
-char *trmstr = ft_strtrim(str, sep);	
-int len = get_len(str, sep);
+char		*str = c > 1 ? v[1] : "Hello";
+char		*sep = c > 2 ? v[2] : "Hho";
+char		*trmstr = ft_strtrim(str, sep);
+int			len = get_len(str, sep);
+
 printf("%d\n", len);
 printf("%s\n%s\n%s\n", str, sep, trmstr);
 }

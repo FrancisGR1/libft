@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 12:10:13 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/09 12:29:24 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:00 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*p;
-	size_t		i;
-	size_t		j;
+	char	*p;
+	size_t	i;
+	size_t	j;
 
 	if (!s1 || !s2)
 		return (0);

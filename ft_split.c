@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 18:21:23 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:55:26 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:59 by frmiguel         ###   ########.fr       */
 /*                                                                          */
 /* ************************************************************************** */
 #include "libft.h"
@@ -77,14 +77,20 @@ char	**ft_split(char const *s, char *delimiter)
 }
 
 /*
-int main(int c, char **v)
+int	main(int c, char **v)
 {
-	char *str = c > 1 ? v[1] : " Hello There ";
-	char *sep = c > 2 ? v[2] : " ";
-	int result = word_ncount(str, sep, 1);
+	char	*str;
+	char	*sep;
+	int		result;
+	char	**arr;
+	int		i;
+
+	str = c > 1 ? v[1] : " Hello There ";
+	sep = c > 2 ? v[2] : " ";
+	result = word_ncount(str, sep, 1);
 	printf("Str:%s\nSep: %s\nNum of Words: %d\nArray:\n", str, sep, result);
-	char	**arr = ft_split(str, sep);
-	int i = 0;
+	arr = ft_split(str, sep);
+	i = 0;
 	while (i < result)
 	{
 		printf("%s\n", arr[i]);

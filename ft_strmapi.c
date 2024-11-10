@@ -6,17 +6,17 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:57:20 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:02:15 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:01 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*p;
 	int		len;
-	int		i;	
+	int		i;
 
 	len = ft_strlen(s);
 	p = malloc(len + 1);
@@ -32,35 +32,35 @@ char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 	return (p);
 }
 /*
-char uppercase(unsigned int index, char c) 
+char	uppercase(unsigned int index, char c)
 {
 	if (c >= 'a' && c <= 'z') {
-		return c - ('a' - 'A');
+		return (c - ('a' - 'A'));
 	}
-	return c;
+	return (c);
 }
-char evenIndexToAsterisk(unsigned int index, char c) {
+char	evenIndexToAsterisk(unsigned int index, char c) {
 	if (index % 2 == 0) {
-		return '*';
+		return ('*');
 	}
-	return c;
+	return (c);
 }
 */
 /*
-int main() {
-    char input[] = "Hello, World!";
-    
-    char *result1 = ft_strmapi(input, uppercase);
-    char *result3 = ft_strmapi(input, evenIndexToAsterisk);
+int	main(void) {
+	char input[] = "Hello, World!";
+
+	char *result1 = ft_strmapi(input, uppercase);
+	char *result3 = ft_strmapi(input, evenIndexToAsterisk);
 
 	// Should print "HELLO, WORLD!"
-    printf("uppercase(): %s\n", result1); 
+	printf("uppercase(): %s\n", result1);
 	// Should print "*e*l*, W*r*d!"
-    printf("evenIndexToAsterisk(): %s\n", result3); 
-    
-    free(result1);
-    free(result3);
+	printf("evenIndexToAsterisk(): %s\n", result3);
 
-    return 0;
+	free(result1);
+	free(result3);
+
+	return (0);
 }
 */

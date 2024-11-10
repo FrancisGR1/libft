@@ -6,7 +6,7 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:01:31 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/08 11:28:15 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:01 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	return (total);
 }
 /*
-   int main	(int argc, char **argv) 
+   int main	(int argc, char **argv)
    {
 	char *s1 = argc > 1 ? argv[1] : "hello";
 	char *s2 = argc > 2 ? argv[2] : "goodby";
 	int  num = argc > 3 ? atoi(argv[3]) : 5;
 	int result = ft_strlcat(s1, s2, num);
-	
+
 	printf("Before: %s \nAfter: %s (%d)\n", s1, s2, result) ;
-	   return (0);
+		return (0);
    }
 */

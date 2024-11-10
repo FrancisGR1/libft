@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:55:13 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/07 21:51:01 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:57 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 /*
 int	main(void)
 {
-	char arr[] = {'\0'};
-	char arr1[] = {'\0'};
-	char arr2[] = {'\0'};
-	char arr3[] = {'\0'};
+	char	arr[] = {'\0'};
+	char	arr1[] = {'\0'};
+	char	arr2[] = {'\0'};
+	char	arr3[] = {'\0'};
 
 	ft_memcpy(arr, arr1, 5);
 	memcpy(arr2, arr3, 5);

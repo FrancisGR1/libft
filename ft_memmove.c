@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:56:47 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/07 21:53:03 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:57 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	if (!dest && !src)
 		return (0);
-	a = (unsigned char *) dest;
-	b = (unsigned char *) src;
+	a = (unsigned char *)dest;
+	b = (unsigned char *)src;
 	if (a < b)
 	{
 		while (n--)
@@ -36,12 +36,13 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 /*
 int main (void)
 {
-	char arr[] = "Testestesfd";
-	char arr1[] = "TESTETSETEESDF";
-	char arr2[] = "Testestesfd";
-	char arr3[] = "TESTETSETEESDF";	
+	char	arr[] = "Testestesfd";
+	char	arr1[] = "TESTETSETEESDF";
+	char	arr2[] = "Testestesfd";
+	char	arr3[] = "TESTETSETEESDF";
+
 	ft_memmove(arr3+5, arr2+5, 5);
-	memcpy(arr1+5, arr+5, 5);	
+	memcpy(arr1+5, arr+5, 5);
 	printf("arr3: %s\n", arr3);
 	printf("arr1: %s\n", arr1);
 }

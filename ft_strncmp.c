@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:06:48 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/07 21:53:57 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:01 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,29 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 /*
 int main (int c, char **v)
 {
-	char *str1 = c > 1 ? v[1] : "Hello World";
-	char *str2 = c > 2 ? v[2] : "Hello There";
-	int n = c > 3 ? atoi(v[3]) : 8;
-	int result = ft_strncmp(str1, str2, n);
+	char	*str1;
+	char	*str2;
+	int		n;
+	int		result;
+	int		result1;
+	int		null_ft_res;
+	char	*null_str;
+	int		null_str_res;
+
+	str1 = c > 1 ? v[1] : "Hello World";
+	str2 = c > 2 ? v[2] : "Hello There";
+	n = c > 3 ? atoi(v[3]) : 8;
+	result = ft_strncmp(str1, str2, n);
 	printf("%s - %s = %d (n = %d)\n", str1 , str2, result, n);
-	int result1 = strncmp(str1, str2, n);
-	printf("%s - %s = %d (n = %d)\n", str1, str2, result1, n); 
+	result1 = strncmp(str1, str2, n);
+	printf("%s - %s = %d (n = %d)\n", str1, str2, result1, n);
 	printf("Testing for null:\n");
 	printf("ft strncmp:\n");
-	int null_ft_res = ft_strncmp(NULL, str2, n);
+	null_ft_res = ft_strncmp(NULL, str2, n);
 	printf("res: %d\n", null_ft_res);
 	printf("strncmp:\n");
-	char *null_str = NULL;
+	null_str = NULL;
 	//should crash
-	int null_str_res = strncmp(null_str, str2, n);
+	null_str_res = strncmp(null_str, str2, n);
 }
 */

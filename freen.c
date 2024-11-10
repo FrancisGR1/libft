@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   freen.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/10 21:18:51 by frmiguel          #+#    #+#             */
+/*   Updated: 2024/11/10 21:18:51 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void freen(void **data)
+void	freen(void **data)
 {
 	if (!data || !*data)
 		return ;
@@ -8,9 +20,9 @@ void freen(void **data)
 	*data = NULL;
 }
 
-void freen_arr(void **data)
+void	freen_arr(void **data)
 {
-	size_t idx;
+	size_t	idx;
 
 	idx = 0;
 	if (!data)
@@ -25,9 +37,9 @@ void freen_arr(void **data)
 	free(data);
 }
 
-void freen_arr_with_custom_func(void **data, void (*del) (void *))
+void	freen_arr_with_custom_func(void **data, void (*del)(void *))
 {
-	size_t idx;
+	size_t	idx;
 
 	idx = 0;
 	if (!data)

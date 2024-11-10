@@ -6,7 +6,7 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 12:01:37 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/08 23:07:17 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:01 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ size_t	ft_strlen(const char *s)
 /*
 int	main(int c, char **v)
 {
-	int mine = ft_strlen(v[1]);
-	int std = strlen(v[1]);
-	printf("%d\n%d\n", mine, std);	
+	int	mine;
+	int	std;
+
+	mine = ft_strlen(v[1]);
+	std = strlen(v[1]);
+	printf("%d\n%d\n", mine, std);
 }
 */

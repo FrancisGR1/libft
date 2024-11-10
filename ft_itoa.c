@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 18:44:28 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 15:23:22 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:54 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ static char	*putnbr(long int n, char *ptr, int len)
 
 char	*ft_itoa(int n)
 {
-	int				digits;
-	long int		num;
-	char			*p;
+	int			digits;
+	long int	num;
+	char		*p;
 
 	num = n;
 	digits = digit_count(num);
@@ -85,7 +85,9 @@ char	*ft_itoa(int n)
 /*
 int main (int c, char **v)
 {
-	char *arr = ft_itoa(atoi(v[1]));
+	char	*arr;
+
+	arr = ft_itoa(atoi(v[1]));
 	printf("%s\n", arr);
 }
 */

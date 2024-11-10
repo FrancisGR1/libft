@@ -6,11 +6,11 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 19:17:07 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/10 19:24:45 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:00 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striteri(char *s, void (*f) (unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	int	i;
 

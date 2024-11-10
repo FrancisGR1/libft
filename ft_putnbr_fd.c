@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 22:18:02 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/11 11:33:51 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:58 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ int	ft_putnbr_fd(int n, int fd)
 	return (cnt);
 }
 /*
-int main(int c, char **v)
+int	main(int c, char **v)
 {
-	int n = atoi(v[1]);
+	int	n;
+
+	n = atoi(v[1]);
 	ft_putnbr_fd(n, 1);
 }
 */

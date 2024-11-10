@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 20:31:41 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/09 12:38:23 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:02 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	get_len(char const *s, unsigned int start, size_t len)
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char		*p;
-	size_t		i;
+	char	*p;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -79,10 +79,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
    {
    printf("Result: %s\n", result); // Print the result if it's not NULL
    free(result); // Free the dynamically allocated memory
-   }	
-   else 
+   }
+   else
    printf("WTF");
-   return 0;
+   return (0);
    }
  */
 

@@ -6,7 +6,7 @@
 /*   By: frmiguel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:30:10 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/06 17:54:36 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:52 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char		*ptr;
-	size_t		i;
+	char	*ptr;
+	size_t	i;
 
 	ptr = s;
 	i = 0;
@@ -27,13 +27,15 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 /*
-int main(void)
+int	main(void)
 {
-	int n = 4;
-	char arr[] = "test";
-	char arr1[] = "test";
-	int	i = 0;
+	int		n;
+	char	arr[] = "test";
+	char	arr1[] = "test";
+	int		i;
 
+	n = 4;
+	i = 0;
 	ft_bzero(arr, 5);
 	bzero(arr1, 5);
 	printf("MINE:%s", arr);
@@ -49,6 +51,6 @@ int main(void)
 		printf("%d", arr1[i]);
 		i++;
 	}
-	printf("\n");	
+	printf("\n");
 }
 */

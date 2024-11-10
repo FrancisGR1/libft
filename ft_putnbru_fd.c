@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 18:33:07 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/17 21:48:13 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:58 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_putnbru_fd(unsigned int n, int fd)
 {
-	int			i;
-	int			count;
-	char		buff[22];
+	int		i;
+	int		count;
+	char	buff[22];
 
 	i = 0;
 	if (n == 0)
@@ -36,9 +36,11 @@ int	ft_putnbru_fd(unsigned int n, int fd)
 	return (count);
 }
 /*
-int main(int c, char **v)
+int	main(int c, char **v)
 {
-	char *p = malloc(10 * sizeof(int));
+	char	*p;
+
+	p = malloc(10 * sizeof(int));
 	ft_putnbru_fd(12345678, 1);
 	printf("%s\n", p);
 }

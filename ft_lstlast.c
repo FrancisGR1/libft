@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 22:51:46 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/12 22:59:05 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:56 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	if (!lst)
 		return (NULL);
 	ptr = lst;
-	while (ptr -> next != NULL)
-		ptr = ptr -> next;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
 	return (ptr);
 }

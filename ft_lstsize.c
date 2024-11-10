@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 22:47:00 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/12 22:50:59 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:56 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_lstsize(t_list *lst)
 	count = 0;
 	while (ptr != NULL)
 	{
-		ptr = ptr -> next;
+		ptr = ptr->next;
 		count++;
 	}
 	return (count);

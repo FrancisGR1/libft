@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 21:06:08 by frmiguel          #+#    #+#             */
-/*   Updated: 2024/02/08 21:06:09 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:52 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ long	ft_atoi_long(const char *nptr)
 	ptr = (char *)nptr;
 	result = 0;
 	signal = 1;
-	while ((*ptr >= 9 && *ptr <= 13)
-		|| *ptr == 32)
+	while ((*ptr >= 9 && *ptr <= 13) || *ptr == 32)
 		ptr++;
 	if (*ptr == '-' || *ptr == '+')
 	{

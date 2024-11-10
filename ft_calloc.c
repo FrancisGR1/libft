@@ -6,7 +6,7 @@
 /*   By: francis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:35:08 by francis           #+#    #+#             */
-/*   Updated: 2023/10/08 18:32:48 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:52 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void			*p;
-	size_t			bytes;
+	void	*p;
+	size_t	bytes;
 
 	if (!size || !nmemb)
 		return (NULL);
@@ -23,7 +23,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	p = malloc(bytes);
 	if (!p)
 		return (NULL);
-	ft_memset(p, 0,  bytes);
+	ft_memset(p, 0, bytes);
 	return (p);
 }
 /*
@@ -42,13 +42,13 @@ void	*ft_calloc(size_t nmemb, size_t size)
    double *doubleArray = (double *)ft_calloc(3, sizeof(double));
    if (doubleArray != NULL) {
    for (int i = 0; i < 3; i++) {
-   printf("\n%lf  \n", doubleArray[i]); 	   
+   printf("\n%lf  \n", doubleArray[i]);
    }
    free(doubleArray);
    }
    else
    printf("%p\n", intArray);
 
-   return 0;
+   return (0);
    }
  */

@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 21:28:15 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/17 21:48:59 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:53 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	ft_digit_count(long int n, int divisor)
 /*
 int main (int c, char **v)
 {
-	char *arr = digit_count(atoi(v[1]), 10);
+	char	*arr;
+
+	arr = digit_count(atoi(v[1]), 10);
 	printf("%s\n", arr);
 }
 */

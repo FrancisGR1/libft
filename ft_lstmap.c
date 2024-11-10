@@ -6,13 +6,13 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 11:59:54 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/10/15 11:21:34 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:18:56 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//safer lstnew
+// safer lstnew
 static t_list	*ft_lstnew_safe(void *content)
 {
 	t_list	*node;
@@ -24,12 +24,12 @@ static t_list	*ft_lstnew_safe(void *content)
 		free(node);
 		return (NULL);
 	}
-	node -> content = content;
-	node -> next = NULL;
+	node->content = content;
+	node->next = NULL;
 	return (node);
 }
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*head;
 	t_list	*ptr;
@@ -39,14 +39,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) (void *))
 	head = NULL;
 	while (lst != NULL)
 	{
-		ptr = ft_lstnew_safe(f(lst -> content));
+		ptr = ft_lstnew_safe(f(lst->content));
 		if (!ptr)
 		{
 			ft_lstclear(&head, del);
 			return (NULL);
 		}
 		ft_lstadd_back(&head, ptr);
-		lst = lst -> next;
+		lst = lst->next;
 	}
 	return (head);
 }

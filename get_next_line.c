@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:16:25 by frmiguel          #+#    #+#             */
-/*   Updated: 2023/11/12 20:32:13 by frmiguel         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:03 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 typedef struct s_line_str
 {
-	char *old;
-	char *new;
-	bool nl;
-}	t_line;
+	char	*old;
+	char	*new;
+	bool	nl;
+}			t_line;
 
-
-static void init(t_line **line)
+static void	init(t_line **line)
 {
 	*line = malloc(sizeof(t_line));
 	(*line)->old = NULL;
@@ -28,10 +27,10 @@ static void init(t_line **line)
 	(*line)->nl = false;
 }
 
-//Frees the structure initialized and returns the new line
-static char *res(t_line *line)
+// Frees the structure initialized and returns the new line
+static char	*res(t_line *line)
 {
-	char *result;
+	char	*result;
 
 	if (!line)
 		return (NULL);
@@ -69,17 +68,18 @@ char	*get_next_line(int fd)
 	return (res(l));
 }
 
-//Usage example
+// Usage example
 /*
-int main(void)
+int	main(void)
 {
-	int fd = open("t8.shakespeare.txt", O_RDONLY);
-	char *line;
+	int		fd;
+	char	*line;
+
+	fd = open("t8.shakespeare.txt", O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("%s", line);
 		free(line);
 	}
-
 }
 */
