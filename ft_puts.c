@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_puts(char *s)
+void	ft_puts(const char *s)
 {
 	if (!s)
 		return ;
