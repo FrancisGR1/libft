@@ -56,6 +56,8 @@ char	**ft_split(char const *s, char *delimiter)
 	int		i;
 	int		len;
 
+	if (!s || !delimiter)
+		return (NULL);
 	words = word_ncount(s, delimiter, ft_strlen(s));
 	p = (char **)malloc((words + 1) * sizeof(char *));
 	i = 0;

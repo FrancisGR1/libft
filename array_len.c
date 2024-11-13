@@ -14,12 +14,12 @@
 
 size_t	array_len(void **arr)
 {
-	size_t	len;
+	size_t	i;
 
 	if (!arr)
 		return (0);
-	len = 0;
-	while (*(arr + (data_size * len)))
-		len++;
-	return (len);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
