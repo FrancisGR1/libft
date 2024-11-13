@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+//TODO: implementar um custom realloc com funcs FREE E COPY 
+//do utilizador para dados mais complexos
 void	*ft_realloc(void *data, size_t original_size, size_t new_size)
 {
 	void	*new;

@@ -44,6 +44,7 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 	da->len++;
 }
 
+//TODO: custom_free() func ptr
 void	darr_free(t_dynamic_array *da)
 {
 	if (!da)
