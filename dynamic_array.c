@@ -44,6 +44,32 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 	da->len++;
 }
 
+
+void darr_sort(t_dynamic_array *da, int (*cmp) (void *el1, void *el2))
+{
+	int i;
+	int j;
+	void *tmp;
+
+	i = 0;
+	while (i < da->len)
+	{
+		j = i;
+		while (j < da->len)
+		{
+			if (cmp(da->data[i], da->data[j]) > 0)
+			{
+				tmp = da->data[i];
+				da->data[i] = da->data[j];
+				da->data[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+
+	}
+}
+
 //TODO: custom_free() func ptr
 void	darr_free(t_dynamic_array *da)
 {
@@ -54,15 +80,15 @@ void	darr_free(t_dynamic_array *da)
 }
 
 /* Usage example
-int	main(void)
-{
-	t_dynamic_array	*d;
+   int	main(void)
+   {
+   t_dynamic_array	*d;
 
-	d = darr_init(sizeof(int));
-	for (int i = 0; i < 10; i++)
-		darr_append(d, &i);
-	for (int i = 0; i < 10; i++)
-		ft_fprintf(OUT, "%d\n", ((int *)d->data)[i]);
-	darr_free(d);
-}
-*/
+   d = darr_init(sizeof(int));
+   for (int i = 0; i < 10; i++)
+   darr_append(d, &i);
+   for (int i = 0; i < 10; i++)
+   ft_fprintf(OUT, "%d\n", ((int *)d->data)[i]);
+   darr_free(d);
+   }
+   */
