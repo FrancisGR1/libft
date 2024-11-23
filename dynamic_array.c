@@ -44,22 +44,25 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 	da->len++;
 }
 
-void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), const void *lookup)
+void *darr_find(t_dynamic_array *da, int (*match) (const void *el1, const void *el2), const void *lookup)
 {
 	size_t i;
-	void **data_array;
+	size_t offset;
+	void *curr;
 	void *res;
 
 	if (!da || !match || !lookup)
-		return ;
+		return (NULL);
 	res = NULL;
+	offset = 0;
 	i = 0;
-	data_array = da->data;
 	while (i < da->len)
 	{
-		if (match(data_array[i], lookup) == 0)
+		offset = i * da->data_size;
+		curr = da->data + offset;
+		if (match(curr, lookup) == 0)
 		{
-			res = data_array[i];
+			res = curr;
 			break ;
 		}
 		i++;
@@ -67,23 +70,26 @@ void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), const 
 	return (res);
 }
 
-void darr_remove(t_dymamic_array *da, const void *to_delete)
+void darr_remove(t_dynamic_array *da, const void *to_delete)
 {
 	size_t i;
 	size_t bytes;
-	void **data_array;
+	size_t offset;
+	void *curr;
 
 	if (!da || !to_delete)
 		return ;
 	bytes = 0;
+	offset = 0;
 	i = 0;
 	while (i < da->len)
 	{
-		if (data_array[i] == to_delete)
+		offset = i * da->data_size;
+		curr = da->data + offset;
+		if (curr == to_delete)
 		{
-			//TODO: i + 1 em casos edge?
 			bytes = (da->len - i) * da->data_size;
-			ft_memmove(&data_array[i], data_array[i + 1], bytes);
+			ft_memmove(curr, curr + da->data_size, bytes);
 			da->len--;
 			break ;
 		}
@@ -91,28 +97,28 @@ void darr_remove(t_dymamic_array *da, const void *to_delete)
 	}
 }
 
-//TODO: tenho de incluir o tamanho dos dados aqui como parâmetro?
-void darr_sort(t_dynamic_array *da, int (*cmp) (void *el1, void *el2))
+//TODO: substituir data_array por offset e curr 
+void darr_sort(t_dynamic_array *da, int (*cmp) (const void *el1, const void *el2))
 {
 	size_t i;
 	size_t j;
 	void *tmp;
-	void **data_array;
+	void *curr;
 
 	if (!da || !da->data || da->len == 1 || !cmp)
 		return ;
 	i = 0;
-	data_array = da->data;
+	curr = da->data;
 	while (i < da->len)
 	{
 		j = i;
 		while (j < da->len)
 		{
-			if (cmp(data_array[i], data_array[j]) > 0)
+			if (cmp(curr + (i * da->data_size), curr + (j * da->data_size)) > 0)
 			{
-				tmp = data_array[i];
-				data_array[i] = data_array[j];
-				data_array[j] = tmp;
+				tmp = curr;
+				curr + (i * da->data_size) = curr + (j * da->data_size);
+				curr + (j * da->data_size) = tmp;
 			}
 			j++;
 		}
@@ -129,17 +135,31 @@ void	darr_free(t_dynamic_array *da)
 	free(da);
 }
 
-// Usage example
 /*
+//TEMP
+int cmp_nums(const void *el1, const void *el2)
+{
+	dprintf(STDOUT, "cmp res: %lld\n",  *(long long *)el1 - *(long long *)el2);
+	return (*(long long *)el1 - *(long long *)el2);
+}
+
+// Usage example
 int	main(void)
 {
+	int num[1];
+	num[0] = 1;
 	t_dynamic_array	*d;
 
 	d = darr_init(sizeof(int));
 	for (int i = 0; i < 10; i++)
 		darr_append(d, &i);
-	for (int i = 0; i < 10; i++)
-		ft_fprintf(OUT, "%d\n", ((int *)d->data)[i]);
+	for (int i = 0; i < d->len; i++)
+		ft_fprintf(STDOUT, "%d\n", ((int *)d->data)[i]);
+	void *to_delete = darr_find(d, cmp_nums, num);
+	darr_remove(d, to_delete);
+	ft_fprintf(STDOUT, "AFTER REMOVING\n");
+	for (int i = 0; i < d->len; i++)
+		ft_fprintf(STDOUT, "%d\n", ((int *)d->data)[i]);
 	darr_free(d);
 }
 */
