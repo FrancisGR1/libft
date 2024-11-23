@@ -203,6 +203,8 @@ void				freen_arr_with_custom_func(void **data,
 t_dynamic_array		*darr_init(size_t ds);
 void				darr_append(t_dynamic_array *da, const void *insertion);
 void				darr_free(t_dynamic_array *da);
+void darr_sort(t_dynamic_array *da, int (*cmp) (void *el1, void *el2));
+void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), void *lookup);
 
 // queues
 void				q_push(t_queue **q, void *content);

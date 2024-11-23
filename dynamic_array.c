@@ -44,24 +44,56 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 	da->len++;
 }
 
+void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), void *lookup)
+{
+	size_t i;
+	void **data_array;
+	void *res;
 
+	if (!da || !match || !lookup)
+		return ;
+	res = NULL;
+	i = 0;
+	data_array = da->data;
+	while (i < da->len)
+	{
+		if (match(data_array[i], lookup) == 0)
+		{
+			res = data_array[i];
+			break ;
+		}
+		i++;
+	}
+	return (res);
+}
+
+//void darr_remove(t_dymamic_array *da, const void *to_delete)
+//{
+//	size_t i
+//}
+
+//TODO: tenho de incluir o tamanho dos dados aqui como parâmetro?
 void darr_sort(t_dynamic_array *da, int (*cmp) (void *el1, void *el2))
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 	void *tmp;
+	void **data_array;
 
+	if (!da || !da->data || da->len == 1 || !cmp)
+		return ;
 	i = 0;
+	data_array = da->data;
 	while (i < da->len)
 	{
 		j = i;
 		while (j < da->len)
 		{
-			if (cmp(da->data[i], da->data[j]) > 0)
+			if (cmp(data_array[i], data_array[j]) > 0)
 			{
-				tmp = da->data[i];
-				da->data[i] = da->data[j];
-				da->data[j] = tmp;
+				tmp = data_array[i];
+				data_array[i] = data_array[j];
+				data_array[j] = tmp;
 			}
 			j++;
 		}
