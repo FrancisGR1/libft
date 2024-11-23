@@ -44,7 +44,7 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 	da->len++;
 }
 
-void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), void *lookup)
+void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), const void *lookup)
 {
 	size_t i;
 	void **data_array;
@@ -67,10 +67,29 @@ void *darr_find(t_dynamic_array *da, int (*match) (void *el1, void *el2), void *
 	return (res);
 }
 
-//void darr_remove(t_dymamic_array *da, const void *to_delete)
-//{
-//	size_t i
-//}
+void darr_remove(t_dymamic_array *da, const void *to_delete)
+{
+	size_t i;
+	size_t bytes;
+	void **data_array;
+
+	if (!da || !to_delete)
+		return ;
+	bytes = 0;
+	i = 0;
+	while (i < da->len)
+	{
+		if (data_array[i] == to_delete)
+		{
+			//TODO: i + 1 em casos edge?
+			bytes = (da->len - i) * da->data_size;
+			ft_memmove(&data_array[i], data_array[i + 1], bytes);
+			da->len--;
+			break ;
+		}
+		i++;
+	}
+}
 
 //TODO: tenho de incluir o tamanho dos dados aqui como parâmetro?
 void darr_sort(t_dynamic_array *da, int (*cmp) (void *el1, void *el2))
@@ -98,7 +117,6 @@ void darr_sort(t_dynamic_array *da, int (*cmp) (void *el1, void *el2))
 			j++;
 		}
 		i++;
-
 	}
 }
 
@@ -111,16 +129,17 @@ void	darr_free(t_dynamic_array *da)
 	free(da);
 }
 
-/* Usage example
-   int	main(void)
-   {
-   t_dynamic_array	*d;
+// Usage example
+/*
+int	main(void)
+{
+	t_dynamic_array	*d;
 
-   d = darr_init(sizeof(int));
-   for (int i = 0; i < 10; i++)
-   darr_append(d, &i);
-   for (int i = 0; i < 10; i++)
-   ft_fprintf(OUT, "%d\n", ((int *)d->data)[i]);
-   darr_free(d);
-   }
-   */
+	d = darr_init(sizeof(int));
+	for (int i = 0; i < 10; i++)
+		darr_append(d, &i);
+	for (int i = 0; i < 10; i++)
+		ft_fprintf(OUT, "%d\n", ((int *)d->data)[i]);
+	darr_free(d);
+}
+*/
