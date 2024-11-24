@@ -40,7 +40,7 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 		da->capacity = new_capacity;
 	}
 	ft_memcpy((char *)da->data + da->len * da->data_size, insertion,
-		da->data_size);
+			da->data_size);
 	da->len++;
 }
 
@@ -70,6 +70,11 @@ void *darr_find(t_dynamic_array *da, int (*match) (const void *el1, const void *
 	return (res);
 }
 
+int cmp_ptrs(const void *el1, const void *el2)
+{
+	return (*(void **)el1 - el2);
+}
+
 void darr_remove(t_dynamic_array *da, const void *to_delete)
 {
 	size_t i;
@@ -86,7 +91,7 @@ void darr_remove(t_dynamic_array *da, const void *to_delete)
 	{
 		offset = i * da->data_size;
 		curr = da->data + offset;
-		if (curr == to_delete)
+		if (cmp_ptrs(curr, to_delete) == 0)
 		{
 			bytes = (da->len - i) * da->data_size;
 			ft_memmove(curr, curr + da->data_size, bytes);
@@ -97,12 +102,33 @@ void darr_remove(t_dynamic_array *da, const void *to_delete)
 	}
 }
 
-//TODO: substituir data_array por offset e curr 
+//TODO: mudar de sítio
+void swap_bytes(void *el1, void *el2, size_t data_size)
+{
+	unsigned char *tmp;
+	unsigned char *a;
+	unsigned char *b;
+	size_t i;
+
+	if (!el1 || !el2)
+		return ;
+	a = el1;
+	b = el2;
+	i = 0;
+	tmp = 0;
+	while (i < data_size)
+	{
+		*tmp = a[i];
+		a[i] = b[i];
+		b[i] = *tmp;
+		i++;
+	}
+}
+
 void darr_sort(t_dynamic_array *da, int (*cmp) (const void *el1, const void *el2))
 {
 	size_t i;
 	size_t j;
-	void *tmp;
 	void *curr;
 
 	if (!da || !da->data || da->len == 1 || !cmp)
@@ -115,11 +141,7 @@ void darr_sort(t_dynamic_array *da, int (*cmp) (const void *el1, const void *el2
 		while (j < da->len)
 		{
 			if (cmp(curr + (i * da->data_size), curr + (j * da->data_size)) > 0)
-			{
-				tmp = curr;
-				curr + (i * da->data_size) = curr + (j * da->data_size);
-				curr + (j * da->data_size) = tmp;
-			}
+				swap_bytes(curr + (i * da->data_size), curr + (j * da->data_size), da->data_size);
 			j++;
 		}
 		i++;
@@ -139,27 +161,27 @@ void	darr_free(t_dynamic_array *da)
 //TEMP
 int cmp_nums(const void *el1, const void *el2)
 {
-	dprintf(STDOUT, "cmp res: %lld\n",  *(long long *)el1 - *(long long *)el2);
-	return (*(long long *)el1 - *(long long *)el2);
+dprintf(STDOUT, "cmp res: %lld\n",  *(long long *)el1 - *(long long *)el2);
+return (*(long long *)el1 - *(long long *)el2);
 }
 
 // Usage example
 int	main(void)
 {
-	int num[1];
-	num[0] = 1;
-	t_dynamic_array	*d;
+int num[1];
+num[0] = 1;
+t_dynamic_array	*d;
 
-	d = darr_init(sizeof(int));
-	for (int i = 0; i < 10; i++)
-		darr_append(d, &i);
-	for (int i = 0; i < d->len; i++)
-		ft_fprintf(STDOUT, "%d\n", ((int *)d->data)[i]);
-	void *to_delete = darr_find(d, cmp_nums, num);
-	darr_remove(d, to_delete);
-	ft_fprintf(STDOUT, "AFTER REMOVING\n");
-	for (int i = 0; i < d->len; i++)
-		ft_fprintf(STDOUT, "%d\n", ((int *)d->data)[i]);
-	darr_free(d);
+d = darr_init(sizeof(int));
+for (int i = 0; i < 10; i++)
+darr_append(d, &i);
+for (int i = 0; i < d->len; i++)
+ft_fprintf(STDOUT, "%d\n", ((int *)d->data)[i]);
+void *to_delete = darr_find(d, cmp_nums, num);
+darr_remove(d, to_delete);
+ft_fprintf(STDOUT, "AFTER REMOVING\n");
+for (int i = 0; i < d->len; i++)
+ft_fprintf(STDOUT, "%d\n", ((int *)d->data)[i]);
+darr_free(d);
 }
 */

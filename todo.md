@@ -7,22 +7,18 @@ Ideias:
 vfprint?
 Fazer e incluir snprintf
 
-Tabelas de dispersão
-Pilhas
+ESTRUTURAS DE DADOS
+->Tabelas de dispersão
 Árvores
     Retrievals
 
 
 ARENAS:
-Fazer funçóes set_arena() e get_arena() de modo a que a gpa possa ser acedida com facilidade
-Fazer o meu próprio malloc que aloque para a arena se foi inicializada;
-Depois fazer um macro:
+Fazer um macro:
     #define my_malloc malloc
-Fazer o meu próprio free que define o ptr para nulo
+    -> internamente vai usar uma arena global
 
 
 STRINGS:
-strings seguros: https://devblogs.microsoft.com/oldnewthing/?p=109742
-
-Dynamic Arrays:
-    função que remove elemento (tem de funcionar genericamente)
+melhorar código para utilizador de strings:
+funcs como cstr_to_str deviam ser internas
