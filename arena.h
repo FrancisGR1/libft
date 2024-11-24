@@ -14,9 +14,13 @@
 # define ARENA_H
 
 # include "libft.h"
-//
-// Define the default size of allocation
+
+// Default size of allocation
 # define ALLOC_SIZE 1024
+// Initial size to store ptrs do data
+# define START_PTRS 20
+// Initial size to store ptrs to freed chunks
+# define RESET_CHUNKS 20
 
 typedef struct s_arena
 {
@@ -24,12 +28,15 @@ typedef struct s_arena
 	size_t			current_size;
 	void			*memory;
 	void			*end;
+	struct s_dynamic_array *data_ptrs;
+	struct s_dynamic_array *reset_chunks;
 	struct s_arena	*next;
 }					t_arena;
 
 t_arena				*arena_init(size_t size);
 void				*arena_alloc(t_arena **region, size_t nbytes, size_t size);
+void arena_reset(t_arena *arena_list, void *ptr);
 void				arena_destroy(t_arena *arena);
-void				arena_visualizer(t_arena *region);
+void	arena_visualizer(char *msg, t_arena *region);
 
 #endif /*ARENA_H*/

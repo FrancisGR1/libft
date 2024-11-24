@@ -15,7 +15,7 @@ CC = cc
 DEBUG = -g #-DDEBUG_REPLACE=1
 CFLAGS = -Wall -Werror -Wextra $(DEBUG)
 
-HEADER = libft.h
+HEADER = libft.h arena.h
 
 #TODO: organizar ficheiros em pastas
 SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_len_until.c ft_isspace.c array_len.c \
@@ -25,13 +25,12 @@ SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_st
 	ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_atoi_base.c ft_atoi_long.c \
 	ft_getc.c ft_putns.c ft_puts.c print_bits.c get_next_line.c ft_digit_count.c \
-	ft_fprintf.c  ft_fprintf_utils/ft_printmemory.c ft_fprintf_utils/ft_putnbru_fd.c \
-	ft_fprintf_utils/ft_tohexa.c \
+	ft_fprintf.c  ft_fprintf_utils/ft_printmemory.c ft_fprintf_utils/ft_putnbru_fd.c ft_fprintf_utils/ft_tohexa.c \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
-	arena.c ft_realloc.c freen.c dynamic_array.c \
+	arena.c arena_internals.c ft_realloc.c freen.c dynamic_array.c \
 	strings.c strings2.c strings3.c strings4.c strings5.c strings6.c \
-	queues.c queues2.c debuggers.c ft_rand.c rand_string.c\
+	queues.c queues2.c debuggers.c ft_rand.c rand_string.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

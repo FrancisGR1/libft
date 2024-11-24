@@ -11,8 +11,11 @@
 /* ************************************************************************** */
 
 #include "arena.h"
-
-//arena_free_chunk()
+#include "arena_internals.h"
+//TODO:
+//arena_set_watermark()
+//arena_rollback_to_watermark()
+//
 t_arena	*arena_init(size_t size)
 {
 	t_arena	*region;
@@ -24,29 +27,20 @@ t_arena	*arena_init(size_t size)
 	region->limit = size;
 	region->end = region->memory + region->limit;
 	region->next = NULL;
-	region->start_ptrs = darr_init(sizeof (void *));
-//	region->free_chunks = darr_init(sizeof (void*) * FREE_CHUNKS);
+	region->data_ptrs = darr_init(sizeof (void *));
+	region->reset_chunks = darr_init(sizeof (void*) * RESET_CHUNKS);
 	return (region);
-}
-
-//TODO: temporário, mudar de sítio
-int cmp_nums(void *el1, void *el2)
-{
-	return ((long long *)el1 - (long long *)el2);
-}
-
-static void _arena_save_ptr(t_dynamic_array *start_ptrs, void *ptr)
-{
-	darr_append(start_ptrs, &ptr);
-	darr_sort(start_ptrs, cmp_nums);
 }
 
 void	*arena_alloc(t_arena **region, size_t nbytes, size_t size)
 {
 	const size_t	size_bytes = size * nbytes;
+	const void *reset_chunk = _arena_use_reset_chunk(*region, size_bytes);
 	void			*result;
 	t_arena			*head;
 
+	if (reset_chunk)
+		return ((void *)reset_chunk);
 	if (size_bytes > (*region)->limit - (*region)->current_size)
 	{
 		head = *region;
@@ -55,46 +49,16 @@ void	*arena_alloc(t_arena **region, size_t nbytes, size_t size)
 		(*region)->next = arena_init(size_bytes);
 		(*region)->next->current_size = size_bytes;
 		result = (char *)(*region)->next->memory;
-		_arena_save_ptr((*region)->next->start_ptrs, result);
+		_arena_save_ptr((*region)->next->data_ptrs, result);
 		*region = head;
 	}
 	else
 	{
 		result = (char *)(*region)->memory + (*region)->current_size;
-		_arena_save_ptr((*region)->start_ptrs, result);
+		_arena_save_ptr((*region)->data_ptrs, result);
 		(*region)->current_size += size_bytes;
 	}
 	return (result);
-}
-
-static t_arena *_arena_of_ptr(t_arena *arena_list, void *ptr)
-{
-	t_arena *arena_of_ptr;
-
-	if (!arena_list || !ptr)
-		return (NULL);
-	arena_of_ptr = arena_list;
-	while (arena_of_ptr && (ptr < arena_of_ptr->memory || ptr > arena_of_ptr->end))
-		arena_of_ptr = arena_of_ptr->next;
-	return (arena_of_ptr);
-}
-
-static void *_arena_lookup_next_ptr(t_arena *arena, void *curr_ptr)
-{
-	size_t i;
-	t_dynamic_array *start_ptrs;
-	void **ptrs_array;
-
-	i = 0;
-	start_ptrs = arena->start_ptrs;
-	ptrs_array = start_ptrs->data;
-	while (i < start_ptrs->len)
-	{
-		if (curr_ptr < ptrs_array[i])
-			return (ptrs_array[i]);
-		i++;
-	}
-	return (arena->end);
 }
 
 void arena_reset(t_arena *arena_list, void *ptr)
@@ -112,11 +76,9 @@ void arena_reset(t_arena *arena_list, void *ptr)
 	if (!next_ptr)
 		return ;
 	bytes_to_reset = next_ptr - ptr;
+	darr_remove(arena->data_ptrs, ptr);
 	ft_memset(ptr, 0, bytes_to_reset);
-	//TODO:
-	//remover ptr de start_ptrs
-	//TODO:
-	//_arena_save_free_chunk(arena, ptr, bytes_to_reset);
+	_arena_save_reset_chunk(arena, ptr);
 }
 
 void	arena_destroy(t_arena *arena)
@@ -127,8 +89,8 @@ void	arena_destroy(t_arena *arena)
 	{
 		tmp = arena->next;
 		freen((void *)&arena->memory);
-		darr_free(arena->start_ptrs);
-		//darr_free(arena->free_chunks);
+		darr_free(arena->data_ptrs);
+		darr_free(arena->reset_chunks);
 		freen((void *)&arena);
 		arena = tmp;
 	}
@@ -148,12 +110,12 @@ void	arena_visualizer(char *msg, t_arena *region)
 		ft_fprintf(STDOUT, "NULL REGION\n");
 		return ;
 	}
-   bytes_used = 0;
-   bytes_total = 0;
-   ptr = region;
-   ft_fprintf(STDOUT, "======== %s ========\n", msg);
-   while (ptr)
-   {
+	bytes_used = 0;
+	bytes_total = 0;
+	ptr = region;
+	ft_fprintf(STDOUT, "======== %s ========\n", msg);
+	while (ptr)
+	{
 		start = (unsigned char*) ptr->memory;
 		end = (unsigned char*) ptr->end;
 		while (start < end)
@@ -173,14 +135,10 @@ void	arena_visualizer(char *msg, t_arena *region)
 		if (ptr->next)
 			ft_fprintf(STDOUT, "\n\n>--->\n\n");
 		ptr = ptr->next;
-   }
-   ft_fprintf(STDOUT, "\n%ld out of %ld\n", bytes_used, bytes_total);
+	}
+	ft_fprintf(STDOUT, "\n%d out of %d\n", bytes_used, bytes_total);
 }
 
-
-// EXAMPLE
-
-/*
 void	print_nums(int *i, int *end)
 {
 	while (i < end)
@@ -219,7 +177,15 @@ int main (int argc, char *argv[])
 	printf("%s\n", string);
 	arena_visualizer("BEFORE", region);
 	arena_reset(region, string);
+	arena_reset(region, string4);
 	arena_visualizer("AFTER", region);
+	string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+	strncpy(string, argv[1], strlen(argv[1]));
+	string4 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+	strncpy(string4, argv[1], strlen(argv[1]));
+	arena_visualizer("AFTER CHUNK", region);
+	printf("in reset chunk: %s\n", string);
+	printf("in reset chunk 2: %s\n", string4);
 	printf("\n\n\n");
 	ptr = region;
 	while (ptr){
@@ -229,7 +195,7 @@ int main (int argc, char *argv[])
 	printf("destroying\n");
 	arena_destroy(region);
 }
-*/
+
 // Criar um bloco de memória pré-alocado
 // Incluir uma série de dados
 // Libertar tudo de s uma vez
