@@ -12,10 +12,7 @@
 
 #include "arena.h"
 #include "arena_internals.h"
-//TODO:
-//arena_set_watermark()
-//arena_rollback_to_watermark()
-//
+
 t_arena	*arena_init(size_t size)
 {
 	t_arena	*region;
@@ -27,6 +24,7 @@ t_arena	*arena_init(size_t size)
 	region->limit = size;
 	region->end = region->memory + region->limit;
 	region->next = NULL;
+	region->watermark = NULL;
 	region->data_ptrs = darr_init(sizeof (void *));
 	region->reset_chunks = darr_init(sizeof (void*) * RESET_CHUNKS);
 	return (region);
@@ -96,7 +94,9 @@ void	arena_destroy(t_arena *arena)
 	}
 }
 
-// visualização da memória: bytes ocupados: "|", nulos: "."
+// visualização da memória: 
+// bytes ocupados: "|", 
+// bytes nulos   : "."
 void	arena_visualizer(char *msg, t_arena *region)
 {
 	size_t			bytes_used;
@@ -139,6 +139,8 @@ void	arena_visualizer(char *msg, t_arena *region)
 	ft_fprintf(STDOUT, "\n%d out of %d\n", bytes_used, bytes_total);
 }
 
+//Example usage
+/*
 void	print_nums(int *i, int *end)
 {
 	while (i < end)
@@ -164,6 +166,7 @@ int main (int argc, char *argv[])
 	region = arena_init(ALLOC_SIZE);
 	string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
 	strncpy(string, argv[1], strlen(argv[1]));
+	arena_set_watermark(region);
 	string1 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
 	strncpy(string1, argv[1], strlen(argv[1]));
 	string2 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
@@ -193,9 +196,8 @@ int main (int argc, char *argv[])
 		ptr = ptr->next;
 	}
 	printf("destroying\n");
+	arena_reset_to_watermark(region);
+	arena_visualizer("AFTER WATERMARK", region);
 	arena_destroy(region);
 }
-
-// Criar um bloco de memória pré-alocado
-// Incluir uma série de dados
-// Libertar tudo de s uma vez
+*/

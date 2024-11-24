@@ -28,7 +28,7 @@ SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_st
 	ft_fprintf.c  ft_fprintf_utils/ft_printmemory.c ft_fprintf_utils/ft_putnbru_fd.c ft_fprintf_utils/ft_tohexa.c \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
-	arena.c arena_internals.c ft_realloc.c freen.c dynamic_array.c \
+	arena.c arena_watermark.c arena_internals.c ft_realloc.c freen.c dynamic_array.c \
 	strings.c strings2.c strings3.c strings4.c strings5.c strings6.c \
 	queues.c queues2.c debuggers.c ft_rand.c rand_string.c
 
