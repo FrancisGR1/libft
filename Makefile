@@ -15,6 +15,8 @@ CC = cc
 DEBUG = -g #-DDEBUG_REPLACE=1
 CFLAGS = -Wall -Werror -Wextra $(DEBUG)
 
+MK = Makefile
+
 HEADER = libft.h 
 
 #memory 
@@ -108,18 +110,26 @@ HT_SRC = hash.c hash_table.c
 HEADER += $(HT_DIR)/hash_table.h
 SOURCES += $(addprefix $(HT_DIR)/, $(HT_SRC))
 
-OBJECTS = $(SOURCES:.c=.o)
+OBJ_DIR = obj
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 
 # Target Build
-all: $(NAME)
+all: $(NAME) $(HEADER) $(MK)
 
-$(NAME): $(OBJECTS) $(HEADER)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.c $(HEADER) | $(OBJ_DIR)
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(OBJECTS)
 	ar rcs $@ $(OBJECTS)
 	ranlib $@
 
 .PHONY: clean
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJ_DIR) 
 
 .PHONY: fclean
 fclean: clean
