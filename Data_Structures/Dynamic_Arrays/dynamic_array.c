@@ -12,16 +12,14 @@
 
 #include "dynamic_array.h"
 
-// TODO: mudar para aceitar a <<capacidade>> 
-// como parâmetro para além do tamanho dos dados
-t_dynamic_array	*darr_init(size_t ds)
+t_dynamic_array	*darr_init(size_t data_size, size_t capacity)
 {
 	t_dynamic_array	*da;
 
 	da = malloc(sizeof(t_dynamic_array));
 	da->data_size = ds;
 	da->len = 0;
-	da->capacity = DA_INIT_SIZE;
+	da->capacity = capacity;
 	da->data = malloc(da->data_size * da->capacity);
 	return (da);
 }

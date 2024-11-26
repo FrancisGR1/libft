@@ -1,5 +1,3 @@
-Organizar com pastas
-Meter tudo a funcionar com makefile
 Documentar código
 Cleanup commentend mains
 testar todas as funcs adicionadas
@@ -12,7 +10,7 @@ ESTRUTURAS DE DADOS
 Árvores
     Retrievals
 Gráficos
-Pilhas
+Pilha/s
 
 ARENAS:
 Fazer um macro:
