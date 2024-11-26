@@ -28,22 +28,26 @@
 # include <string.h>
 # include <strings.h>
 # include <unistd.h>
-# include "memory.h"
-# include "checkers.h"
-# include "classic_strings.h"
-# include "numbers.h"
-# include "write.h"
-# include "files.h"
-# include "dynamic_arrays.h"
-# include "safer_strings.h"
-# include "lists.h"
-# include "queues.h"
-# include "arena.h"
-# include "hash_table.h"
+
+//TODO: de certeza há uma melhor solução
+//do que escrever manualmente os diretórios
+# include "Memory/memory.h"
+# include "Checkers/checkers.h"
+# include "Classic_Strings/classic_strings.h"
+# include "Math/math.h"
+# include "Write/write.h"
+# include "Files/files.h"
+# include "Data_Structures/Dynamic_Arrays/dynamic_array.h"
+# include "Safer_Strings/safer_strings.h"
+# include "Data_Structures/Lists/lists.h"
+# include "Data_Structures/Queues/queues.h"
+# include "Arena/arena.h"
+# include "Data_Structures/Hash_Table/hash_table.h"
 # include "colors.h"
 
 // insert leak debuggers
 /*
+ *Tirar daqui:
 # if defined DEBUG_REPLACE && DEBUG_REPLACE == 1
 void				*debug_malloc(size_t size, const char *file, int line);
 void				debug_free(void *ptr, const char *file, int line);

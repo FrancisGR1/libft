@@ -12,6 +12,7 @@ ESTRUTURAS DE DADOS
 Árvores
     Retrievals
 Gráficos
+Pilhas
 
 ARENAS:
 Fazer um macro:
