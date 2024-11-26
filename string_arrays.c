@@ -10,23 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	string_put(t_string s, int fd)
-{
-	if (str_is_null(s))
-		return (write(fd, "(null)", 6));
-	return (write(fd, s.s, s.len));
-}
-
-void	string_free(t_string *str)
-{
-	if (!str || str_is_null(*str) || str->type != STR_ALLOCATED)
-		return ;
-	if (str->s)
-		free(str->s);
-	*str = new_str(NULL, 0);
-}
+#include "safer_strings.h"
 
 void	string_arr_free(t_string **strs)
 {
@@ -77,4 +61,16 @@ void	str_arr_deep_copy(t_string *dst, t_string *src, int size)
 		dst[i] = str_dup(src[i]);
 		i++;
 	}
+}
+
+size_t	strs_count(t_string *args)
+{
+	size_t	i;
+
+	if (!args)
+		return (0);
+	i = 0;
+	while (args[i].s)
+		i++;
+	return (i);
 }

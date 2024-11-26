@@ -1,5 +1,6 @@
 Organizar com pastas
 Meter tudo a funcionar com makefile
+Documentar código
 Cleanup commentend mains
 testar todas as funcs adicionadas
 
@@ -8,16 +9,14 @@ vfprint?
 Fazer e incluir snprintf
 
 ESTRUTURAS DE DADOS
-->Tabelas de dispersão
 Árvores
     Retrievals
-
+Gráficos
 
 ARENAS:
 Fazer um macro:
     #define my_malloc malloc
     -> internamente vai usar uma arena global
-
 
 STRINGS:
 melhorar código para utilizador de strings:

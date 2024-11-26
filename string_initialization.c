@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "safer_strings.h"
 
+//TODO: make new_str() the only caller function,
+//turn *_to_* funcs into internal functions
 t_string	new_str(char *s, t_str_type type)
 {
 	t_string	str;
@@ -29,11 +31,6 @@ t_string	new_str(char *s, t_str_type type)
 		str.type = type;
 	}
 	return (str);
-}
-
-bool	str_is_null(t_string str)
-{
-	return (!str.s || str.type == STR_NULL);
 }
 
 t_string	cstr_to_str_ptr(char *raw_str, int size)
@@ -86,6 +83,20 @@ t_string	cstr_to_str_nsize(char *raw_str, int size)
 	if (ft_strlcpy(str.s, raw_str, str.len + 1) == 0)
 		str.s[0] = '\0';
 	return (str);
+}
+
+char	*string_convert_back(t_string str)
+{
+	char	*s;
+
+	if (str_is_null(str))
+		return (NULL);
+	s = malloc(str.len + 1);
+	if (!s)
+		return (NULL);
+	if (ft_strlcpy(s, str.s, str.len + 1) == 0)
+		s[0] = '\0';
+	return (s);
 }
 
 // Example usage: string_split

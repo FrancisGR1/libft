@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "safer_strings.h"
 
 t_string	str_join(int strs_num, int strs_size, ...)
 {
@@ -57,6 +57,37 @@ t_string	str_cat(t_string s1, t_string s2)
 	return (res);
 }
 
+int	str_cmp(t_string s1, t_string s2, size_t s1_start)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1.s[s1_start] == s2.s[i] && s1_start < s1.len && i < s2.len)
+	{
+		s1_start++;
+		i++;
+	}
+	return (s1.s[s1_start] - s2.s[i]);
+}
+
+t_string	str_dup(t_string to_duplicate)
+{
+	t_string	dup;
+	int			copied_chars;
+
+	if (str_is_null(to_duplicate))
+		return (new_str(NULL, 0));
+	dup.len = to_duplicate.len;
+	dup.s = malloc(dup.len + 1);
+	dup.type = STR_ALLOCATED;
+	copied_chars = ft_strlcpy(dup.s, to_duplicate.s, dup.len + 1);
+	if (!copied_chars)
+		dup.s[0] = '\0';
+	dup.end = dup.s + copied_chars;
+	return (dup);
+}
+
+//TODO: eliminar
 void	str_free_and_replace_raw(t_string *str, char *raw_str)
 {
 	if (!str || str_is_null(*str))
@@ -75,31 +106,3 @@ void	str_free_and_replace_str(t_string *str, t_string *substitute)
 	*str = *substitute;
 }
 
-t_dynamic_array	*string_findall(t_string str, char *delimiters)
-{
-	const t_string	delims_ptr = cstr_to_str_ptr(delimiters,
-			ft_strlen(delimiters));
-	t_dynamic_array	*ptrs;
-	int				i;
-	size_t			j;
-	t_string		s;
-
-	ptrs = darr_init(sizeof(t_string));
-	i = -1;
-	while (++i < (int)str.len)
-	{
-		j = -1;
-		while (++j < delims_ptr.len)
-		{
-			s = cstr_to_str_ptr(&str.s[i], 1);
-			if (str.s[i] == delims_ptr.s[j])
-				darr_append(ptrs, (const void *)&s);
-		}
-	}
-	if (!ptrs->len)
-	{
-		darr_free(ptrs);
-		ptrs = NULL;
-	}
-	return (ptrs);
-}

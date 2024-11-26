@@ -1,0 +1,14 @@
+#ifndef WRITE_H
+# define WRITE_H
+
+void				ft_putchar_fd(char c, int fd);
+int					ft_putstr_fd(char *s, int fd);
+void				ft_putendl_fd(char *s, int fd);
+void				ft_putns(char *s, int n);
+void				ft_puts(const char *s);
+int	ft_putnbr_fd(int n, int fd);
+int					ft_snprintf(char buff[], int n, const char *fmt, ...);
+int					ft_fprintf(int fd, const char *str, ...);
+void				print_bits(char c, int fd);
+
+#endif /*WRITE_H*/

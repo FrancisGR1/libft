@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "safer_strings.h"
 
 int	str_iter(t_string str, size_t start, size_t n, int (*iterator)(int c))
 {
@@ -47,25 +47,5 @@ bool	str_advance_ptr_ntimes(t_string *str, int n)
 		}
 		n--;
 	}
-	return (true);
-}
-
-t_string	str_save_state(t_string to_save)
-{
-	t_string	str;
-
-	str.s = to_save.s;
-	str.end = to_save.end;
-	str.len = to_save.len;
-	return (str);
-}
-
-bool	str_restore_state(t_string *to_restore, t_string original)
-{
-	if (!to_restore || str_is_null(*to_restore))
-		return (false);
-	to_restore->s = original.s;
-	to_restore->end = original.end;
-	to_restore->len = original.len;
 	return (true);
 }

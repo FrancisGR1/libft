@@ -15,7 +15,7 @@ CC = cc
 DEBUG = -g #-DDEBUG_REPLACE=1
 CFLAGS = -Wall -Werror -Wextra $(DEBUG)
 
-HEADER = libft.h arena.h hash_table.h
+HEADER = libft.h memory.h checkers.h classic_strings.h numbers.h write.h files.h dynamic_arrays.h safer_strings.h lists.h queues.h arena.h hash_table.h
 
 #TODO: organizar ficheiros em pastas
 SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_len_until.c ft_isspace.c array_len.c \
@@ -30,7 +30,8 @@ SOURCES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_st
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 	hash_table.c hash.c\
 	arena.c arena_watermark.c arena_internals.c ft_realloc.c freen.c dynamic_array.c \
-	strings.c strings2.c strings3.c strings4.c strings5.c strings6.c \
+	string_arrays.c string_find.c string_initialization.c string_iteration.c \
+	string_manipulation.c string_split.c string_utils.c \
 	queues.c queues2.c debuggers.c ft_rand.c rand_string.c
 
 OBJECTS = $(SOURCES:.c=.o)
