@@ -1,3 +1,5 @@
+#include "memory.h"
+
 void swap_bytes(void *el1, void *el2, size_t data_size)
 {
 	unsigned char *tmp;

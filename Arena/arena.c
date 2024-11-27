@@ -13,19 +13,19 @@
 #include "arena.h"
 #include "arena_internals.h"
 
-t_arena	*arena_init(size_t size)
+t_arena	*arena_init(size_t region_size)
 {
 	t_arena	*region;
 
 	region = malloc(sizeof(*region));
-	region->memory = malloc(size);
-	ft_memset(region->memory, 0, size);
+	region->memory = malloc(region_size);
+	ft_memset(region->memory, 0, region_size);
 	region->current_size = 0;
-	region->limit = size;
+	region->limit = region_size;
 	region->end = region->memory + region->limit;
 	region->next = NULL;
 	region->watermark = NULL;
-	region->data_ptrs = darr_init(sizeof (void *), DA_DEFAULT_SIZE);
+	region->data_ptrs = darr_init(sizeof (void *) * START_PTRS, DA_DEFAULT_SIZE);
 	region->reset_chunks = darr_init(sizeof (void*) * RESET_CHUNKS, DA_DEFAULT_SIZE);
 	return (region);
 }
@@ -97,6 +97,7 @@ void	arena_destroy(t_arena *arena)
 // visualização da memória: 
 // bytes ocupados: "|", 
 // bytes nulos   : "."
+/*
 void	arena_visualizer(char *msg, t_arena *region)
 {
 	size_t			bytes_used;
@@ -122,7 +123,10 @@ void	arena_visualizer(char *msg, t_arena *region)
 		{
 			if (*start)
 			{
-				ft_fprintf(STDOUT, "|");
+				if (ft_isascii(*start))
+					ft_fprintf(STDOUT, "%c", *start);
+				else
+					ft_fprintf(STDOUT, "|");
 				bytes_used++;
 			}
 			else
@@ -138,66 +142,67 @@ void	arena_visualizer(char *msg, t_arena *region)
 	}
 	ft_fprintf(STDOUT, "\n%d out of %d\n", bytes_used, bytes_total);
 }
+*/
 
 //Example usage
 /*
-void	print_nums(int *i, int *end)
-{
-	while (i < end)
-	{
-		printf("%d\n", *i);
-		i++;
-	}
-}
+   void	print_nums(int *i, int *end)
+   {
+   while (i < end)
+   {
+   printf("%d\n", *i);
+   i++;
+   }
+   }
 
-int main (int argc, char *argv[])
-{
-	t_arena	*region;
-	char	*string;
-	char	*string1;
-	char	*string2;
-	char	*string3;
-	char	*string4;
-	char	*string5;
-	t_arena	*ptr;
+   int main (int argc, char *argv[])
+   {
+   t_arena	*region;
+   char	*string;
+   char	*string1;
+   char	*string2;
+   char	*string3;
+   char	*string4;
+   char	*string5;
+   t_arena	*ptr;
 
-	if (argc < 2)
-		return (printf("./main <arg>\n"));
-	region = arena_init(ALLOC_SIZE);
-	string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string, argv[1], strlen(argv[1]));
-	arena_set_watermark(region);
-	string1 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string1, argv[1], strlen(argv[1]));
-	string2 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string2, argv[1], strlen(argv[1]));
-	string3 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string3, argv[1], strlen(argv[1]));
-	string4 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string4, argv[1], strlen(argv[1]));
-	string5 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string5, argv[1], strlen(argv[1]));
-	printf("%s\n", string);
-	arena_visualizer("BEFORE", region);
-	arena_reset(region, string);
-	arena_reset(region, string4);
-	arena_visualizer("AFTER", region);
-	string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string, argv[1], strlen(argv[1]));
-	string4 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
-	strncpy(string4, argv[1], strlen(argv[1]));
-	arena_visualizer("AFTER CHUNK", region);
-	printf("in reset chunk: %s\n", string);
-	printf("in reset chunk 2: %s\n", string4);
-	printf("\n\n\n");
-	ptr = region;
-	while (ptr){
-		printf("node\n");
-		ptr = ptr->next;
-	}
-	printf("destroying\n");
-	arena_reset_to_watermark(region);
-	arena_visualizer("AFTER WATERMARK", region);
-	arena_destroy(region);
-}
-*/
+   if (argc < 2)
+   return (printf("./main <arg>\n"));
+   region = arena_init(ALLOC_SIZE);
+   string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string, argv[1], strlen(argv[1]));
+   arena_set_watermark(region);
+   string1 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string1, argv[1], strlen(argv[1]));
+   string2 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string2, argv[1], strlen(argv[1]));
+   string3 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string3, argv[1], strlen(argv[1]));
+   string4 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string4, argv[1], strlen(argv[1]));
+   string5 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string5, argv[1], strlen(argv[1]));
+   printf("%s\n", string);
+   arena_visualizer("BEFORE", region);
+   arena_reset(region, string);
+   arena_reset(region, string4);
+   arena_visualizer("AFTER", region);
+   string = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string, argv[1], strlen(argv[1]));
+   string4 = (char *)arena_alloc(&region, sizeof(char) , strlen(argv[1]) + 1);
+   strncpy(string4, argv[1], strlen(argv[1]));
+   arena_visualizer("AFTER CHUNK", region);
+   printf("in reset chunk: %s\n", string);
+   printf("in reset chunk 2: %s\n", string4);
+   printf("\n\n\n");
+   ptr = region;
+   while (ptr){
+   printf("node\n");
+   ptr = ptr->next;
+   }
+   printf("destroying\n");
+   arena_reset_to_watermark(region);
+   arena_visualizer("AFTER WATERMARK", region);
+   arena_destroy(region);
+   }
+   */

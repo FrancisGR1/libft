@@ -22,7 +22,8 @@ HEADER = libft.h
 #memory 
 MEMORY_DIR = Memory
 MEMORY_SRC = freen.c ft_bzero.c ft_calloc.c ft_memcat.c ft_memchr.c ft_memcmp.c \
-	     ft_memcpy.c ft_memmove.c ft_memset.c ft_realloc.c cmp_ptrs.c debuggers.c
+	     ft_memcpy.c ft_memmove.c ft_memset.c ft_realloc.c \
+	     swap_bytes.c cmp_ptrs.c debuggers.c
 HEADER += $(MEMORY_DIR)/memory.h
 SOURCES = $(addprefix $(MEMORY_DIR)/, $(MEMORY_SRC))
 
@@ -60,8 +61,11 @@ SOURCES += $(addprefix $(MATH_DIR)/, $(MATH_SRC))
 WRITE_DIR = Write
 WRITE_SRC = ft_fprintf.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	ft_putnbru_fd.c ft_putns.c ft_puts.c ft_putstr_fd.c ft_snprintf.c print_bits.c
+PRINTF_AUX_SRC = ft_fprintf_utils/ft_printmemory.c \
+		 ft_fprintf_utils/ft_tohexa.c
 HEADER += $(WRITE_DIR)/write.h
 SOURCES += $(addprefix $(WRITE_DIR)/, $(WRITE_SRC))
+SOURCES += $(addprefix $(WRITE_DIR)/, $(PRINTF_AUX_SRC))
 
 #files
 FILES_DIR = Files
@@ -71,7 +75,8 @@ SOURCES += $(addprefix $(FILES_DIR)/, $(FILES_SRC))
 
 #custom allocator
 ARENA_DIR = Arena
-ARENA_SRC = arena.c arena_internals.c arena_watermark.c
+ARENA_SRC = arena.c arena_watermark.c \
+	    arena_internals.c arena_internals_reset_chunks.c
 HEADER += $(ARENA_DIR)/arena.h
 SOURCES += $(addprefix $(ARENA_DIR)/, $(ARENA_SRC))
 

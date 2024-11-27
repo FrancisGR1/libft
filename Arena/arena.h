@@ -16,7 +16,7 @@
 # include "../libft.h"
 
 // Default size of allocation
-# define ALLOC_SIZE 1024
+# define DEFAULT_ALLOC_SIZE 1024
 // Initial size to store ptrs do data
 # define START_PTRS 20
 // Initial size to store ptrs to freed chunks

@@ -36,6 +36,7 @@ void	*ft_realloc(void *data, size_t original_size, size_t new_size)
 	return (new);
 }
 
+//NOTE: the caller has to free the old data
 void	*ft_realloc_custom_cpy(void *data, size_t original_size, size_t new_size, void *cpy(void *, void *, size_t))
 {
 	void	*new;
