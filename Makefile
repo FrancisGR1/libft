@@ -86,7 +86,7 @@ SOURCES += $(addprefix $(ARR_DIR)/, $(ARR_SRC))
 
 #dynamic arrays
 DARR_DIR = $(DS_DIR)/Dynamic_Arrays
-DARR_SRC = dynamic_array.c
+DARR_SRC = dynamic_array.c darr_free.c
 HEADER += $(DARR_DIR)/dynamic_array.h
 SOURCES += $(addprefix $(DARR_DIR)/, $(DARR_SRC))
 

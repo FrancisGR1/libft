@@ -118,15 +118,6 @@ void darr_sort(t_dynamic_array *da, int (*cmp) (const void *el1, const void *el2
 	}
 }
 
-//TODO: custom_free() func ptr
-void	darr_free(t_dynamic_array *da)
-{
-	if (!da)
-		return ;
-	free(da->data);
-	free(da);
-}
-
 /*
 //TEMP
 int cmp_nums(const void *el1, const void *el2)
