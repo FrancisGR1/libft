@@ -1,4 +1,4 @@
-#include "dynamic_array."
+#include "dynamic_array.h"
 
 void	darr_free(t_dynamic_array *da)
 {

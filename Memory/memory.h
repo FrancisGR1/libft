@@ -15,7 +15,9 @@ void				ft_bzero(void *s, size_t n);
 //allocation
 void				*ft_calloc(size_t nmemb, size_t size);
 void				*ft_realloc(void *data, size_t original_size,
-						size_t new_size);
+		size_t new_size);
+void	*ft_realloc_custom_cpy(void *data, size_t original_size, size_t new_size, void *cpy(void *, void *, size_t));
+
 //free and set to null
 void				freen(void **data);
 

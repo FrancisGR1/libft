@@ -12,8 +12,6 @@
 
 #include "memory.h"
 
-//TODO: implementar um custom realloc com funcs FREE E COPY 
-//do utilizador para dados mais complexos
 void	*ft_realloc(void *data, size_t original_size, size_t new_size)
 {
 	void	*new;
@@ -36,4 +34,28 @@ void	*ft_realloc(void *data, size_t original_size, size_t new_size)
 	ft_memcpy(new, data, copy_size);
 	free(data);
 	return (new);
+}
+
+void	*ft_realloc_custom_cpy(void *data, size_t original_size, size_t new_size, void *cpy(void *, void *, size_t))
+{
+	void	*new;
+	size_t	copy_size;
+
+	if (!data)
+		return (ft_calloc(new_size, 1));
+	if (!new_size)
+	{
+		free(data);
+		return (NULL);
+	}
+	new = ft_calloc(new_size, 1);
+	if (!new)
+		return (NULL);
+	if (original_size < new_size)
+		copy_size = original_size;
+	else
+		copy_size = new_size;
+	cpy(new, data, copy_size);
+	return (new);
+
 }

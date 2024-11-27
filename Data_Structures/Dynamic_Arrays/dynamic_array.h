@@ -21,6 +21,6 @@ void darr_remove(t_dynamic_array *da, const void *to_delete);
 
 //free data
 void				darr_free(t_dynamic_array *da);
-void	darr_free_custom(t_dynamic_array *da, void (*del) (void *data))
+void	darr_free_custom(t_dynamic_array *da, void (*del) (void *data));
 
 #endif /*DYNAMIC_ARRAYS_H*/
