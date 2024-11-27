@@ -31,4 +31,5 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 //free
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
+int ft_lstrem_node(t_list *prev, t_list *to_delete, void (*del)(void *));
 #endif /*LISTS_H*/

@@ -93,8 +93,8 @@ SOURCES += $(addprefix $(DARR_DIR)/, $(DARR_SRC))
 #lists
 LST_DIR = $(DS_DIR)/Lists
 LST_SRC = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
-	  ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c \
-	  ft_lstnew.c ft_lstsize.c
+	  ft_lstdelone.c ft_lstrem_node.c ft_lstiter.c \
+	  ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
 HEADER += $(LST_DIR)/lists.h
 SOURCES += $(addprefix $(LST_DIR)/, $(LST_SRC))
 

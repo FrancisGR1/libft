@@ -16,7 +16,7 @@ typedef struct s_hash_table
 int ht_init(t_ht **ht, int capacity, int (*hash) (const void *key), int (*match) (const void *key1, const void *key2));
 void ht_destroy(t_ht *ht, void (*del) (void *data));
 int ht_insert(t_ht *ht, const void *data);
-int ht_remove(t_ht *ht, void **data);
+int ht_remove(t_ht *ht, void **data, void (*del) (void *));
 int ht_lookup(t_ht *ht, void **data);
 int ht_size(t_ht *ht);
 

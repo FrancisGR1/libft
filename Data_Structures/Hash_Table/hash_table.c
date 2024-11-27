@@ -43,21 +43,24 @@ int ht_insert(t_ht *ht, const void *data)
 	return (0);
 }
 
-int ht_remove(t_ht *ht, void **data)
+int ht_remove(t_ht *ht, void **data, void (*del) (void *))
 {
 	int index;
 	t_list *lst_ptr;
+	t_list *prev;
 
 	index = ht->hash(*data) % ht->capacity;
 	lst_ptr = ht->table[index];
+	prev = lst_ptr;
 	while (lst_ptr)
 	{
 		if (ht->match(*data, lst_ptr->content))
 		{
-			//TODO: lst_remove()
+			ft_lstrem_node(prev, lst_ptr, del);
 			ht->elements--;
 			return (0);
 		}
+		prev = lst_ptr;
 		lst_ptr = lst_ptr->next;
 	}
 	return (-1);
