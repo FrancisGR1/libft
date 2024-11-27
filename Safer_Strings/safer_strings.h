@@ -20,7 +20,6 @@ typedef struct s_string
 	t_str_type		type;
 }					t_string;
 
-//TODO: organizar
 //initialization
 t_string			new_str(char *s, t_str_type type);
 t_string			cstr_to_str_ptr(char *raw_str, int size);

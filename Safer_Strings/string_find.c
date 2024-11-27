@@ -62,7 +62,7 @@ struct s_dynamic_array *string_findall(t_string str, char *delimiters)
 	size_t			j;
 	t_string		s;
 
-	ptrs = darr_init(sizeof(t_string));
+	ptrs = darr_init(sizeof(t_string), DA_DEFAULT_SIZE);
 	i = -1;
 	while (++i < (int)str.len)
 	{

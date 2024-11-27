@@ -3,6 +3,8 @@
 
 #include "../../libft.h"
 
+#define DA_DEFAULT_SIZE 50
+
 typedef struct s_dynamic_array
 {
 	void			*data;

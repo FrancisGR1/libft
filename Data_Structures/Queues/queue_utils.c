@@ -12,8 +12,6 @@
 
 #include "queues.h"
 
-// TODO: temporário para norminette,
-//->juntar ao ficheiro queues.c
 bool	q_is_empty(t_queue *q)
 {
 	return (q == NULL);

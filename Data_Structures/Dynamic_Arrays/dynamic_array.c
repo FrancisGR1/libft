@@ -17,7 +17,7 @@ t_dynamic_array	*darr_init(size_t data_size, size_t capacity)
 	t_dynamic_array	*da;
 
 	da = malloc(sizeof(t_dynamic_array));
-	da->data_size = ds;
+	da->data_size = data_size;
 	da->len = 0;
 	da->capacity = capacity;
 	da->data = malloc(da->data_size * da->capacity);
@@ -31,7 +31,7 @@ void	darr_append(t_dynamic_array *da, const void *insertion)
 
 	if (da->len >= da->capacity)
 	{
-		new_capacity = da->capacity + DA_INIT_SIZE;
+		new_capacity = da->capacity + DA_DEFAULT_SIZE;
 		new_data = ft_realloc(da->data, da->capacity, new_capacity
 				* da->data_size);
 		da->data = new_data;
@@ -68,11 +68,6 @@ void *darr_find(t_dynamic_array *da, int (*match) (const void *el1, const void *
 	return (res);
 }
 
-int cmp_ptrs(const void *el1, const void *el2)
-{
-	return (*(void **)el1 - el2);
-}
-
 void darr_remove(t_dynamic_array *da, const void *to_delete)
 {
 	size_t i;
@@ -96,29 +91,6 @@ void darr_remove(t_dynamic_array *da, const void *to_delete)
 			da->len--;
 			break ;
 		}
-		i++;
-	}
-}
-
-//TODO: mudar de sítio
-void swap_bytes(void *el1, void *el2, size_t data_size)
-{
-	unsigned char *tmp;
-	unsigned char *a;
-	unsigned char *b;
-	size_t i;
-
-	if (!el1 || !el2)
-		return ;
-	a = el1;
-	b = el2;
-	i = 0;
-	tmp = 0;
-	while (i < data_size)
-	{
-		*tmp = a[i];
-		a[i] = b[i];
-		b[i] = *tmp;
 		i++;
 	}
 }

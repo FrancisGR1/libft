@@ -45,9 +45,9 @@
 # include "Data_Structures/Hash_Table/hash_table.h"
 # include "colors.h"
 
-// insert leak debuggers
+// insert memory debuggers:w
+//
 /*
- *Tirar daqui:
 # if defined DEBUG_REPLACE && DEBUG_REPLACE == 1
 void				*debug_malloc(size_t size, const char *file, int line);
 void				debug_free(void *ptr, const char *file, int line);
@@ -68,9 +68,5 @@ void				debug_free(void *ptr, const char *file, int line);
 # define STDOUT STDOUT_FILENO
 # define STDIN STDIN_FILENO
 # define STDERR STDERR_FILENO
-
-
-//PRINT
-
 
 #endif

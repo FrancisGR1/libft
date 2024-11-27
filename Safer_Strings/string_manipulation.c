@@ -86,23 +86,3 @@ t_string	str_dup(t_string to_duplicate)
 	dup.end = dup.s + copied_chars;
 	return (dup);
 }
-
-//TODO: eliminar
-void	str_free_and_replace_raw(t_string *str, char *raw_str)
-{
-	if (!str || str_is_null(*str))
-		return ;
-	if (str->type == STR_ALLOCATED)
-		string_free(str);
-	*str = cstr_to_str(raw_str);
-}
-
-void	str_free_and_replace_str(t_string *str, t_string *substitute)
-{
-	if (!str || str_is_null(*str))
-		return ;
-	if (str->type == STR_ALLOCATED)
-		string_free(str);
-	*str = *substitute;
-}
-

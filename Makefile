@@ -22,7 +22,7 @@ HEADER = libft.h
 #memory 
 MEMORY_DIR = Memory
 MEMORY_SRC = freen.c ft_bzero.c ft_calloc.c ft_memcat.c ft_memchr.c ft_memcmp.c \
-	     ft_memcpy.c ft_memmove.c ft_memset.c ft_realloc.c debuggers.c
+	     ft_memcpy.c ft_memmove.c ft_memset.c ft_realloc.c cmp_ptrs.c debuggers.c
 HEADER += $(MEMORY_DIR)/memory.h
 SOURCES = $(addprefix $(MEMORY_DIR)/, $(MEMORY_SRC))
 

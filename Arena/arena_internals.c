@@ -66,8 +66,8 @@ t_arena *_arena_of_ptr(t_arena *arena_list, void *ptr)
 	return (arena_of_ptr);
 }
 
-void _arena_save_ptr(t_dynamic_array *data_ptrs, void *ptr)
+void _arena_save_ptr(t_dynamic_array *to_save, void *ptr)
 {
-	darr_append(data_ptrs, &ptr);
-	darr_sort(data_ptrs, cmp_nums);
+	darr_append(to_save, &ptr);
+	darr_sort(to_save, cmp_nums);
 }

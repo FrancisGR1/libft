@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "memory.h"
-//TODO: criar pasta para debuggers
+
 /*
 #if defined DEBUG_REPLACE && DEBUG_REPLACE == 1
 void	*debug_malloc(size_t size, const char *file, int line)
