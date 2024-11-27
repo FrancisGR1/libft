@@ -1,8 +1,6 @@
 #include "arena_internals.h"
 
-//TODO: temporário, mudar de sítio
-//E mudar de nome
-int cmp_nums(const void *el1, const void *el2)
+static int cmp_nums(const void *el1, const void *el2)
 {
 	return ((long long *)el1 - (long long *)el2);
 }
@@ -68,15 +66,8 @@ t_arena *_arena_of_ptr(t_arena *arena_list, void *ptr)
 	return (arena_of_ptr);
 }
 
-//TODO: juntar as funções numa só
 void _arena_save_ptr(t_dynamic_array *data_ptrs, void *ptr)
 {
 	darr_append(data_ptrs, &ptr);
 	darr_sort(data_ptrs, cmp_nums);
-}
-
-void _arena_save_reset_chunk(t_arena *arena, void *ptr)
-{
-	printf("saved %p\n", ptr);
-	darr_append(arena->reset_chunks, &ptr);
 }

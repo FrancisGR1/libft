@@ -25,8 +25,8 @@ t_arena	*arena_init(size_t size)
 	region->end = region->memory + region->limit;
 	region->next = NULL;
 	region->watermark = NULL;
-	region->data_ptrs = darr_init(sizeof (void *));
-	region->reset_chunks = darr_init(sizeof (void*) * RESET_CHUNKS);
+	region->data_ptrs = darr_init(sizeof (void *), DA_DEFAULT_SIZE);
+	region->reset_chunks = darr_init(sizeof (void*) * RESET_CHUNKS, DA_DEFAULT_SIZE);
 	return (region);
 }
 
@@ -76,7 +76,7 @@ void arena_reset(t_arena *arena_list, void *ptr)
 	bytes_to_reset = next_ptr - ptr;
 	darr_remove(arena->data_ptrs, ptr);
 	ft_memset(ptr, 0, bytes_to_reset);
-	_arena_save_reset_chunk(arena, ptr);
+	_arena_save_ptr(arena->reset_chunks, ptr);
 }
 
 void	arena_destroy(t_arena *arena)
