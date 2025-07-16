@@ -28,12 +28,12 @@ HEADER += $(MEMORY_DIR)/memory.h
 SOURCES = $(addprefix $(MEMORY_DIR)/, $(MEMORY_SRC))
 
 
-#safer strings
-SAFER_STR_DIR = Safer_Strings
-SAFER_STR_SRC = string_arrays.c string_find.c string_initialization.c string_iteration.c \
-		string_manipulation.c string_split.c string_utils.c
-HEADER += $(SAFER_STR_DIR)/safer_strings.h
-SOURCES += $(addprefix $(SAFER_STR_DIR)/, $(SAFER_STR_SRC))
+#strings inspired by std::string
+STR_DIR = Strings
+STR_SRC = strings.c string_internals.c
+	
+HEADER += $(STR_DIR)/strings.h $(STR_DIR)/string_internals.h
+SOURCES += $(addprefix $(STR_DIR)/, $(STR_SRC))
 
 #checkers
 CHECKERS_DIR = Checkers

@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 22:20:37 by frmiguel          #+#    #+#             */
-/*   Updated: 2024/11/10 21:31:18 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:16:57 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # include "Write/write.h"
 # include "Files/files.h"
 # include "Data_Structures/Dynamic_Arrays/dynamic_array.h"
-# include "Safer_Strings/safer_strings.h"
 # include "Data_Structures/Lists/lists.h"
 # include "Data_Structures/Queues/queues.h"
 # include "Arena/arena.h"
