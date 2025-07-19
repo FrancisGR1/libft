@@ -12,17 +12,24 @@ bool *_global_memory_is_created_ref(void)
 	return (&memory_is_created);
 };
 
-void _init_global_memory(size_t size)
+bool _init_global_memory(size_t size)
 {
+	t_string_memory *created;
+
 	if (*_global_memory_is_created_ref())
 	{
 		ft_fprintf(STDERR, "Error: Trying to initialize non-null global string memory\n");
+		return (false);
 	}
 	else
 	{
+		created = _memory_create(size);
+		if (created == NULL)
+			return (false);
 		*_global_memory_ref() = _memory_create(size);
 		*_global_memory_is_created_ref() = true;
 	}
+	return (true);
 }
 
 void _destroy_global_memory(void)
@@ -43,7 +50,7 @@ void _destroy_global_memory(void)
 
 }
 
-//@TODO: mover para outro ficheiro
+//@TODO: mover funcs abaixo para outro ficheiro
 t_string_memory *_memory_create(size_t capacity)
 {
 	t_string_memory *new_region;
@@ -80,7 +87,7 @@ void *_region_allocate(t_string_memory *region, size_t size)
 	}
 	if (region->size + size > region->capacity)
 	{
-		ft_fprintf(STDERR, "Error: memory region out of size\n");
+		ft_fprintf(STDERR, "Error: memory region out of size. Bytes requested: %d; available: %d\n", size, region->capacity - region->size);
 		return (NULL);
 	}
 

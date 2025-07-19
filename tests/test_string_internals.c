@@ -1,6 +1,5 @@
-#include "./minunit/minunit.h"
+#include "minunit/minunit.h"
 #include "../Strings/string_internals.h"
-#include <string.h>
 
 // Test fixture setup/teardown
 static void setup_test() {

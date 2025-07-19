@@ -5,8 +5,6 @@
 
 typedef struct s_string_memory
 {
-	//O que é que a memória vai incluir?
-	//pointer para a memória
 	void *memory;
 	size_t size;
 	size_t capacity;
@@ -17,7 +15,7 @@ typedef struct s_string_memory
 //global memory
 t_string_memory **_global_memory_ref(void);
 bool *_global_memory_is_created_ref(void);
-void _init_global_memory(size_t size);
+bool _init_global_memory(size_t size);
 void _destroy_global_memory(void);
 
 //memory management
