@@ -27,25 +27,6 @@ t_string *str_create(const char* str_data)
 	return (str);
 };
 
-t_string *str_create_from_global_memory(size_t size)
-{
-	t_string *str;
-
-	if (*_global_memory_ref() == NULL)
-	{
-		if (_init_global_memory(size) == false)
-			return (NULL);
-	}
-	str = malloc(sizeof(t_string));
-	if (str == NULL)
-		return (NULL);
-	str->size = 0;
-	str->capacity = 1;
-	str->data = NULL;
-	str->memory = *_global_memory_ref();
-	return (str);
-};
-
 t_string **str_create_from_multiple(size_t count, ...)
 {
 	size_t i;

@@ -11,13 +11,6 @@ typedef struct s_string_memory
 
 } t_string_memory;
 
-
-//global memory
-t_string_memory **_global_memory_ref(void);
-bool *_global_memory_is_created_ref(void);
-bool _init_global_memory(size_t size);
-void _destroy_global_memory(void);
-
 //memory management
 t_string_memory *_memory_create(size_t capacity);
 void *_region_allocate(t_string_memory *region, size_t size);
