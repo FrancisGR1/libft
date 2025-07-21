@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*   By: frmiguel <frmiguel>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 00:49:04 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/21 15:06:17 by frmiguel         ###   ########.fr       */
+/*   Created: 2025/07/17 11:00:51 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/17 11:01:01 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "classic_strings.h"
-
-char	*ft_strndup(const char *s, size_t n)
+char *ft_strcpy(char *dst, const char *src)
 {
-	char	*ptr;
+	char *ptr;
 
-	if (!s)
-		return (NULL);
-	ptr = ft_calloc(n + 1, sizeof(char));
-	if (!ptr)
-		ptr = 0x0;
-	else
-		ft_strlcpy(ptr, s, n + 1);
+	ptr = dst;
+	while (*src)
+		*dst++ = *src++;
+	*dst = '\0';
 	return (ptr);
 }

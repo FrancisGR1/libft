@@ -3,13 +3,21 @@
 
 #include "../libft.h"
 
+#define ASCII_SIZE 256
+
 //measure
 size_t				ft_strlen(const char *s);
 size_t				ft_len_until(char *s, char c);
 int					word_ncount(char const *s, char *delimiter, int dn);
 
+//check
+int ft_islower(char c);
+int ft_isupper(char c);
+
 //copy
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
+char 				*ft_strncpy(char *dst, char *src, size_t n);
+char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strdup(const char *s);
 char				*ft_strndup(const char *s, size_t n);
 
@@ -22,11 +30,13 @@ char				*ft_strjoin_until(char const *s1, char const *s2,
 //compare
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
+int 					ft_strcasecmp(const char *s1, const char *s2);
 
 //find
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strnstr(const char *s1, const char *s2, size_t n);
+char				*ft_strstr(const char *big, const char *little);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 
 //modify
@@ -43,6 +53,11 @@ int					ft_atoi_base(const char *nptr, const char *base_str);
 
 //convert number to string
 char				*ft_itoa(int n);
+
+//tokenization
+char *strtok(char *s, const char *delim);
+size_t ft_strspn(char *s, char *delim);
+size_t ft_strscpn(char *s, char *delim);
 
 //split
 char				**ft_split(char const *s, char *delimiter);
