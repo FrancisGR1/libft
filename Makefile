@@ -47,11 +47,24 @@ STR_SRC = \
 	  string_internals.c \
 	  str_from_primitives.c \
 	  str_insert.c \
+	  str_copy.c \
 	  str_replace.c \
 	  str_size.c \
-	  str_check.c \
+	  str_modify_size.c \
 	  str_split.c \
-	  str_substr.c
+	  str_substr.c \
+	  str_join.c \
+	  str_search.c \
+	  str_search_not_of.c \
+	  str_compare.c \
+	  str_match.c \
+	  str_arithmetics.c \
+	  str_is.c \
+	  str_is_p2.c \
+	  str_remove.c \
+	  str_trim.c \
+	  str_case.c \
+	  str_accessors.c
 HEADER += $(STR_DIR)/strings.h $(STR_DIR)/string_internals.h
 SOURCES += $(addprefix $(STR_DIR)/, $(STR_SRC))
 

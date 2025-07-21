@@ -65,6 +65,9 @@ void str_replace_all(t_string *str, const char *old_str, const char *new_str);
 t_string* str_substr(t_string* str, size_t pos, size_t len);
 size_t str_count(const t_string* str, const char* substr);
 
+// copy
+size_t str_copy(const t_string *str, char *buffer, size_t pos, size_t len);
+
 // split
 t_string **str_split_using_char_as_delim(const t_string* str, const char* delimiters, int *count);
 t_string **str_split_using_str_as_delim(const t_string *str, const char *delimiter, int *count);
@@ -81,6 +84,11 @@ int str_find_last_of(const t_string* str, const char* buffer, size_t pos);
 int str_find_first_not_of(const t_string* str, const char* buffer, size_t pos);
 int str_find_last_not_of(const t_string* str, const char* buffer, size_t pos);
 
+// match
+bool str_contains(const t_string* str, const char* substr);
+bool str_starts_with(const t_string* str, const char* substr);
+bool str_ends_with(const t_string* str, const char* substr);
+
 // compare
 int str_compare(const t_string* str1, const t_string* str2);
 int str_compare_ignore_case(const t_string* str1, const t_string* str2);
@@ -90,6 +98,15 @@ bool str_is_equal(const t_string* str1, const t_string* str2);
 bool str_is_not_equal(const t_string* str1, const t_string* str2);
 bool str_is_less(const t_string* str1, const t_string* str2);
 bool str_is_greater(const t_string* str1, const t_string* str2);
+
+// is
+bool str_is_alpha(const t_string* str);
+bool str_is_digit(const t_string* str);
+bool str_is_alnum(const t_string* str);
+bool str_is_lower(const t_string* str);
+bool str_is_upper(const t_string* str);
+bool str_is_space(const t_string* str);
+bool str_is_printable(const t_string* str);
 
 // remove
 void str_erase(t_string* str, size_t pos, size_t len);
@@ -116,6 +133,10 @@ void str_reserve(t_string *str, size_t new_capacity);
 void str_shrink_to_fit(t_string* str);
 bool str_set_memory_size(t_string* str, size_t new_size);
 
-//
+// accessors
+char str_at(const t_string* str, size_t index);
+const char* str_c_str(const t_string* str);
+char* str_end(const t_string* str);
+char* str_begin(const t_string* str);
 
 #endif /*STRINGS_H*/

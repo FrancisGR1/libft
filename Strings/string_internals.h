@@ -16,6 +16,4 @@ t_string_memory *_memory_create(size_t capacity);
 void *_region_allocate(t_string_memory *region, size_t size);
 void _memory_destroy(t_string_memory *memory);
 
-
-
 #endif /*STRING_INTERNALS_H*/

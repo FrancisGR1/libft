@@ -3,7 +3,9 @@
 bool str_deallocate(t_string *str)
 {
 	if (str == NULL)
+	{
 		return (false);
+	}
 	_memory_destroy(str->memory);
 	if (str->memory != NULL)
 		str->memory = NULL;
