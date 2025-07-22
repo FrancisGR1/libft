@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hash_table.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 17:08:03 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 17:12:03 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "hash_table.h"
 
-int ht_init(t_ht **ht, int capacity, int (*hash) (const void *key), int (*match) (const void *key1, const void *key2))
+int	ht_init(t_ht **ht, int capacity, int (*hash)(const void *key),
+		int (*match)(const void *key1, const void *key2))
 {
 	*ht = ft_calloc(sizeof(t_ht), 1);
 	if (!*ht)
@@ -15,9 +28,9 @@ int ht_init(t_ht **ht, int capacity, int (*hash) (const void *key), int (*match)
 	return (0);
 }
 
-void ht_destroy(t_ht *ht, void (*del) (void *data))
+void	ht_destroy(t_ht *ht, void (*del)(void *data))
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < ht->capacity)
@@ -29,10 +42,10 @@ void ht_destroy(t_ht *ht, void (*del) (void *data))
 	freen((void *)&ht);
 }
 
-int ht_insert(t_ht *ht, const void *data)
+int	ht_insert(t_ht *ht, const void *data)
 {
-	void *ptr;
-	int index;
+	void	*ptr;
+	int		index;
 
 	ptr = (void *)data;
 	if (ht_lookup(ht, &ptr) == 0)
@@ -43,11 +56,11 @@ int ht_insert(t_ht *ht, const void *data)
 	return (0);
 }
 
-int ht_remove(t_ht *ht, void **data, void (*del) (void *))
+int	ht_remove(t_ht *ht, void **data, void (*del)(void *))
 {
-	int index;
-	t_list *lst_ptr;
-	t_list *prev;
+	int		index;
+	t_list	*lst_ptr;
+	t_list	*prev;
 
 	index = ht->hash(*data) % ht->capacity;
 	lst_ptr = ht->table[index];
@@ -66,10 +79,10 @@ int ht_remove(t_ht *ht, void **data, void (*del) (void *))
 	return (-1);
 }
 
-int ht_lookup(t_ht *ht, void **data)
+int	ht_lookup(t_ht *ht, void **data)
 {
-	int index;
-	t_list *lst_ptr;
+	int		index;
+	t_list	*lst_ptr;
 
 	index = ht->hash(*data) % ht->capacity;
 	lst_ptr = ht->table[index];
@@ -83,9 +96,4 @@ int ht_lookup(t_ht *ht, void **data)
 		lst_ptr = lst_ptr->next;
 	}
 	return (-1);
-}
-
-int ht_size(t_ht *ht)
-{
-	return (ht->elements);
 }

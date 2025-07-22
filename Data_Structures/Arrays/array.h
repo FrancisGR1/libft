@@ -1,14 +1,25 @@
-#ifndef ARRAYS_H
-# define ARRAYS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   array.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 17:06:24 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 17:06:55 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../../libft.h"
+#ifndef ARRAY_H
+# define ARRAY_H
 
-//free data
-void				freen_arr(void **data);
+# include "../../libft.h"
 
-void				freen_arr_with_custom_func(void **data,
-						void (*del)(void *));
+// free data
+void	freen_arr(void **data);
 
-//size of array
-size_t				array_len(void **arr);
-# endif /*ARRAYS_H*/
+void	freen_arr_with_custom_func(void **data, void (*del)(void *));
+
+// size of array
+size_t	array_len(void **arr);
+#endif /*ARRAY_H*/

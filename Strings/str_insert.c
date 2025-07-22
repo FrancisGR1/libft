@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_insert.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:50:01 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:50:01 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strings.h"
 
-void str_append(t_string* str, const char* cstr_to_append)
+void	str_append(t_string *str, const char *cstr_to_append)
 {
-	size_t cstr_size;
-	size_t new_size;
-	char *new_data;
+	size_t	cstr_size;
+	size_t	new_size;
+	char	*new_data;
 
 	if (str == NULL || cstr_to_append == NULL)
 		return ;
@@ -19,16 +31,16 @@ void str_append(t_string* str, const char* cstr_to_append)
 			return ;
 		ft_memcpy(new_data, str->data, str->size);
 		str->data = new_data;
-		str->capacity =  new_size;
+		str->capacity = new_size;
 	}
 	ft_strcpy(str->data + str->size, cstr_to_append);
 	str->size += cstr_size;
 }
 
-void str_push_back(t_string* str, const char ch_to_push)
+void	str_push_back(t_string *str, const char ch_to_push)
 {
-	size_t new_capacity;
-	char *new_data;
+	size_t	new_capacity;
+	char	*new_data;
 
 	if (str == NULL)
 		return ;
@@ -40,42 +52,44 @@ void str_push_back(t_string* str, const char ch_to_push)
 			return ;
 		ft_memcpy(new_data, str->data, str->size);
 		str->data = new_data;
-		str->capacity =  new_capacity;
+		str->capacity = new_capacity;
 	}
 	str->data[str->size] = ch_to_push;
 	str->size++;
-	str->data[str->size] = '\0'; 
+	str->data[str->size] = '\0';
 }
 
-void str_insert(t_string* str, size_t pos, const char* insertion)
+void	str_insert(t_string *str, size_t pos, const char *insertion)
 {
-	const size_t insertion_len = ft_strlen(insertion);
-	size_t total_len;
-	size_t new_capacity;
-	char *new_data;
+	const size_t	insertion_len = ft_strlen(insertion);
+	size_t			total_len;
+	size_t			new_capacity;
+	char			*new_data;
 
 	if (str == NULL || insertion == NULL || pos > str->size)
 		return ;
-	total_len  = insertion_len + str->size; 
+	total_len = insertion_len + str->size;
 	if (total_len + 1 > str->capacity)
 	{
 		new_capacity = total_len + 1;
 		new_data = _region_allocate(str->memory, new_capacity);
 		ft_memcpy(new_data, str->data, pos);
-		ft_memcpy(new_data + pos + insertion_len, str->data + pos, str->size - pos);
+		ft_memcpy(new_data + pos + insertion_len, str->data + pos, str->size
+			- pos);
 		str->data = new_data;
 		str->capacity = new_capacity;
 	}
 	else
-		ft_memmove(str->data + pos + insertion_len, str->data + pos, str->size - pos);
+		ft_memmove(str->data + pos + insertion_len, str->data + pos, str->size
+			- pos);
 	ft_memcpy(str->data + pos, insertion, insertion_len);
 	str->size = total_len;
 }
 
-void str_assign(t_string *str, const char *new_str)
+void	str_assign(t_string *str, const char *new_str)
 {
-	size_t new_str_len;
-	char *new_data;
+	size_t	new_str_len;
+	char	*new_data;
 
 	if (str == NULL || new_str == NULL)
 		return ;

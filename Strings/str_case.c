@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_case.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:49:58 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:49:58 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strings.h"
 
-char* str_to_upper(const t_string* str)
+char	*str_to_upper(const t_string *str)
 {
-	char *upper;
-	size_t i;
+	char	*upper;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (NULL);
@@ -11,7 +23,8 @@ char* str_to_upper(const t_string* str)
 	i = 0;
 	while (i < str->size)
 	{
-		if (ft_isalpha(str->data[i]) && (str->data[i] >= 'a' && str->data[i] <= 'z'))
+		if (ft_isalpha(str->data[i]) && (str->data[i] >= 'a'
+				&& str->data[i] <= 'z'))
 		{
 			upper[i] = ft_toupper(str->data[i]);
 		}
@@ -25,10 +38,10 @@ char* str_to_upper(const t_string* str)
 	return (upper);
 }
 
-char* str_to_lower(const t_string* str)
+char	*str_to_lower(const t_string *str)
 {
-	char *lower;
-	size_t i;
+	char	*lower;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (NULL);
@@ -36,7 +49,8 @@ char* str_to_lower(const t_string* str)
 	i = 0;
 	while (i < str->size)
 	{
-		if (ft_isalpha(str->data[i]) && (str->data[i] >= 'A' && str->data[i] <= 'Z'))
+		if (ft_isalpha(str->data[i]) && (str->data[i] >= 'A'
+				&& str->data[i] <= 'Z'))
 		{
 			lower[i] = ft_tolower(str->data[i]);
 		}
@@ -48,13 +62,12 @@ char* str_to_lower(const t_string* str)
 	}
 	lower[str->size] = '\0';
 	return (lower);
-
 }
 
-void str_to_title(t_string* str)
+void	str_to_title(t_string *str)
 {
-	bool capitalize;
-	size_t i;
+	bool	capitalize;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return ;
@@ -75,17 +88,16 @@ void str_to_title(t_string* str)
 	}
 }
 
-void str_to_capitalize(t_string* str)
+void	str_to_capitalize(t_string *str)
 {
-
 	if (str == NULL || str->data == NULL || str->size == 0)
 		return ;
-	str->data[0] = ft_toupper(str->data[0]); 
+	str->data[0] = ft_toupper(str->data[0]);
 }
 
-void str_to_casefold(t_string* str)
+void	str_to_casefold(t_string *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return ;

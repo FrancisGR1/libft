@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:18:59 by frmiguel          #+#    #+#             */
-/*   Updated: 2024/11/10 21:18:59 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:15:18 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ void	*ft_realloc(void *data, size_t original_size, size_t new_size)
 	return (new);
 }
 
-//NOTE: the caller has to free the old data
-void	*ft_realloc_custom_cpy(void *data, size_t original_size, size_t new_size, void *cpy(void *, void *, size_t))
+// NOTE: the caller has to free the old data
+void	*ft_realloc_custom_cpy(void *data, size_t original_size,
+		size_t new_size, void *cpy(void *, void *, size_t))
 {
 	void	*new;
 	size_t	copy_size;
@@ -58,5 +59,4 @@ void	*ft_realloc_custom_cpy(void *data, size_t original_size, size_t new_size, v
 		copy_size = new_size;
 	cpy(new, data, copy_size);
 	return (new);
-
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_creation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:49:59 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:52:54 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strings.h"
 
-t_string *str_create(const char* str_data)
+t_string	*str_create(const char *str_data)
 {
-	t_string *str;
+	t_string	*str;
 
 	if (str_data == NULL)
 		return (NULL);
@@ -25,18 +37,18 @@ t_string *str_create(const char* str_data)
 	}
 	ft_strcpy(str->data, str_data);
 	return (str);
-};
+}
 
-t_string **str_create_from_multiple(size_t count, ...)
+t_string	**str_create_from_multiple(size_t count, ...)
 {
-	size_t i;
-	t_string **strings;
-	va_list args;
+	t_string	**strings;
+	va_list		args;
+	size_t		i;
 
 	if (count <= 0)
 		return (NULL);
 	va_start(args, count);
-	strings = malloc(sizeof(t_string*) * (count + 1));
+	strings = malloc(sizeof(t_string *) * (count + 1));
 	if (!strings)
 	{
 		va_end(args);
@@ -45,9 +57,9 @@ t_string **str_create_from_multiple(size_t count, ...)
 	i = 0;
 	while (i < count)
 	{
-		strings[i] = str_create((const char *)va_arg(args, char*));
+		strings[i] = str_create((const char *)va_arg(args, char *));
 		i++;
-	};
+	}
 	strings[count] = NULL;
 	va_end(args);
 	return (strings);

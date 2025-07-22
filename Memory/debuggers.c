@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:18:51 by frmiguel          #+#    #+#             */
-/*   Updated: 2024/11/10 21:18:51 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:15:15 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	debug_free(void *ptr, const char *file, int line)
 # define free(ptr) debug_free(ptr, __FILE__, __LINE__)
 
 #endif
+
 */

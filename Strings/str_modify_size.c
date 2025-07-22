@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_modify_size.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:50:03 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:50:03 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strings.h"
 
-void str_resize(t_string* str, size_t new_size)
+void	str_resize(t_string *str, size_t new_size)
 {
-	size_t new_capacity;
-	char *new_data;
+	size_t	new_capacity;
+	char	*new_data;
+
 	if (str == NULL || str->data == NULL)
 		return ;
 	if (new_size < str->size)
@@ -26,9 +39,9 @@ void str_resize(t_string* str, size_t new_size)
 	}
 }
 
-void str_reserve(t_string *str, size_t new_capacity)
+void	str_reserve(t_string *str, size_t new_capacity)
 {
-	char *data_dup;
+	char	*data_dup;
 
 	if (str == NULL)
 		return ;
@@ -45,10 +58,10 @@ void str_reserve(t_string *str, size_t new_capacity)
 	}
 }
 
-void str_shrink_to_fit(t_string* str)
+void	str_shrink_to_fit(t_string *str)
 {
-	size_t new_capacity;
-	char *new_data;
+	size_t	new_capacity;
+	char	*new_data;
 
 	if (str == NULL || str->size + 1 == str->capacity || str->data == NULL)
 		return ;
@@ -62,10 +75,10 @@ void str_shrink_to_fit(t_string* str)
 	str->capacity = new_capacity;
 }
 
-bool str_set_memory_size(t_string* str, size_t new_size)
+bool	str_set_memory_size(t_string *str, size_t new_size)
 {
-	char *new_data;
-	const char *data_dup;
+	char		*new_data;
+	const char	*data_dup;
 
 	if (str == NULL || new_size == 0)
 		return (false);

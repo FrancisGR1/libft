@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_is.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:50:02 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:50:02 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strings.h"
 
-bool str_is_alpha(const t_string* str)
+bool	str_is_alpha(const t_string *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (false);
@@ -14,9 +26,9 @@ bool str_is_alpha(const t_string* str)
 	return (str->data[i] == '\0');
 }
 
-bool str_is_digit(const t_string* str)
+bool	str_is_digit(const t_string *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (false);
@@ -28,9 +40,9 @@ bool str_is_digit(const t_string* str)
 	return (str->data[i] == '\0');
 }
 
-bool str_is_alnum(const t_string* str)
+bool	str_is_alnum(const t_string *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (false);
@@ -40,12 +52,11 @@ bool str_is_alnum(const t_string* str)
 		i++;
 	}
 	return (str->data[i] == '\0');
-
 }
 
-bool str_is_lower(const t_string* str)
+bool	str_is_lower(const t_string *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (false);
@@ -57,9 +68,9 @@ bool str_is_lower(const t_string* str)
 	return (str->data[i] == '\0');
 }
 
-bool str_is_upper(const t_string* str)
+bool	str_is_upper(const t_string *str)
 {
-	size_t i;
+	size_t	i;
 
 	if (str == NULL || str->data == NULL)
 		return (false);

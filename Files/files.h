@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   files.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 17:13:41 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 17:13:47 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FILES_H
 # define FILES_H
 
-#include "../libft.h"
+# include "../libft.h"
 
 //get next line structure
 //mostly for convenience

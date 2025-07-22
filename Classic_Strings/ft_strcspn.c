@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 17:03:20 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 17:03:20 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "classic_strings.h"
 
-size_t ft_strcspn(char *s, const char *delim)
+size_t	ft_strcspn(char *s, const char *delim)
 {
-	size_t i;
-	unsigned char lookup[ASCII_SIZE];
+	size_t			i;
+	unsigned char	lookup[ASCII_SIZE];
 
 	if (s == NULL || delim == NULL)
 		return (0);
@@ -21,4 +33,3 @@ size_t ft_strcspn(char *s, const char *delim)
 	}
 	return (i);
 }
-

@@ -6,13 +6,13 @@
 /*   By: frmiguel <frmiguel>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 11:00:51 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/17 11:01:01 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:03:20 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	char *ptr;
+	char	*ptr;
 
 	ptr = dst;
 	while (*src)

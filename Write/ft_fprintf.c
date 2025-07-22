@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 18:17:12 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/16 15:18:29 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:16:05 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ static int	print_fmt(int fd, char fmt, va_list al)
 		ft_putchar_fd(va_arg(al, int), fd);
 	if (fmt == 's')
 		count = ft_putstr_fd(va_arg(al, char *), fd);
-	//@TODO: meter t_strings a funcionar
-	//if (fmt == 'S')
-	//	count = string_put(va_arg(al, t_string), fd);
 	if (fmt == 'p')
 		count = ft_printmemory(fd, va_arg(al, unsigned long));
 	if (fmt == 'd' || fmt == 'i')

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   queues.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 17:12:50 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 17:13:02 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef QUEUES_H
 # define QUEUES_H
 
-#include "../../libft.h"
+# include "../../libft.h"
 
 // Dynamic sized queue using a linked list internally
 typedef struct s_list		t_queue;

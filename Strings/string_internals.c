@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_internals.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:50:00 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:50:00 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "string_internals.h"
 
-t_string_memory *_memory_create(size_t capacity)
+t_string_memory	*_memory_create(size_t capacity)
 {
-	t_string_memory *new_region;
+	t_string_memory	*new_region;
 
 	if (capacity == 0)
 		return (NULL);
@@ -25,11 +37,11 @@ t_string_memory *_memory_create(size_t capacity)
 		return (NULL);
 	}
 	return (new_region);
-};
+}
 
-void *_region_allocate(t_string_memory *region, size_t size)
+void	*_region_allocate(t_string_memory *region, size_t size)
 {
-	void *memory_ptr;
+	void	*memory_ptr;
 
 	if (region == NULL)
 	{
@@ -38,15 +50,17 @@ void *_region_allocate(t_string_memory *region, size_t size)
 	}
 	if (region->size + size > region->capacity)
 	{
-		ft_fprintf(STDERR, "Error: memory region out of size. Bytes requested: %d; available: %d; used: %d\n", size, region->capacity - region->size, region->size);
+		ft_fprintf(STDERR, "Error: memory region out of size. Bytes requested: \
+			%d; available: %d; used: %d\n", size, region->capacity
+			- region->size, region->size);
 		return (NULL);
 	}
 	memory_ptr = (char *)region->memory + region->size;
 	region->size += size;
 	return (memory_ptr);
-};
+}
 
-void _memory_destroy(t_string_memory *region)
+void	_memory_destroy(t_string_memory *region)
 {
 	if (region == NULL)
 	{
@@ -55,11 +69,12 @@ void _memory_destroy(t_string_memory *region)
 	}
 	if (region->memory == NULL)
 	{
-		ft_fprintf(STDERR, "Error: attempting to destroy a NULL memory region\n");
+		ft_fprintf(STDERR,
+			"Error: attempting to destroy a NULL memory region\n");
 	}
 	else
 	{
 		free(region->memory);
 	}
 	free(region);
-};
+}

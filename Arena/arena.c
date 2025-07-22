@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:18:51 by frmiguel          #+#    #+#             */
-/*   Updated: 2024/11/10 21:18:51 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:02:11 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ t_arena	*arena_init(size_t region_size)
 	region->end = region->memory + region->limit;
 	region->next = NULL;
 	region->watermark = NULL;
-	region->data_ptrs = darr_init(sizeof (void *) * START_PTRS, DA_DEFAULT_SIZE);
-	region->reset_chunks = darr_init(sizeof (void*) * RESET_CHUNKS, DA_DEFAULT_SIZE);
+	region->data_ptrs = darr_init(sizeof(void *) * START_PTRS, DA_DEFAULT_SIZE);
+	region->reset_chunks = darr_init(sizeof(void *) * RESET_CHUNKS,
+			DA_DEFAULT_SIZE);
 	return (region);
 }
 
 void	*arena_alloc(t_arena **region, size_t nbytes, size_t size)
 {
 	const size_t	size_bytes = size * nbytes;
-	const void *reset_chunk = _arena_use_reset_chunk(*region, size_bytes);
+	const void		*reset_chunk = _arena_use_reset_chunk(*region, size_bytes);
 	void			*result;
 	t_arena			*head;
 
@@ -59,11 +60,11 @@ void	*arena_alloc(t_arena **region, size_t nbytes, size_t size)
 	return (result);
 }
 
-void arena_reset(t_arena *arena_list, void *ptr)
+void	arena_reset(t_arena *arena_list, void *ptr)
 {
-	size_t bytes_to_reset;
-	void *next_ptr;
-	t_arena *arena;
+	size_t	bytes_to_reset;
+	void	*next_ptr;
+	t_arena	*arena;
 
 	if (!arena_list || !ptr)
 		return ;
@@ -94,8 +95,8 @@ void	arena_destroy(t_arena *arena)
 	}
 }
 
-// visualização da memória: 
-// bytes ocupados: "|", 
+// visualização da memória:
+// bytes ocupados: "|",
 // bytes nulos   : "."
 /*
 void	arena_visualizer(char *msg, t_arena *region)
@@ -144,7 +145,7 @@ void	arena_visualizer(char *msg, t_arena *region)
 }
 */
 
-//Example usage
+// Example usage
 /*
    void	print_nums(int *i, int *end)
    {

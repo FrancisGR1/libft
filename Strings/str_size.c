@@ -1,25 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_size.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/22 16:50:04 by frmiguel          #+#    #+#             */
+/*   Updated: 2025/07/22 16:50:04 by frmiguel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "strings.h"
 
-size_t str_length(const t_string* str)
+size_t	str_length(const t_string *str)
 {
 	if (str == NULL)
 		return (0);
 	return (str->size);
 }
 
-size_t str_capacity(const t_string* str)
+size_t	str_capacity(const t_string *str)
 {
 	if (str == NULL)
 		return (0);
 	return (str->capacity);
 }
 
-size_t str_max_size(void)
+size_t	str_max_size(void)
 {
-	return (MAX_STRING_SIZE);
+	return (SIZE_MAX);
 }
 
-bool str_empty(const t_string* str)
+bool	str_empty(const t_string *str)
 {
 	return (str == NULL || str->size == 0);
 }
