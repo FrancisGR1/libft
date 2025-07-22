@@ -38,12 +38,8 @@ bool str_clear(t_string* str);
 // convert
 // - from primitive types
 t_string *str_from_int(int value);
-t_string *str_from_float(float value);
-t_string *str_from_double(double value);
 // - to primitive types
 int str_to_int(const t_string *str);
-float str_to_float(const t_string *str);
-double str_to_double(const t_string* str);
 
 // size, capacity
 size_t str_length(const t_string* str);

@@ -25,6 +25,5 @@ int str_compare_ignore_case(const t_string* str1, const t_string* str2)
 		if (str2 == NULL)
 			return (1);
 	}
-	//@TODO: implementar strcasecmp()
-	return (strcasecmp(str1->data, str2->data));
+	return (ft_strcasecmp(str1->data, str2->data));
 }

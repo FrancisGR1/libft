@@ -28,7 +28,6 @@ void str_replace_all(t_string *str, const char *old_str, const char *new_str)
 	start = str->data;
 	while (true)
 	{
-		//@TODO: implementar ft_strstr
 		end = ft_strstr(start, old_str);
 		if (!end)
 			break ;
@@ -38,7 +37,6 @@ void str_replace_all(t_string *str, const char *old_str, const char *new_str)
 		start = end + ft_strlen(old_str);
 	}
 	str_append(tmp, start);
-	//@TODO: implementar str_assign()
 	str_assign(str, tmp->data);
 	str_deallocate(tmp);
 }
