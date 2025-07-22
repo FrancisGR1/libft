@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 22:20:37 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/16 15:16:57 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:52:17 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 
 # include <ctype.h>
 # include <fcntl.h>
+# include <float.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdio.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <string.h>
 # include <strings.h>
@@ -32,6 +34,7 @@
 //TODO: de certeza há uma melhor solução
 //do que escrever manualmente os diretórios
 # include "Memory/memory.h"
+//# include "Strings/strings.h"
 # include "Checkers/checkers.h"
 # include "Classic_Strings/classic_strings.h"
 # include "Math/math.h"
@@ -44,7 +47,7 @@
 # include "Data_Structures/Hash_Table/hash_table.h"
 # include "colors.h"
 
-// insert memory debuggers:w
+// insert memory debuggers
 //
 /*
 # if defined DEBUG_REPLACE && DEBUG_REPLACE == 1

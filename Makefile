@@ -9,6 +9,7 @@
 #    Updated: 2023/10/14 20:55:14 by frmiguel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 NAME = libft.a
 
 CC = cc
@@ -89,16 +90,19 @@ CSTR_SRC = \
 	   ft_len_until.c \
 	   ft_split.c \
 	   ft_strchr.c \
-	   ft_strcmp.c \
 	   ft_strdup.c \
 	   ft_striteri.c \
 	   ft_strjoin.c \
 	   ft_strjoin_until.c \
 	   ft_strlcat.c \
 	   ft_strlcpy.c \
+	   ft_strncpy.c \
+	   ft_strcpy.c \
 	   ft_strlen.c \
 	   ft_strmapi.c \
 	   ft_strncmp.c \
+	   ft_strcasecmp.c \
+	   ft_strcmp.c \
 	   ft_strndup.c \
 	   ft_strnstr.c \
 	   ft_strstr.c \
@@ -108,7 +112,12 @@ CSTR_SRC = \
 	   ft_tolower.c \
 	   ft_toupper.c \
 	   rand_string.c \
-	   ft_strcpy.c
+	   ft_strspn.c \
+	   ft_strcspn.c \
+	   ft_strtok.c \
+	   ft_islower.c \
+	   ft_isupper.c
+
 HEADER += $(CSTR_DIR)/classic_strings.h
 SOURCES += $(addprefix $(CSTR_DIR)/, $(CSTR_SRC))
 

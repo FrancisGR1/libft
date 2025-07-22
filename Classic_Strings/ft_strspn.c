@@ -1,13 +1,13 @@
 #include "classic_strings.h"
 
-size_t ft_strspn(char *s, char *delim)
+size_t ft_strspn(char *s, const char *delim)
 {
 	size_t i;
-	size_t lookup[ASCII_SIZE];
+	unsigned char lookup[ASCII_SIZE];
 
 	if (s == NULL || delim == NULL)
 		return (0);
-	ft_memset(s, 0, ASCII_SIZE);
+	ft_memset(s, 0, ASCII_SIZE * sizeof(unsigned char));
 	i = 0;
 	while (delim[i])
 	{

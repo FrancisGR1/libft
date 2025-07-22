@@ -1,6 +1,7 @@
 #include "classic_strings.h"
 
-char *strtok(char *s, const char *delim)
+//@TODO: reduzir linhas
+char *ft_strtok(char *s, const char *delim)
 {
 	static char *saved_ptr;
 	char *end;

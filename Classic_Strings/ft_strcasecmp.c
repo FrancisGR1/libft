@@ -18,6 +18,6 @@ int ft_strcasecmp(const char *s1, const char *s2)
 		p1++;
 		p2++;
 	}
-	return (*p1 - *p2);
+	return (ft_tolower(*p1) - ft_tolower(*p2));
 
 }

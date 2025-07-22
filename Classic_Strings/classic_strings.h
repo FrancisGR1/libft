@@ -55,9 +55,9 @@ int					ft_atoi_base(const char *nptr, const char *base_str);
 char				*ft_itoa(int n);
 
 //tokenization
-char *strtok(char *s, const char *delim);
-size_t ft_strspn(char *s, char *delim);
-size_t ft_strscpn(char *s, char *delim);
+char *ft_strtok(char *s, const char *delim);
+size_t ft_strspn(char *s, const char *delim);
+size_t ft_strcspn(char *s, const char *delim);
 
 //split
 char				**ft_split(char const *s, char *delimiter);
