@@ -47,6 +47,7 @@ STR_SRC = \
 	  string_destruction.c \
 	  string_internals.c \
 	  str_from_primitives.c \
+	  str_to_primitives.c \
 	  str_insert.c \
 	  str_copy.c \
 	  str_replace.c \

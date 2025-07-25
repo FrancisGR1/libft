@@ -36,3 +36,5 @@ bool	str_clear(t_string *str)
 		str->data[0] = '\0';
 	return (true);
 }
+
+//@TODO: deallocate array of strings

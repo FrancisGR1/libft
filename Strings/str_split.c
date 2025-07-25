@@ -13,28 +13,36 @@
 #include "strings.h"
 
 static size_t	count_splits_for_char_delim(const t_string *str,
-		const char *delimiter)
-{
-	size_t	num_splits;
-	char	*temp;
-	char	*token;
+		const char *delimiter);
+static bool	insert_split_substrs(const t_string *original_str,
+		t_string **array_to_insert, const char *delimiter, size_t num_splits);
+static size_t	count_splits_for_str_delim(const t_string *str,
+		const char *delimiter);
 
-	if (str == NULL || delimiter == NULL || str->data == NULL)
-		return (0);
-	temp = ft_strdup(str->data);
-	if (temp == NULL)
-		return (0);
-	token = strtok(temp, delimiter);
-	if (token == NULL)
-		return (0);
-	num_splits = 0;
-	while (token != NULL)
+t_string	**str_split_using_str_as_delim(const t_string *str,
+		const char *delimiter, int *count)
+{
+	size_t		num_splits;
+	t_string	**splits;
+
+	if (str == NULL || delimiter == NULL || count == NULL)
+		return (NULL);
+	num_splits = count_splits_for_str_delim(str, delimiter);
+	if (num_splits == 0)
+		return (NULL);
+	splits = malloc(sizeof(t_string *) * num_splits);
+	if (splits == NULL)
+		return (NULL);
+	if (insert_split_substrs(str, splits, delimiter, num_splits) == true)
 	{
-		num_splits++;
-		token = strtok(NULL, delimiter);
+		*count = (int)num_splits;
+		return (splits);
 	}
-	free(temp);
-	return (num_splits);
+	else
+	{
+		free(splits);
+		return (NULL);
+	}
 }
 
 t_string	**str_split_using_char_as_delim(const t_string *str,
@@ -65,6 +73,32 @@ t_string	**str_split_using_char_as_delim(const t_string *str,
 	*count = (int)num_splits;
 	return (splits);
 }
+
+static size_t	count_splits_for_char_delim(const t_string *str,
+		const char *delimiter)
+{
+	size_t	num_splits;
+	char	*temp;
+	char	*token;
+
+	if (str == NULL || delimiter == NULL || str->data == NULL)
+		return (0);
+	temp = ft_strdup(str->data);
+	if (temp == NULL)
+		return (0);
+	token = strtok(temp, delimiter);
+	if (token == NULL)
+		return (0);
+	num_splits = 0;
+	while (token != NULL)
+	{
+		num_splits++;
+		token = strtok(NULL, delimiter);
+	}
+	free(temp);
+	return (num_splits);
+}
+
 
 //@TODO: null checks - can't because of norminette rn
 static size_t	count_splits_for_str_delim(const t_string *str,
@@ -123,30 +157,4 @@ static bool	insert_split_substrs(const t_string *original_str,
 	}
 	free(temp);
 	return (true);
-}
-
-t_string	**str_split_using_str_as_delim(const t_string *str,
-		const char *delimiter, int *count)
-{
-	size_t		num_splits;
-	t_string	**splits;
-
-	if (str == NULL || delimiter == NULL || count == NULL)
-		return (NULL);
-	num_splits = count_splits_for_str_delim(str, delimiter);
-	if (num_splits == 0)
-		return (NULL);
-	splits = malloc(sizeof(t_string *) * num_splits);
-	if (splits == NULL)
-		return (NULL);
-	if (insert_split_substrs(str, splits, delimiter, num_splits) == true)
-	{
-		*count = (int)num_splits;
-		return (splits);
-	}
-	else
-	{
-		free(splits);
-		return (NULL);
-	}
 }

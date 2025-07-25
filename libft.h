@@ -18,6 +18,7 @@
 # endif
 
 # include <ctype.h>
+# include <errno.h>
 # include <fcntl.h>
 # include <float.h>
 # include <limits.h>
