@@ -34,7 +34,7 @@
 //TODO: de certeza há uma melhor solução
 //do que escrever manualmente os diretórios
 # include "Memory/memory.h"
-//# include "Strings/strings.h"
+# include "Strings/strings.h"
 # include "Checkers/checkers.h"
 # include "Classic_Strings/classic_strings.h"
 # include "Math/math.h"

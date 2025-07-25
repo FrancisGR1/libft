@@ -28,6 +28,8 @@
 # define STRING_WHITESPACE " \t\n\r\f\v"
 # define STRING_PUNCTUATION "!\"#$%&'()*+,-./:;<?@[\\]^_`{|}~"
 
+typedef struct s_string_memory t_string_memory;
+
 typedef struct s_string
 {
 	char			*data;

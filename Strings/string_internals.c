@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "string_internals.h"
+#include "strings.h"
 
 t_string_memory	*_memory_create(size_t capacity)
 {

@@ -20,7 +20,6 @@ static void	init(t_line **line)
 	(*line)->nl = false;
 }
 
-// Frees the structure initialized and returns the new line
 static char	*res(t_line *line)
 {
 	char	*result;
@@ -44,17 +43,19 @@ char	*get_next_line(int fd)
 	{
 		l->old = l->new;
 		l->new = ft_strjoin_until(l->old, buf, '\n');
+		//printf("buffer size: %d\n", BUFFER_SIZE);
+		//printf("in buffer: %s", buf); 
+		//printf("after strjoin: %s", l->new);
 		free(l->old);
 		i = 0;
 		j = 0;
 		while (buf[i])
 		{
 			if (l->nl)
-				buf[j] = buf[i];
+				buf[j++] = buf[i];
 			if (buf[i] == '\n')
 				l->nl = true;
 			buf[i] = 0;
-			j++;
 			i++;
 		}
 	}

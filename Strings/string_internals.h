@@ -13,14 +13,14 @@
 #ifndef STRING_INTERNALS_H
 # define STRING_INTERNALS_H
 
-# include "../libft.h"
+# include <stddef.h>
 
 typedef struct s_string_memory
 {
 	void		*memory;
 	size_t		size;
 	size_t		capacity;
-}				t_string_memory;
+} t_string_memory;
 
 // memory management
 t_string_memory	*_memory_create(size_t capacity);

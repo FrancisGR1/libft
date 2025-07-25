@@ -33,9 +33,8 @@ char	*ft_strjoin_until(char const *s1, char const *s2, char target)
 	while (s2[j])
 	{
 		p[i + j] = s2[j];
-		if (s2[j] == target)
+		if (s2[j++] == target)
 			break ;
-		j++;
 	}
 	p[i + j] = '\0';
 	return (p);
