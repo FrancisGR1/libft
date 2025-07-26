@@ -65,6 +65,16 @@ MU_TEST(test_replace_empty)
 	str_deallocate(str);
 }
 
+MU_TEST(test_replace_with_empty)
+{
+	const char *test_string = "HelloWorld!";
+	t_string *str = str_create("Hello World!");
+	str_replace(str, " ", "");
+	mu_assert_string_eq(test_string, str->data);
+	mu_assert_int_eq(ft_strlen(test_string), str->size);
+	str_deallocate(str);
+}
+
 MU_TEST(test_replace_null)
 {
 	t_string *str = str_create("");
@@ -81,6 +91,7 @@ MU_TEST_SUITE(replace_tests)
 	MU_RUN_TEST(test_replace_no_occurrence);
 	MU_RUN_TEST(test_replace_multiple_occurrences);
 	MU_RUN_TEST(test_replace_empty);
+	MU_RUN_TEST(test_replace_with_empty);
 	MU_RUN_TEST(test_replace_null);
 }
 
@@ -148,6 +159,16 @@ MU_TEST(test_replace_all_empty)
 	str_deallocate(str);
 }
 
+MU_TEST(test_replace_all_with_empty)
+{
+	const char *test_string = "HelloWorld!GoodbyeLOL!";
+	t_string *str = str_create("Hello World! Goodbye         LOL  !   ");
+	str_replace_all(str, " ", "");
+	mu_assert_string_eq(test_string, str->data);
+	mu_assert_int_eq(ft_strlen(test_string), str->size);
+	str_deallocate(str);
+}
+
 MU_TEST(test_replace_all_null)
 {
 	t_string *str = str_create("");
@@ -164,6 +185,7 @@ MU_TEST_SUITE(replace_all_tests)
 	MU_RUN_TEST(test_replace_all_no_occurrence);
 	MU_RUN_TEST(test_replace_all_multiple_occurrences);
 	MU_RUN_TEST(test_replace_all_empty);
+	MU_RUN_TEST(test_replace_all_with_empty);
 	MU_RUN_TEST(test_replace_all_null);
 }
 
