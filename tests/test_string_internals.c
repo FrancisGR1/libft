@@ -1,5 +1,6 @@
 #include "minunit/minunit.h"
 #include "../Strings/string_internals.h"
+#include <stdlib.h>
 
 MU_TEST(test_memory_create_valid_capacity) {
     t_string_memory *region = _memory_create(100);

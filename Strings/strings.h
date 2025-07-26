@@ -19,8 +19,7 @@
 # define STRING_DEFAULT_CAPACITY 64
 # define STRING_MEMORY_INITIAL_SIZE 10000000 // 1kb for each string
 
-# define STRING_ASCII_LETTERS 	"abcdefghijklmnopqrstuvwxyz \
-				 ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# define STRING_ASCII_LETTERS 	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define STRING_ASCII_LOWERCASE "abcdefghijklmnopqrstuvwxyz"
 # define STRING_ASCII_UPPERCASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define STRING_DIGITS "0123456789"
@@ -35,17 +34,24 @@ typedef struct s_string
 	char			*data;
 	size_t			size;
 	size_t			capacity;
+	//@TODO: mudar este ptr para void, de modo a poder apontar para 
+	//arenas ou outras regiões
 	t_string_memory	*memory;
 
 }					t_string;
 
 // creation
+// @TODO: criar str_create_from_arena(const char *str_data, void (*alloc) (void *data), void *memory_region)
+// @TODO: mudar malloc para alloc em todas as funções
+// @TODO: criar str_dup
 t_string			*str_create(const char *str_data);
 t_string			**str_create_from_multiple(size_t count, ...);
 
 // destruction
 bool				str_deallocate(t_string *str);
+bool 				str_array_deallocate(t_string **arr_of_strs, size_t count);
 bool				str_clear(t_string *str);
+void		str_deallocate_interface(void *ptr);
 
 // convert
 // - from primitive types

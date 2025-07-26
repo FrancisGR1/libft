@@ -37,4 +37,27 @@ bool	str_clear(t_string *str)
 	return (true);
 }
 
-//@TODO: deallocate array of strings
+bool str_array_deallocate(t_string **arr_of_strs, size_t count)
+{
+	size_t i;
+
+	if (arr_of_strs == NULL || count == 0)
+		return (false);
+	i = 0;
+	while (i < count)
+	{
+		if (arr_of_strs[i] != NULL)
+			str_deallocate(arr_of_strs[i]);
+		i++;
+	}
+	free(arr_of_strs);
+	return (true);
+}
+
+void str_deallocate_interface(void *ptr)
+{
+	if (ptr != NULL)
+	{
+		str_deallocate((t_string *)ptr);
+	}
+}
