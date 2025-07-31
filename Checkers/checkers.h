@@ -20,6 +20,8 @@ int	ft_isalpha(int c);
 int	ft_isascii(int c);
 int	ft_isdigit(int c);
 int	ft_isprint(int c);
+int	ft_punctuation(int c);
 int	ft_isspace(int c);
+int	ft_isvowel(int c);
 
 #endif /*CHECKERS_H*/

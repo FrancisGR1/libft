@@ -77,7 +77,9 @@ CHECKERS_SRC = ft_isalnum.c\
 	       ft_isascii.c \
 	       ft_isdigit.c \
 	       ft_isprint.c \
-	       ft_isspace.c 
+	       ft_ispunctuation.c \
+	       ft_isspace.c \
+	       ft_isvowel.c
 HEADER += $(CHECKERS_DIR)/checkers.h
 SOURCES += $(addprefix $(CHECKERS_DIR)/, $(CHECKERS_SRC))
 
