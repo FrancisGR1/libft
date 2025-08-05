@@ -12,12 +12,15 @@
 
 #include "files.h"
 
-static void	init(t_line **line)
+static bool	init(t_line **line)
 {
 	*line = malloc(sizeof(t_line));
+	if (*line == NULL)
+		return (false);
 	(*line)->old = NULL;
 	(*line)->new = NULL;
 	(*line)->nl = false;
+	return (true);
 }
 
 static char	*res(t_line *line)
@@ -33,29 +36,27 @@ static char	*res(t_line *line)
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE + 1];
+	static char	buf[MAX_FDS][BUFFER_SIZE + 1];
 	t_line		*l;
 	int			i;
 	int			j;
 
-	init(&l);
-	while (!l->nl && (buf[0] || (read(fd, buf, BUFFER_SIZE) > 0)))
+	if (fd <= 2 || fd > MAX_FDS || !init(&l))
+		return (NULL);
+	while (!l->nl && (buf[fd][0] || (read(fd, buf[fd], BUFFER_SIZE) > 0)))
 	{
 		l->old = l->new;
-		l->new = ft_strjoin_until(l->old, buf, '\n');
-		//printf("buffer size: %d\n", BUFFER_SIZE);
-		//printf("in buffer: %s", buf); 
-		//printf("after strjoin: %s", l->new);
+		l->new = ft_strjoin_until(l->old, buf[fd], '\n');
 		free(l->old);
 		i = 0;
 		j = 0;
-		while (buf[i])
+		while (buf[fd][i])
 		{
 			if (l->nl)
-				buf[j++] = buf[i];
-			if (buf[i] == '\n')
+				buf[fd][j++] = buf[fd][i];
+			if (buf[fd][i] == '\n')
 				l->nl = true;
-			buf[i] = 0;
+			buf[fd][i] = 0;
 			i++;
 		}
 	}

@@ -157,7 +157,8 @@ SOURCES += $(addprefix $(WRITE_DIR)/, $(PRINTF_AUX_SRC))
 FILES_DIR = Files
 FILES_SRC = \
 	    ft_getc.c \
-	    get_next_line.c
+	    get_next_line.c \
+	    get_next_line_to_str.c
 HEADER += $(FILES_DIR)/files.h
 SOURCES += $(addprefix $(FILES_DIR)/, $(FILES_SRC))
 

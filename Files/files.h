@@ -15,8 +15,13 @@
 
 # include "../libft.h"
 
-//get next line structure
-//mostly for convenience
+# define MAX_FDS 1000
+
+// Forward declaration to avoid a circular dependency with strings.h
+typedef struct s_string t_string;
+
+// get next line structure
+// mostly for convenience
 typedef struct s_line_str
 {
 	char	*old;
@@ -25,6 +30,7 @@ typedef struct s_line_str
 }			t_line;
 
 char				*get_next_line(int fd);
+t_string				*get_next_line_to_str(int fd);
 int					ft_getc(int fd);
 
 #endif /*FILES_H*/
