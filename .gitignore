@@ -1,6 +1,8 @@
 tags
 libft.a
 *.o
+*.json
+.cache
 
 #modules
 minunit

@@ -31,9 +31,7 @@
 # include <string.h>
 # include <strings.h>
 # include <unistd.h>
-
-//TODO: de certeza há uma melhor solução
-//do que escrever manualmente os diretórios
+ 
 # include "Memory/memory.h"
 # include "Strings/strings.h"
 # include "Checkers/checkers.h"
@@ -63,10 +61,6 @@ void				debug_free(void *ptr, const char *file, int line);
 # define TRUE 1
 # define NO 0
 # define FALSE 0
-
-# define OUTPUT STDOUT_FILENO
-# define INPUT STDIN_FILENO
-# define ERROR STDERR_FILENO
 
 # define STDOUT STDOUT_FILENO
 # define STDIN STDIN_FILENO
