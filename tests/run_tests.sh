@@ -78,7 +78,7 @@ printf "================\n\n"
 
     printf "\n"
     printf "=====================================\n"
-    bold "FINAL SUMMARY"
+    bold   "FINAL SUMMARY"
     printf "=====================================\n"
     printf "Total Tests: %d\n"      $TOTAL_TESTS
     printf "Total Assertions: %d\n" $TOTAL_ASSERTIONS

@@ -138,6 +138,7 @@ bool				str_is_printable(const t_string *str);
 
 // remove
 void				str_erase(t_string *str, size_t pos, size_t len);
+void				str_erase_if(t_string *str, int (*should_remove)(int c), size_t start_pos);
 void				str_pop_back(t_string *str);
 void				str_remove(t_string *str, const char *substr);
 void				str_remove_range(t_string *str, size_t start_pos,
