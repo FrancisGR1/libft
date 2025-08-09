@@ -17,7 +17,7 @@
 # include "string_internals.h"
 
 # define STRING_DEFAULT_CAPACITY 64
-# define STRING_MEMORY_INITIAL_SIZE 10000000 // 1kb for each string
+# define STRING_MEMORY_INITIAL_SIZE 2000
 
 # define STRING_ASCII_LETTERS 	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define STRING_ASCII_LOWERCASE "abcdefghijklmnopqrstuvwxyz"
