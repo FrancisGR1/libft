@@ -31,7 +31,7 @@
 # include <string.h>
 # include <strings.h>
 # include <unistd.h>
- 
+
 # include "Memory/memory.h"
 # include "Strings/strings.h"
 # include "Checkers/checkers.h"

@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:50:00 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/22 16:50:00 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/09/16 09:34:00 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ void	*_region_allocate(t_string_memory *region, size_t size)
 	}
 	if (region->size + size > region->capacity)
 	{
-		ft_fprintf(STDERR, "Error: memory region out of size. Bytes requested: \
-			%d; available: %d; used: %d\n", size, region->capacity
-			- region->size, region->size);
+		ft_fprintf(STDERR,
+			"Error: memory region out of size. Bytes requested: \
+			%d; available: %d; used: %d\n",
+			size,
+			region->capacity - region->size,
+			region->size);
 		return (NULL);
 	}
 	memory_ptr = (char *)region->memory + region->size;

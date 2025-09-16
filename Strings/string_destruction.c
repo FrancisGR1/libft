@@ -6,7 +6,7 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:50:00 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/22 16:50:00 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/09/16 09:32:21 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ bool	str_clear(t_string *str)
 	return (true);
 }
 
-bool str_array_deallocate(t_string **arr_of_strs, size_t count)
+bool	str_array_deallocate(t_string **arr_of_strs, size_t count)
 {
-	size_t i;
+	size_t	i;
 
 	if (arr_of_strs == NULL || count == 0)
 		return (false);
@@ -54,7 +54,7 @@ bool str_array_deallocate(t_string **arr_of_strs, size_t count)
 	return (true);
 }
 
-void str_deallocate_interface(void *ptr)
+void	str_deallocate_interface(void *ptr)
 {
 	if (ptr != NULL)
 	{

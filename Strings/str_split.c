@@ -6,18 +6,19 @@
 /*   By: frmiguel <frmiguel@student.42Lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:50:05 by frmiguel          #+#    #+#             */
-/*   Updated: 2025/07/22 16:50:05 by frmiguel         ###   ########.fr       */
+/*   Updated: 2025/09/16 09:32:28 by frmiguel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "strings.h"
 
 static size_t	count_splits_for_char_delim(const t_string *str,
-		const char *delimiter);
-static bool	insert_split_substrs(const t_string *original_str,
-		t_string **array_to_insert, const char *delimiter, size_t num_splits);
+					const char *delimiter);
+static bool		insert_split_substrs(const t_string *original_str,
+					t_string **array_to_insert, const char *delimiter,
+					size_t num_splits);
 static size_t	count_splits_for_str_delim(const t_string *str,
-		const char *delimiter);
+					const char *delimiter);
 
 t_string	**str_split_using_str_as_delim(const t_string *str,
 		const char *delimiter, int *count)
@@ -99,7 +100,6 @@ static size_t	count_splits_for_char_delim(const t_string *str,
 	return (num_splits);
 }
 
-
 //@TODO: null checks - can't because of norminette rn
 static size_t	count_splits_for_str_delim(const t_string *str,
 		const char *delimiter)
@@ -128,8 +128,8 @@ static size_t	count_splits_for_str_delim(const t_string *str,
 	return (num_splits);
 }
 
-//@TODO: should cleanup if str_create() goes bad, 
-//but norminette, lol.... so cba!
+//@TODO: should cleanup if str_create() goes bad,
+// but norminette, lol.... so cba!
 //@TODO: should also null check temp, params; size check num_splits, meh
 static bool	insert_split_substrs(const t_string *original_str,
 		t_string **array_to_insert, const char *delimiter, size_t num_splits)
