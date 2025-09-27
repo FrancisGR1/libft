@@ -144,6 +144,8 @@ bool							str_is_greater(const t_string *str1,
 // is
 bool							str_is_alpha(const t_string *str);
 bool							str_is_digit(const t_string *str);
+bool							str_is_only_this(const t_string *str,
+									bool (*f)(char));
 bool							str_is_alnum(const t_string *str);
 bool							str_is_lower(const t_string *str);
 bool							str_is_upper(const t_string *str);
